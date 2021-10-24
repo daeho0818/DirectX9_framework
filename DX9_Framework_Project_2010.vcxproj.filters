@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns:atg="http://atg.xbox.com" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{8e114980-c1a3-4ada-ad7c-83caadf5daeb}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+    <Filter Include="DXUT">
+      <UniqueIdentifier>{a43c5c25-0e86-4a20-b64a-883785ff74fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{2c3d4c8c-5d1a-459a-a05a-a4e4b608a44e}</UniqueIdentifier>
+      <Extensions>fx;fxh;hlsl</Extensions>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{e3e4f509-5b2b-4436-8eb6-05e55e528158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{f4678b10-887d-4a55-a6cf-ccd2e59f699b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{11230c11-4c68-42e6-9544-5f11c98be01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Singleton">
+      <UniqueIdentifier>{b9dcd494-7a68-4a78-a83e-28cd43fac06a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Loading">
+      <UniqueIdentifier>{27ea363c-4cc6-4c6c-a976-57135be3e27b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Loading\Image">
+      <UniqueIdentifier>{fa1f7095-4fb5-43fc-87e4-511cc45fa957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Loading\Sound">
+      <UniqueIdentifier>{821830e1-3be6-4d93-9df9-249bca857e88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Render">
+      <UniqueIdentifier>{cdb3c502-0535-4c3c-92e8-04920932e00f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\Sound">
+      <UniqueIdentifier>{f003b559-edfc-4397-9527-87fd9ba0ca2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\TimerC">
+      <UniqueIdentifier>{3437f8b8-b4f8-4e05-90f2-a192238b33b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\AnimationC">
+      <UniqueIdentifier>{babfaeb4-ef04-46a0-86a9-68d1fbdac4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\ImageC">
+      <UniqueIdentifier>{1cf2bcbb-fa81-4522-a8c9-d4960b08f610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\ParticleC">
+      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Component">
+      <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DXUT\Optional\directx.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <ClInclude Include="DXUT\Core\DXUT.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTenum.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Core\DXUTmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClCompile Include="DXUT\Core\DXUT.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTenum.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClInclude Include="DXUT\Optional\DXUTcamera.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTgui.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTres.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmesh.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClInclude Include="DXUT\Optional\SDKmisc.h">
+      <Filter>DXUT</Filter>
+    </ClInclude>
+    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTgui.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTres.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmesh.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+    <ClCompile Include="DXUT\Optional\SDKmisc.cpp">
+      <Filter>DXUT</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DX9_Framework_Project.cpp" />
+    <ClCompile Include="Object.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Singleton.cpp">
+      <Filter>Manager\Singleton</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingManager.cpp">
+      <Filter>Manager\Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Manager\Loading\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Manager\Loading\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Manager\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="TimerC.cpp">
+      <Filter>Component\TimerC</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationC.cpp">
+      <Filter>Component\AnimationC</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageC.cpp">
+      <Filter>Component\ImageC</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleC.cpp">
+      <Filter>Component\ParticleC</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Component\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="SDKsound.cpp" />
+    <ClCompile Include="SDKwavefile.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Object.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Singleton.h">
+      <Filter>Manager\Singleton</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingManager.h">
+      <Filter>Manager\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Manager\Loading\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Manager\Loading\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Manager\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>Manager\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="TimerC.h">
+      <Filter>Component\TimerC</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationC.h">
+      <Filter>Component\AnimationC</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageC.h">
+      <Filter>Component\ImageC</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleC.h">
+      <Filter>Component\ParticleC</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Component\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="SDKsound.h" />
+    <ClInclude Include="SDKwavefile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <CLInclude Include="resource.h">
+      <Filter>Resource Files</Filter>
+    </CLInclude>
+    <ResourceCompile Include="DX9_Framework_Project.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

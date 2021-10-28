@@ -5,7 +5,7 @@
 
 LoadingManager::LoadingManager()
 {
-	(*SOUND->m_manager).Initialize(DXUTGetHWND(), 1);
+	SOUND->m_manager.Initialize(DXUTGetHWND(), 1);
 }
 
 LoadingManager::~LoadingManager()

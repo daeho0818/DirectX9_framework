@@ -12,6 +12,11 @@ SoundManager::~SoundManager()
 {
 }
 
+void SoundManager::AddSound(string key, wstring path, LONG volume, bool loop)
+{
+	sound_informations.push_back(SoundInfo(key, path, volume, loop));
+}
+
 void SoundManager::Play(string key)
 {
 	LPDIRECTSOUNDBUFFER sb;
@@ -57,4 +62,22 @@ void SoundManager::Update()
 			iter = m_channels.erase(iter);
 		}
 	}
+}
+
+void SoundManager::Loading()
+{
+	while (!sound_informations.empty())
+	{
+
+	}
+}
+
+void SoundManager::SoundLoad(SoundInfo soundInfo)
+{
+	wchar_t path[256] = L"";
+	CSound* cSound;
+	swprintf(path, L"./Resources/Sounds/%s.wav", soundInfo.path.c_str());
+	m_manager.Create(&cSound, path, DSBCAPS_CTRLVOLUME);
+	Sound* sound = new Sound(soundInfo.volume, soundInfo.loop, cSound);
+	m_sounds.insert(make_pair(soundInfo.key, sound));
 }

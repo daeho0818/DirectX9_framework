@@ -1,8 +1,6 @@
 #include "DXUT.h"
 #include "SoundManager.h"
 
-#include "LoadingManager.h"
-
 SoundManager::SoundManager()
 {
 	m_manager.Initialize(DXUTGetHWND(), 0);
@@ -66,10 +64,15 @@ void SoundManager::Update()
 
 void SoundManager::Loading()
 {
+	all_sound_count = sound_informations.size();
+
 	while (!sound_informations.empty())
 	{
-
+		SoundLoad(sound_informations.back());
+		sound_informations.pop_back();
 	}
+
+	// 로딩 끝났을 때 실행할 내용 작성
 }
 
 void SoundManager::SoundLoad(SoundInfo soundInfo)

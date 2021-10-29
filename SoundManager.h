@@ -1,5 +1,4 @@
 #pragma once
-#include "Singleton.h"
 #include "Sound.h"
 #include <SDKsound.h>
 class SoundManager : public Singleton<SoundManager>
@@ -41,6 +40,8 @@ private:
 	map<string, Sound*> m_sounds;
 
 	vector<SoundInfo> sound_informations;
+
+	int all_sound_count;
 
 	void SoundLoad(SoundInfo soundInfo);
 };

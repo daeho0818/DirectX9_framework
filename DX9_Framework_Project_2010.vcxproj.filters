@@ -15,30 +15,6 @@
     <Filter Include="Component">
       <UniqueIdentifier>{e3e4f509-5b2b-4436-8eb6-05e55e528158}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager">
-      <UniqueIdentifier>{f4678b10-887d-4a55-a6cf-ccd2e59f699b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Object">
-      <UniqueIdentifier>{11230c11-4c68-42e6-9544-5f11c98be01e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Singleton">
-      <UniqueIdentifier>{b9dcd494-7a68-4a78-a83e-28cd43fac06a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Loading">
-      <UniqueIdentifier>{27ea363c-4cc6-4c6c-a976-57135be3e27b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Loading\Image">
-      <UniqueIdentifier>{fa1f7095-4fb5-43fc-87e4-511cc45fa957}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Loading\Sound">
-      <UniqueIdentifier>{821830e1-3be6-4d93-9df9-249bca857e88}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Render">
-      <UniqueIdentifier>{cdb3c502-0535-4c3c-92e8-04920932e00f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Manager\Sound">
-      <UniqueIdentifier>{f003b559-edfc-4397-9527-87fd9ba0ca2a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Component\TimerC">
       <UniqueIdentifier>{3437f8b8-b4f8-4e05-90f2-a192238b33b5}</UniqueIdentifier>
     </Filter>
@@ -53,6 +29,39 @@
     </Filter>
     <Filter Include="Component\Component">
       <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. MainGame">
+      <UniqueIdentifier>{e1cde915-f266-4b08-a34d-eea1a48fbf6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager">
+      <UniqueIdentifier>{f4678b10-887d-4a55-a6cf-ccd2e59f699b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Singleton">
+      <UniqueIdentifier>{b9dcd494-7a68-4a78-a83e-28cd43fac06a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Render">
+      <UniqueIdentifier>{cdb3c502-0535-4c3c-92e8-04920932e00f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Sound">
+      <UniqueIdentifier>{f003b559-edfc-4397-9527-87fd9ba0ca2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Scene">
+      <UniqueIdentifier>{b06804e3-53bf-4f7b-9a50-858d264dc953}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Image">
+      <UniqueIdentifier>{fa1f7095-4fb5-43fc-87e4-511cc45fa957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\Camera">
+      <UniqueIdentifier>{a23ff7c1-d2ce-4bb4-982e-113a0ceb8f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Object">
+      <UniqueIdentifier>{11230c11-4c68-42e6-9544-5f11c98be01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Scene">
+      <UniqueIdentifier>{d914ee78-f84e-4da9-a98b-2d274cdae391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Scene\Scene_Title">
+      <UniqueIdentifier>{942893d5-61fa-4a71-b47b-a31a56929072}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,25 +126,19 @@
   <ItemGroup>
     <ClCompile Include="DX9_Framework_Project.cpp" />
     <ClCompile Include="Object.cpp">
-      <Filter>Object</Filter>
+      <Filter>3. Object</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
-      <Filter>Manager\Singleton</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadingManager.cpp">
-      <Filter>Manager\Loading</Filter>
+      <Filter>2. Manager\Singleton</Filter>
     </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>Manager\Loading\Image</Filter>
-    </ClCompile>
-    <ClCompile Include="Sound.cpp">
-      <Filter>Manager\Loading\Sound</Filter>
+      <Filter>2. Manager\Image</Filter>
     </ClCompile>
     <ClCompile Include="RenderManager.cpp">
-      <Filter>Manager\Render</Filter>
+      <Filter>2. Manager\Render</Filter>
     </ClCompile>
     <ClCompile Include="SoundManager.cpp">
-      <Filter>Manager\Sound</Filter>
+      <Filter>2. Manager\Sound</Filter>
     </ClCompile>
     <ClCompile Include="TimerC.cpp">
       <Filter>Component\TimerC</Filter>
@@ -154,29 +157,44 @@
     </ClCompile>
     <ClCompile Include="SDKsound.cpp" />
     <ClCompile Include="SDKwavefile.cpp" />
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>2. Manager\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>2. Manager\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>2. Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>2. Manager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <Filter>1. MainGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>2. Manager\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene_Title.cpp">
+      <Filter>4. Scene\Scene_Title</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
-      <Filter>Object</Filter>
+      <Filter>3. Object</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Singleton.h">
-      <Filter>Manager\Singleton</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadingManager.h">
-      <Filter>Manager\Loading</Filter>
+      <Filter>2. Manager\Singleton</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>Manager\Loading\Image</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>Manager\Loading\Sound</Filter>
+      <Filter>2. Manager\Image</Filter>
     </ClInclude>
     <ClInclude Include="RenderManager.h">
-      <Filter>Manager\Render</Filter>
+      <Filter>2. Manager\Render</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.h">
-      <Filter>Manager\Sound</Filter>
+      <Filter>2. Manager\Sound</Filter>
     </ClInclude>
     <ClInclude Include="TimerC.h">
       <Filter>Component\TimerC</Filter>
@@ -195,6 +213,27 @@
     </ClInclude>
     <ClInclude Include="SDKsound.h" />
     <ClInclude Include="SDKwavefile.h" />
+    <ClInclude Include="ImageManager.h">
+      <Filter>2. Manager\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>2. Manager\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>2. Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>2. Manager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="MainGame.h">
+      <Filter>1. MainGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>2. Manager\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Title.h">
+      <Filter>4. Scene\Scene_Title</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

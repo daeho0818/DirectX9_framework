@@ -49,7 +49,7 @@ void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, 
 	m_sprite->Draw(image->ptr, &rc, nullptr, nullptr, color);
 }
 
-void RenderManager::PrintText(string str, Vector2 pos, float size, D3DXCOLOR color)
+void RenderManager::TextRender(string str, Vector2 pos, float size, D3DXCOLOR color)
 {
 	D3DXMATRIXA16 mat;
 	D3DXCreateFontA(DEVICE, 1, size, 0, 10, 1, 0, DEFAULT_CHARSET, 0, 0, "나눔스퀘어 AC", &m_font);

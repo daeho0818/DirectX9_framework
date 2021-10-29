@@ -16,7 +16,7 @@ public:
 		return p;
 	}
 
-	static void Release()
+	static void Destroy()
 	{
 		SAFE_DELETE(p);
 	}

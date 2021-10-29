@@ -31,6 +31,7 @@
     <ProjectGuid>{D3D09108-96D0-4629-88B8-122C0256058C}</ProjectGuid>
     <RootNamespace>DX9_Framework_Project</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -270,6 +271,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;D3DXFX_LARGEADDRESS_HANDLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>DXUT.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
@@ -385,13 +387,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AnimationC.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageC.cpp" />
-    <ClCompile Include="LoadingManager.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleC.cpp" />
     <ClCompile Include="RenderManager.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="SDKsound.cpp" />
     <ClCompile Include="SDKwavefile.cpp" />
     <ClCompile Include="Singleton.cpp" />
@@ -399,12 +406,17 @@
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TimerC.cpp" />
     <ClInclude Include="AnimationC.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageC.h" />
-    <ClInclude Include="LoadingManager.h" />
+    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="MainGame.h" />
     <ClInclude Include="ParticleC.h" />
     <ClInclude Include="RenderManager.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="SDKsound.h" />
     <ClInclude Include="SDKwavefile.h" />
     <ClInclude Include="Singleton.h" />

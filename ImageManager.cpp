@@ -23,8 +23,7 @@ Image* ImageManager::FindImage(string key)
 
 void ImageManager::Loading()
 {
-	all_images_count = image_informations.size();
-	ImageInfo imageInfo;
+	all_image_count = image_informations.size();
 
 	while (!image_informations.empty())
 	{

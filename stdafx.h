@@ -27,4 +27,5 @@ using std::function;
 
 #include "RenderManager.h"
 #include "SoundManager.h"
-#include "LoadingManager.h"
+#include "ImageManager.h"
+#include "SceneManager.h"

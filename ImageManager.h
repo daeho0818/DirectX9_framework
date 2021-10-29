@@ -31,6 +31,6 @@ private:
 	map<string, Image*> m_images;
 	vector<ImageInfo> image_informations;
 
-	int all_images_count;
+	int all_image_count;
 };
 

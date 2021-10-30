@@ -13,12 +13,16 @@ void MainGame::Init()
 {
 	SCENE->AddScene("Scene_Title", new Scene_Title());
 	SCENE->ChangeScene("Scene_Title");
+
+	SCENE->Init();
+	CAMERA->Init();
 }
 
 void MainGame::Update()
 {
 	SCENE->Update();
 	SOUND->Update();
+	CAMERA->Update();
 }
 
 void MainGame::Render()

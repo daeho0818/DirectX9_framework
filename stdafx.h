@@ -29,3 +29,4 @@ using std::function;
 #include "SoundManager.h"
 #include "ImageManager.h"
 #include "SceneManager.h"
+#include "CameraManager.h"

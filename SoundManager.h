@@ -1,4 +1,5 @@
 #pragma once
+#include "Singleton.h"
 #include "Sound.h"
 #include <SDKsound.h>
 class SoundManager : public Singleton<SoundManager>
@@ -30,6 +31,7 @@ public:
 	void Stop(string key);
 	void StopAll();
 
+	void Init();
 	void Update();
 
 	void Loading();

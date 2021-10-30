@@ -21,6 +21,5 @@ public:
 		SAFE_DELETE(p);
 	}
 };
-
 template <typename T>
 T* Singleton<T>::p = nullptr;

@@ -1,5 +1,4 @@
 #pragma once
-#include "LoadingManager.h"
 #include "RenderManager.h"
 #include "Component.h"
 #include "Image.h"
@@ -9,9 +8,6 @@ class ImageC : public Component
 public: 
 	ImageC();
 	~ImageC();
-
-	Image* GetImage(string key);
-	vector<Image*> GetAnimation(string key);
 
 private:
 	// Component을(를) 통해 상속됨

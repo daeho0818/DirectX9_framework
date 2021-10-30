@@ -1,4 +1,5 @@
 #pragma once
+#include "Singleton.h"
 class CameraManager : public Singleton<CameraManager>
 {
 public:
@@ -17,7 +18,15 @@ private:
 		static constexpr DWORD FVF = D3DFVF_XYZ | D3DFVF_TEX1;
 	};
 
+	Vector3 projPos;
+	Vector3 camUp;
+	Vector2 camPos;
+	Vector2 m_targetPos;
+
+	D3DXMATRIXA16 matProj;
+	D3DXMATRIX matView;
+
 	LPDIRECT3DVERTEXBUFFER9 m_vb;
 	LPDIRECT3DINDEXBUFFER9 m_ib;
 };
-
+#define CAMERA CameraManager::Instance()

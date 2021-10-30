@@ -1,4 +1,5 @@
 #pragma once
+#include "Singleton.h"
 #include "Image.h"
 class RenderManager : public Singleton<RenderManager>
 {

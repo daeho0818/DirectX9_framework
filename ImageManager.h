@@ -33,4 +33,4 @@ private:
 
 	int all_image_count;
 };
-
+#define IMAGE ImageManager::Instance()

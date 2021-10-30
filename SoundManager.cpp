@@ -3,7 +3,6 @@
 
 SoundManager::SoundManager()
 {
-	m_manager.Initialize(DXUTGetHWND(), 0);
 }
 
 SoundManager::~SoundManager()
@@ -46,6 +45,11 @@ void SoundManager::StopAll()
 		iter.second->Release();
 	}
 	m_channels.clear();
+}
+
+void SoundManager::Init()
+{
+	m_manager.Initialize(DXUTGetHWND(), 0);
 }
 
 void SoundManager::Update()

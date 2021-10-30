@@ -26,6 +26,10 @@ void CameraManager::Init()
 	vertices[3].m_uv = { 1, 1 };
 	m_vb->Unlock();
 
+	projPos = { -WINSIZEX, WINSIZEY, 100 };
+	camPos = { 0, 0 };
+	camUp = { 0, 1, 0 };
+
 	DEVICE->CreateIndexBuffer(sizeof(WORD) * 6, D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &m_ib, NULL);
 	WORD idx[] = { 1, 2, 0, 1, 3, 2 };
 	void* indices = NULL;
@@ -45,6 +49,10 @@ void CameraManager::Init()
 
 void CameraManager::Update()
 {
+	projPos = { -WINSIZEX, WINSIZEY, 100 };
+
+	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
+	D3DXMatrixLookAtLH(&matView, &Vector3(camPos.x, camPos.y, 1), &Vector3(camPos.x, camPos.y, 0), &camUp);
 }
 
 void CameraManager::Release()

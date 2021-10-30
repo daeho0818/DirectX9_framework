@@ -51,12 +51,12 @@ void ImageManager::ImageLoad(ImageInfo imageInfo)
 			if (imageInfo.count == 0)
 			{
 				sprintf(key, "%s", imageInfo.key.c_str());
-				sprintf(path, "./Resources/Image/%s.png", imageInfo.path.c_str());
+				sprintf(path, "./Resources/Images/%s.png", imageInfo.path.c_str());
 			}
 			else
 			{
 				sprintf(key, "%s%d", imageInfo.key.c_str(), i);
-				sprintf(path, "./Resources/Image/%s (%d).png", imageInfo.path.c_str(), i);
+				sprintf(path, "./Resources/Images/%s (%d).png", imageInfo.path.c_str(), i);
 			}
 
 			if (D3DXCreateTextureFromFileExA(DEVICE, path, -2, -2, 0, 0,

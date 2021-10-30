@@ -15,6 +15,9 @@ public:
 	void End();
 	void Lost();
 	void Reset();
+
+private:
+
 };
 
 #include "Scene_Title.h"

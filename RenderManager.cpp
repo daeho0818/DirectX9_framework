@@ -34,7 +34,7 @@ void RenderManager::Lost()
 void RenderManager::CenterRender(Image* image, Vector2 pos, float size, D3DXCOLOR color)
 {
 	D3DXMATRIXA16 mat;
-	Vector2 targetPos = { pos.x - image->info.Width / 2 * size, image->info.Height / 2 * size };
+	Vector2 targetPos = { pos.x - image->info.Width / 2 * size, pos.y - image->info.Height / 2 * size };
 	D3DXMatrixAffineTransformation2D(&mat, size, nullptr, 0, &targetPos);
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, nullptr, nullptr, nullptr, color);
@@ -43,7 +43,7 @@ void RenderManager::CenterRender(Image* image, Vector2 pos, float size, D3DXCOLO
 void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, D3DXCOLOR color)
 {
 	D3DXMATRIXA16 mat;
-	Vector2 targetPos = { pos.x - image->info.Width / 2 * size, image->info.Height / 2 * size };
+	Vector2 targetPos = { pos.x - image->info.Width / 2 * size, pos.y - image->info.Height / 2 * size };
 	D3DXMatrixAffineTransformation2D(&mat, size, nullptr, 0, &targetPos);
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, &rc, nullptr, nullptr, color);

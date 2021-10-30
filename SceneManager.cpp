@@ -19,7 +19,8 @@ void SceneManager::Update()
 
 	if (target_scene)
 	{
-		current_scene->Release();
+		if (current_scene)
+			current_scene->Release();
 		target_scene->Init();
 		current_scene = target_scene;
 		target_scene = nullptr;

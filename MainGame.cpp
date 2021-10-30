@@ -16,6 +16,9 @@ void MainGame::Init()
 
 	SCENE->Init();
 	CAMERA->Init();
+
+	IMAGE->AddImage("Speed+", "Speed+");
+	IMAGE->Loading();
 }
 
 void MainGame::Update()
@@ -27,7 +30,12 @@ void MainGame::Update()
 
 void MainGame::Render()
 {
+	RENDER->Begin();
+
 	SCENE->Render();
+	SCENE->UIRender();
+
+	RENDER->End();
 }
 
 void MainGame::UIRender()
@@ -39,6 +47,12 @@ void MainGame::Release()
 {
 	SCENE->Release();
 	SOUND->StopAll();
+
+	CameraManager::Destroy();
+	ImageManager::Destroy();
+	RenderManager::Destroy();
+	SceneManager::Destroy();
+	SoundManager::Destroy();
 
 	SceneManager::Destroy();
 }

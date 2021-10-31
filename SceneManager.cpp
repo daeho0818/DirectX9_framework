@@ -40,6 +40,11 @@ void SceneManager::UIRender()
 void SceneManager::Release()
 {
 	if (current_scene) current_scene->Release();
+
+	for (var iter : m_scenes)
+		SAFE_DELETE(iter.second);
+
+	m_scenes.clear();
 }
 
 void SceneManager::AddScene(string key, Scene* scene)

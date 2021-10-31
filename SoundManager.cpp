@@ -43,6 +43,7 @@ void SoundManager::StopAll()
 	for (var iter : m_channels)
 	{
 		iter.second->Release();
+		SAFE_DELETE(iter.second);
 	}
 	m_channels.clear();
 }
@@ -76,7 +77,7 @@ void SoundManager::Loading()
 		sound_informations.pop_back();
 	}
 
-	// ·Îµù ³¡³µÀ» ¶§ ½ÇÇàÇÒ ³»¿ë ÀÛ¼º
+	// ë¡œë”© ëë‚œ í›„ ì‹¤í–‰í•  ë‚´ìš©
 }
 
 void SoundManager::SoundLoad(SoundInfo soundInfo)

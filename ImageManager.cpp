@@ -7,6 +7,13 @@ ImageManager::ImageManager()
 
 ImageManager::~ImageManager()
 {
+	for (var iter : m_images)
+	{
+		iter.second->ptr->Release();
+		SAFE_DELETE(iter.second);
+	}
+	m_images.clear();
+	image_informations.clear();
 }
 
 void ImageManager::AddImage(string key, string path, int count)
@@ -31,7 +38,7 @@ void ImageManager::Loading()
 		image_informations.pop_back();
 	}
 
-	// ¾À ÀÌµ¿ µî ·Îµù ³¡³µÀ» ¶§ ½ÇÇàÇÒ °Í
+	// ë¡œë”© ëë‚¬ì„ ë•Œ ì‹¤í–‰í•  ë‚´ìš©
 }
 
 void ImageManager::ImageLoad(ImageInfo imageInfo)

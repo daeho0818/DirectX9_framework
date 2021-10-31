@@ -73,4 +73,5 @@ void ParticleC::Render()
 
 void ParticleC::Release()
 {
+	m_animation.clear();
 }

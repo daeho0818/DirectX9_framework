@@ -24,7 +24,6 @@ void Scene_Title::Render()
 void Scene_Title::UIRender()
 {
 }
-
 void Scene_Title::Release()
 {
 }

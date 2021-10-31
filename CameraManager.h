@@ -10,6 +10,11 @@ public:
 	void Update();
 	void Release();
 
+	void MovingCamera(Vector2 position, float move_speed);
+	void ZoomingCamera();
+	void ShakingCamera();
+	void FadeCamera();
+
 private:
 	struct VertexType
 	{

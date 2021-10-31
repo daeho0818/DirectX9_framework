@@ -58,3 +58,19 @@ void CameraManager::Update()
 void CameraManager::Release()
 {
 }
+
+void CameraManager::MovingCamera(Vector2 position, float move_speed)
+{
+}
+
+void CameraManager::ZoomingCamera()
+{
+}
+
+void CameraManager::ShakingCamera()
+{
+}
+
+void CameraManager::FadeCamera()
+{
+}

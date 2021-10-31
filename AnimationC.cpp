@@ -36,4 +36,5 @@ void AnimationC::Render()
 
 void AnimationC::Release()
 {
+	m_animation.clear();
 }

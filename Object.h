@@ -3,7 +3,7 @@
 class Object
 {
 	Object();
-	~Object();
+	virtual ~Object();
 
 	template <typename T>
 	T* GetComponent()

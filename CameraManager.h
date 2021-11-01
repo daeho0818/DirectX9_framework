@@ -10,10 +10,10 @@ public:
 	void Update();
 	void Release();
 
-	void MovingCamera(Vector2 position, float move_speed);
-	void ZoomingCamera();
-	void ShakingCamera();
-	void FadeCamera();
+	void MovingCamera(Vector2 move_position, float move_speed);
+	void ZoomingCamera(float zoom_value, float zoom_speed);
+	void ShakingCamera(float shake_power, float shake_time, bool is_smooth_end);
+	void FadeCamera(float fade_time, bool fade_in);
 
 private:
 	struct VertexType

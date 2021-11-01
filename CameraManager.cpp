@@ -59,18 +59,18 @@ void CameraManager::Release()
 {
 }
 
-void CameraManager::MovingCamera(Vector2 position, float move_speed)
+void CameraManager::MovingCamera(Vector2 move_position, float move_speed)
 {
 }
 
-void CameraManager::ZoomingCamera()
+void CameraManager::ZoomingCamera(float zoom_value, float zoom_speed)
 {
 }
 
-void CameraManager::ShakingCamera()
+void CameraManager::ShakingCamera(float shake_power, float shake_time, bool is_smooth_end)
 {
 }
 
-void CameraManager::FadeCamera()
+void CameraManager::FadeCamera(float fade_time, bool fade_in)
 {
 }

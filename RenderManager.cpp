@@ -9,6 +9,7 @@ RenderManager::RenderManager()
 RenderManager::~RenderManager()
 {
 	m_sprite->Release();
+	SAFE_RELEASE(m_font);
 }
 
 void RenderManager::Begin()

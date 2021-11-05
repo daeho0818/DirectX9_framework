@@ -8,12 +8,14 @@ public:
 
 	void Init();
 	void Update();
+	void Render();
+	void UIRender();
 	void Release();
 
 	void MovingCamera(Vector2 move_position, float move_speed);
 	void ZoomingCamera(float zoom_value, float zoom_speed);
 	void ShakingCamera(float shake_power, float shake_time, bool is_smooth_end);
-	void FadeCamera(float fade_time, bool fade_in);
+	void FadeScreen(float fade_time, bool fade_in, bool is_ui);
 
 private:
 	struct VertexType
@@ -33,5 +35,7 @@ private:
 
 	LPDIRECT3DVERTEXBUFFER9 m_vb;
 	LPDIRECT3DINDEXBUFFER9 m_ib;
+
+	Image* screen_image = nullptr;
 };
 #define CAMERA CameraManager::Instance()

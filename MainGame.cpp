@@ -11,14 +11,14 @@ MainGame::~MainGame()
 
 void MainGame::Init()
 {
+	IMAGE->AddImage("Speed+", "Speed+");
+	IMAGE->Loading();
+
 	SCENE->AddScene("Scene_Title", new Scene_Title());
 	SCENE->ChangeScene("Scene_Title");
 
 	SCENE->Init();
 	CAMERA->Init();
-
-	IMAGE->AddImage("Speed+", "Speed+");
-	IMAGE->Loading();
 }
 
 void MainGame::Update()
@@ -33,7 +33,10 @@ void MainGame::Render()
 	RENDER->Begin();
 
 	SCENE->Render();
+	CAMERA->Render();
+
 	SCENE->UIRender();
+	CAMERA->UIRender();
 
 	RENDER->End();
 }

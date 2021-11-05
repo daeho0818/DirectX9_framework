@@ -22,6 +22,7 @@ public:
 	~ImageManager();
 
 	void AddImage(string key, string path, int count = 0);
+	void QuickLoad(string key, string path, int count = 0);
 	Image* FindImage(string key);
 	void Loading();
 

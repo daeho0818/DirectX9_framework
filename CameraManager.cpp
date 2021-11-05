@@ -45,6 +45,9 @@ void CameraManager::Init()
 	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
 	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+
+	IMAGE->QuickLoad("Screen", "Public/Screen");
+	screen_image = IMAGE->FindImage("Screen");
 }
 
 void CameraManager::Update()
@@ -53,6 +56,16 @@ void CameraManager::Update()
 
 	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
 	D3DXMatrixLookAtLH(&matView, &Vector3(camPos.x, camPos.y, 1), &Vector3(camPos.x, camPos.y, 0), &camUp);
+
+}
+
+void CameraManager::Render()
+{
+	RENDER->CenterRender(screen_image, Vector2(WINSIZEX / 2, WINSIZEY / 2), 1, D3DXCOLOR(0, 0, 0, 0.75f));
+}
+
+void CameraManager::UIRender()
+{
 }
 
 void CameraManager::Release()
@@ -71,6 +84,6 @@ void CameraManager::ShakingCamera(float shake_power, float shake_time, bool is_s
 {
 }
 
-void CameraManager::FadeCamera(float fade_time, bool fade_in)
+void CameraManager::FadeScreen(float fade_time, bool fade_in, bool is_ui)
 {
 }

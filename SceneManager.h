@@ -1,8 +1,11 @@
 #pragma once
 #include "Singleton.h"
 #include "Scene.h"
+#include "Timer.h"
 class SceneManager : public Singleton<SceneManager>
 {
+	friend class Timer;
+
 public:
 	SceneManager();
 	~SceneManager();
@@ -22,5 +25,7 @@ private:
 
 	Scene* current_scene = nullptr;
 	Scene* target_scene = nullptr;
+
+	vector<Timer*> m_timers;
 };
 #define SCENE SceneManager::Instance()

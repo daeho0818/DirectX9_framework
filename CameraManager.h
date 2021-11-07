@@ -12,10 +12,10 @@ public:
 	void UIRender();
 	void Release();
 
-	void MovingCamera(Vector2 move_position, float move_speed);
+	void MovingCamera(Vector2 target_position, float move_speed);
 	void ZoomingCamera(float zoom_value, float zoom_speed);
 	void ShakingCamera(float shake_power, float shake_time, bool is_smooth_end);
-	void FadeScreen(float fade_time, bool fade_in, bool is_ui);
+	void FadingScreen(float target_alpha, float fade_speed, bool fade_in, bool is_ui);
 
 private:
 	struct VertexType
@@ -27,8 +27,7 @@ private:
 
 	Vector3 projPos;
 	Vector3 camUp;
-	Vector2 camPos;
-	Vector2 m_targetPos;
+	Vector2 cam_position;
 
 	D3DXMATRIXA16 matProj;
 	D3DXMATRIX matView;
@@ -36,6 +35,58 @@ private:
 	LPDIRECT3DVERTEXBUFFER9 m_vb;
 	LPDIRECT3DINDEXBUFFER9 m_ib;
 
+	// use index | 0 : moving mode, 1 : zooming mode, 2 : shaking mode, 3 : fade mode
+	bool camera_mode[4] =
+	{
+		false, // moving mode
+		false, // zooming mode
+		false, // shaking mode
+		false // fade mode
+	};
+
+	struct MovingInformation
+	{
+	public:
+		Vector2 target_position;
+		float move_speed;
+	};
+	struct ZoomingInformation
+	{
+	public:
+		float zoom_value;
+		float oper_value;
+	};
+	float cam_zoom_value = 1;
+	struct ShakingInformation
+	{
+	public:
+		float shake_power;
+		float shake_time;
+		bool is_smooth_end;
+		Vector2 return_position; // 카메라를 흔드는 과정에서 기존 위치에서 벗어난 것을 되돌려놓기 위한 변수
+
+		float start_count;
+		float current_count;
+	};
+	struct FadingInformation
+	{
+	public:
+		float target_alpha;
+		float fading_value;
+		bool fade_in;
+		bool is_ui;
+	};
+
+	MovingInformation moving_information;
+	ZoomingInformation zooming_information;
+	ShakingInformation shaking_information;
+	FadingInformation fading_information;
+
 	Image* screen_image = nullptr;
+
+	void Moving();
+	void Zooming();
+	void Shaking();
+	void Fading();
 };
 #define CAMERA CameraManager::Instance()

@@ -11,6 +11,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::Init()
 {
+	srand(time(nullptr));
 }
 
 void SceneManager::Update()

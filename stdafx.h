@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include <functional>
+#include <math.h>
 
 const int WINSIZEX = 1920;
 const int WINSIZEY = 1080;

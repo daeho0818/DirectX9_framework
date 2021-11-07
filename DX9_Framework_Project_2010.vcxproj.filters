@@ -12,29 +12,11 @@
       <UniqueIdentifier>{2c3d4c8c-5d1a-459a-a05a-a4e4b608a44e}</UniqueIdentifier>
       <Extensions>fx;fxh;hlsl</Extensions>
     </Filter>
-    <Filter Include="Component">
-      <UniqueIdentifier>{e3e4f509-5b2b-4436-8eb6-05e55e528158}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\ParticleC">
-      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Component\Component">
-      <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1. MainGame">
       <UniqueIdentifier>{e1cde915-f266-4b08-a34d-eea1a48fbf6a}</UniqueIdentifier>
     </Filter>
     <Filter Include="2. Manager">
       <UniqueIdentifier>{f4678b10-887d-4a55-a6cf-ccd2e59f699b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Object">
-      <UniqueIdentifier>{11230c11-4c68-42e6-9544-5f11c98be01e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4. Scene">
-      <UniqueIdentifier>{d914ee78-f84e-4da9-a98b-2d274cdae391}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4. Scene\Scene_Title">
-      <UniqueIdentifier>{942893d5-61fa-4a71-b47b-a31a56929072}</UniqueIdentifier>
     </Filter>
     <Filter Include="2. Manager\%281%29 Singleton">
       <UniqueIdentifier>{a22a8138-3e20-4398-ae71-3986465e4a57}</UniqueIdentifier>
@@ -63,8 +45,26 @@
     <Filter Include="2. Manager\%282%29 Object\Timer">
       <UniqueIdentifier>{f6cd9878-c930-4b5d-bb46-f61be4f41942}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Component\RenderC">
+    <Filter Include="3. Component">
+      <UniqueIdentifier>{e3e4f509-5b2b-4436-8eb6-05e55e528158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\RenderC">
       <UniqueIdentifier>{1cf2bcbb-fa81-4522-a8c9-d4960b08f610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\ParticleC">
+      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Component">
+      <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Object">
+      <UniqueIdentifier>{11230c11-4c68-42e6-9544-5f11c98be01e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. Scene">
+      <UniqueIdentifier>{d914ee78-f84e-4da9-a98b-2d274cdae391}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. Scene\Scene_Title">
+      <UniqueIdentifier>{942893d5-61fa-4a71-b47b-a31a56929072}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,7 +129,7 @@
   <ItemGroup>
     <ClCompile Include="DX9_Framework_Project.cpp" />
     <ClCompile Include="Object.cpp">
-      <Filter>3. Object</Filter>
+      <Filter>4. Object</Filter>
     </ClCompile>
     <ClCompile Include="Singleton.cpp">
       <Filter>2. Manager\%282%29 Object\Singleton</Filter>
@@ -144,10 +144,10 @@
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
     </ClCompile>
     <ClCompile Include="ParticleC.cpp">
-      <Filter>Component\ParticleC</Filter>
+      <Filter>3. Component\ParticleC</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
-      <Filter>Component\Component</Filter>
+      <Filter>3. Component\Component</Filter>
     </ClCompile>
     <ClCompile Include="SDKsound.cpp" />
     <ClCompile Include="SDKwavefile.cpp" />
@@ -170,18 +170,18 @@
       <Filter>2. Manager\%281%29 Singleton\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Title.cpp">
-      <Filter>4. Scene\Scene_Title</Filter>
+      <Filter>5. Scene\Scene_Title</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClCompile>
     <ClCompile Include="RenderC.cpp">
-      <Filter>Component\RenderC</Filter>
+      <Filter>3. Component\RenderC</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
-      <Filter>3. Object</Filter>
+      <Filter>4. Object</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Singleton.h">
@@ -197,10 +197,10 @@
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
     </ClInclude>
     <ClInclude Include="ParticleC.h">
-      <Filter>Component\ParticleC</Filter>
+      <Filter>3. Component\ParticleC</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
-      <Filter>Component\Component</Filter>
+      <Filter>3. Component\Component</Filter>
     </ClInclude>
     <ClInclude Include="SDKsound.h" />
     <ClInclude Include="SDKwavefile.h" />
@@ -223,13 +223,13 @@
       <Filter>2. Manager\%281%29 Singleton\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Title.h">
-      <Filter>4. Scene\Scene_Title</Filter>
+      <Filter>5. Scene\Scene_Title</Filter>
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClInclude>
     <ClInclude Include="RenderC.h">
-      <Filter>Component\RenderC</Filter>
+      <Filter>3. Component\RenderC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

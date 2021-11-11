@@ -35,13 +35,13 @@ private:
 	LPDIRECT3DVERTEXBUFFER9 m_vb;
 	LPDIRECT3DINDEXBUFFER9 m_ib;
 
-	// use index | 0 : moving mode, 1 : zooming mode, 2 : shaking mode, 3 : fade mode
+	// use index | 0 : moving mode, 1 : zooming mode, 2 : shaking mode, 3 : fading mode
 	bool camera_mode[4] =
 	{
 		false, // moving mode
 		false, // zooming mode
 		false, // shaking mode
-		false // fade mode
+		false // fading mode
 	};
 
 	struct MovingInformation

@@ -8,7 +8,6 @@ public:
 	void Init();
 	void Update();
 	void Render();
-	void UIRender();
 	void Release();
 
 	void Begin();

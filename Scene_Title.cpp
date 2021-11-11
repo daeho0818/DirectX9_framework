@@ -19,6 +19,7 @@ void Scene_Title::Update()
 
 void Scene_Title::Render()
 {
+	RENDER->CenterRender(IMAGE->FindImage("Screen"), Vector2(0, 0), 0.5f);
 }
 
 void Scene_Title::UIRender()

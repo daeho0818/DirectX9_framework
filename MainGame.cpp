@@ -32,18 +32,15 @@ void MainGame::Render()
 {
 	RENDER->Begin();
 
+
 	SCENE->Render();
 	CAMERA->Render();
 
 	SCENE->UIRender();
 	CAMERA->UIRender();
 
-	RENDER->End();
-}
 
-void MainGame::UIRender()
-{
-	SCENE->UIRender();
+	RENDER->End();
 }
 
 void MainGame::Release()

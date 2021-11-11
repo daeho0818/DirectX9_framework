@@ -25,6 +25,7 @@ using std::function;
 #define DEVICE DXUTGetD3D9Device()
 #define DELTA DXUTGetElapsedTime()
 #define var auto
+#define CENTER Vector2(WINSIZEX / 2, WINSIZEY / 2)
 
 #include "RenderManager.h"
 #include "SoundManager.h"

@@ -26,10 +26,6 @@ void CameraManager::Init()
 	vertices[3].m_uv = { 1, 1 };
 	m_vb->Unlock();
 
-	projPos = { -WINSIZEX, WINSIZEY, 100 };
-	cam_position = { 0, 0 };
-	camUp = { 0, 1, 0 };
-
 	DEVICE->CreateIndexBuffer(sizeof(WORD) * 6, D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &m_ib, NULL);
 	WORD idx[] = { 1, 2, 0, 1, 3, 2 };
 	void* indices = NULL;
@@ -46,24 +42,55 @@ void CameraManager::Init()
 	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
 	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
 
-	projPos = { -WINSIZEX * cam_zoom_value, WINSIZEY * cam_zoom_value, 100 };
-
 	IMAGE->QuickLoad("Screen", "Public/Screen");
 	screen_image = IMAGE->FindImage("Screen");
+
+	projPos = { -WINSIZEX, WINSIZEY, 100 };
+	cam_position = { 0, 0 };
+	camUp = { 0, 1, 0 };
 }
 
 void CameraManager::Update()
 {
+	projPos = { -WINSIZEX * cam_zoom_value, WINSIZEY * cam_zoom_value, 100 };
+
+	if (DXUTIsKeyDown(VK_RETURN))
+	{
+		//MovingCamera(Vector2(1920, 1080), 5);
+		//ShakingCamera(3, 5, true);
+		ZoomingCamera(5, 2);
+	}
+
+	if (camera_mode[0])
+		Moving();
+	if (camera_mode[1])
+		Zooming();
+	if (camera_mode[2])
+		Shaking();
+	if (camera_mode[3])
+		Fading();
+
 	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
 	D3DXMatrixLookAtLH(&matView, &Vector3(cam_position.x, cam_position.y, 1), &Vector3(cam_position.x, cam_position.y, 0), &camUp);
 }
 
 void CameraManager::Render()
 {
+	if (camera_mode[3] && !fading_information.is_ui)
+	{
+		RENDER->CenterRender(screen_image, CENTER, 0.5f);
+	}
+
+	DEVICE->SetTransform(D3DTS_PROJECTION, &matProj);
+	DEVICE->SetTransform(D3DTS_VIEW, &matView);
 }
 
 void CameraManager::UIRender()
 {
+	if (camera_mode[3] && fading_information.is_ui)
+	{
+		RENDER->CenterRender(screen_image, CENTER);
+	}
 }
 
 void CameraManager::Release()
@@ -132,9 +159,11 @@ void CameraManager::Zooming()
 	cam_zoom_value += zooming_information.oper_value;
 }
 
+float random_x = 0;
+float random_y = 0;
 void CameraManager::Shaking()
 {
-	if (shaking_information.current_count - shaking_information.start_count >= (shaking_information.shake_time - 2) * 1000) // 흔들림 감소 시작
+	if (shaking_information.current_count - shaking_information.start_count >= (shaking_information.shake_time - shaking_information.shake_time / 3) * 1000) // 흔들림 감소 시작
 	{
 		shaking_information.shake_power -= shaking_information.shake_power / 5;
 	}
@@ -144,7 +173,14 @@ void CameraManager::Shaking()
 		camera_mode[2] = false;
 	}
 
-	cam_position += Vector2(rand() % 10 * shaking_information.shake_power, rand() % 10 * shaking_information.shake_power);
+	shaking_information.current_count = GetTickCount64();
+
+	cam_position -= Vector2(random_x, random_y);
+
+	random_x = rand() % 10 * shaking_information.shake_power;
+	random_y = rand() % 10 * shaking_information.shake_power;
+
+	cam_position += Vector2(random_x, random_y);
 }
 
 void CameraManager::Fading()

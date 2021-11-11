@@ -22,6 +22,16 @@ using std::map;
 using std::vector;
 using std::function;
 
+enum ObjectType
+{
+	Player,
+	Enemy,
+	Boss,
+	Bullet,
+	Item,
+	None,
+} typedef ObjType;
+
 #define DEVICE DXUTGetD3D9Device()
 #define DELTA DXUTGetElapsedTime()
 #define var auto
@@ -32,6 +42,7 @@ using std::function;
 #include "ImageManager.h"
 #include "SceneManager.h"
 #include "CameraManager.h"
+#include "ObjectManager.h"
 
 #ifdef _DEBUG
 #define new new (_NORMAL_BLOCK, __FILE__, __LINE__)

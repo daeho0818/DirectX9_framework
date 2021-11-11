@@ -66,6 +66,9 @@
     <Filter Include="5. Scene\Scene_Title">
       <UniqueIdentifier>{942893d5-61fa-4a71-b47b-a31a56929072}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5. Scene\Scene_Loading">
+      <UniqueIdentifier>{992e76b6-8a44-4522-98f1-a6332a79cce8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -178,6 +181,9 @@
     <ClCompile Include="RenderC.cpp">
       <Filter>3. Component\RenderC</Filter>
     </ClCompile>
+    <ClCompile Include="Scene_Loading.cpp">
+      <Filter>5. Scene\Scene_Loading</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h">
@@ -230,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="RenderC.h">
       <Filter>3. Component\RenderC</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Loading.h">
+      <Filter>5. Scene\Scene_Loading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -31,18 +31,23 @@ void RenderManager::Lost()
 	m_sprite->OnLostDevice();
 }
 
-void RenderManager::CenterRender(Image* image, Vector2 pos, float size, D3DXCOLOR color)
+void RenderManager::CenterRender(Image* image, Vector2 pos, float size, bool is_ui, D3DXCOLOR color)
 {
+	Vector2 cam_position = CAMERA->GetPosition();
+
 	D3DXMATRIXA16 mat;
-	D3DXMatrixAffineTransformation2D(&mat, size, nullptr, 0, &Vector2(pos.x - (image->info.Width / 2) * size, pos.y - (image->info.Height / 2) * size));
+	Vector2 targetPos = { pos.x - image->info.Width / 2 * size + (is_ui ? cam_position.x : 0), pos.y - image->info.Height / 2 * size + (is_ui ? cam_position.y : 0) };
+	D3DXMatrixAffineTransformation2D(&mat, size, nullptr, 0, &targetPos);
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, nullptr, nullptr, nullptr, color);
 }
 
-void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, D3DXCOLOR color)
+void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, bool is_ui, D3DXCOLOR color)
 {
+	Vector2 cam_position = CAMERA->GetPosition();
+
 	D3DXMATRIXA16 mat;
-	Vector2 targetPos = { pos.x - image->info.Width / 2 * size, pos.y - image->info.Height / 2 * size };
+	Vector2 targetPos = { pos.x - image->info.Width / 2 * size + (is_ui ? cam_position.x : 0), pos.y - image->info.Height / 2 * size + (is_ui ? cam_position.y : 0) };
 	D3DXMatrixAffineTransformation2D(&mat, size, nullptr, 0, &targetPos);
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, &rc, nullptr, nullptr, color);

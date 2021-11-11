@@ -17,6 +17,8 @@ public:
 	void ShakingCamera(float shake_power, float shake_time, bool is_smooth_end);
 	void FadingScreen(float target_alpha, float fade_speed, bool fade_in, bool is_ui);
 
+	Vector2 GetPosition();
+
 private:
 	struct VertexType
 	{

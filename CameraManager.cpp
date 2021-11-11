@@ -11,55 +11,24 @@ CameraManager::~CameraManager()
 
 void CameraManager::Init()
 {
-	DEVICE->CreateVertexBuffer(sizeof(VertexType) * 4, D3DUSAGE_WRITEONLY, VertexType::FVF, D3DPOOL_DEFAULT, &m_vb, NULL);
-	VertexType* vertices = nullptr;
-	m_vb->Lock(0, 0, (void**)&vertices, 0);
-
-	vertices[0].m_position = { -0.5, 0.5, 0 };
-	vertices[1].m_position = { 0.5, 0.5, 0 };
-	vertices[2].m_position = { -0.5, -0.5, 0 };
-	vertices[3].m_position = { 0.5, -0.5, 0 };
-
-	vertices[0].m_uv = { 0, 0 };
-	vertices[1].m_uv = { 1, 0 };
-	vertices[2].m_uv = { 0, 1 };
-	vertices[3].m_uv = { 1, 1 };
-	m_vb->Unlock();
-
-	DEVICE->CreateIndexBuffer(sizeof(WORD) * 6, D3DUSAGE_WRITEONLY, D3DFMT_INDEX16, D3DPOOL_DEFAULT, &m_ib, NULL);
-	WORD idx[] = { 1, 2, 0, 1, 3, 2 };
-	void* indices = NULL;
-	m_ib->Lock(0, 0, &indices, 0);
-	memcpy(indices, idx, sizeof(WORD) * 6);
-	m_ib->Unlock();
-
-	DEVICE->SetStreamSource(0, m_vb, 0, sizeof(VertexType));
-	DEVICE->SetFVF(VertexType::FVF);
-	DEVICE->SetIndices(m_ib);
-
-	DEVICE->SetRenderState(D3DRS_LIGHTING, FALSE);
-	DEVICE->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
-	DEVICE->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
-	DEVICE->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
-
 	IMAGE->QuickLoad("Screen", "Public/Screen");
 	screen_image = IMAGE->FindImage("Screen");
 
 	projPos = { -WINSIZEX, WINSIZEY, 100 };
 	cam_position = { 0, 0 };
 	camUp = { 0, 1, 0 };
+
+	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
 }
 
 void CameraManager::Update()
 {
-	projPos = { -WINSIZEX * cam_zoom_value, WINSIZEY * cam_zoom_value, 100 };
-
 	if (DXUTIsKeyDown(VK_RETURN))
-	{
-		//MovingCamera(Vector2(1920, 1080), 5);
-		//ShakingCamera(3, 5, true);
-		ZoomingCamera(5, 2);
-	}
+		MovingCamera(Vector2(WINSIZEX / 2, 0), 5);
+	if (DXUTIsKeyDown(VK_BACK))
+		ShakingCamera(3, 5, true);
+	if (DXUTIsKeyDown(VK_SPACE))
+		ZoomingCamera(0.1f, 5);
 
 	if (camera_mode[0])
 		Moving();
@@ -70,19 +39,24 @@ void CameraManager::Update()
 	if (camera_mode[3])
 		Fading();
 
-	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
-	D3DXMatrixLookAtLH(&matView, &Vector3(cam_position.x, cam_position.y, 1), &Vector3(cam_position.x, cam_position.y, 0), &camUp);
+	D3DXMATRIXA16 m_pos, m_scale, m_rot;
+
+	D3DXMatrixScaling(&m_scale, cam_zoom_value, cam_zoom_value, 1);
+	D3DXMatrixTranslation(&m_pos, -(cam_position.x + WINSIZEX / 2), -(cam_position.y + WINSIZEY / 2), 0);
+	D3DXMatrixRotationZ(&m_rot, D3DXToRadian(180));
+
+	matView = m_pos * m_scale * m_rot;
 }
 
 void CameraManager::Render()
 {
+	DEVICE->SetTransform(D3DTS_PROJECTION, &matProj);
+	DEVICE->SetTransform(D3DTS_VIEW, &matView);
+
 	if (camera_mode[3] && !fading_information.is_ui)
 	{
 		RENDER->CenterRender(screen_image, CENTER, 0.5f);
 	}
-
-	DEVICE->SetTransform(D3DTS_PROJECTION, &matProj);
-	DEVICE->SetTransform(D3DTS_VIEW, &matView);
 }
 
 void CameraManager::UIRender()
@@ -99,7 +73,7 @@ void CameraManager::Release()
 
 void CameraManager::MovingCamera(Vector2 target_position, float move_speed)
 {
-	moving_information.target_position = target_position;
+	moving_information.target_position = target_position - CENTER;
 	moving_information.move_speed = move_speed;
 
 	shaking_information.return_position = cam_position; // 카메라 이동 시 Shake로 인한 초기화에 문제가 생길 수 있기 때문
@@ -110,7 +84,7 @@ void CameraManager::MovingCamera(Vector2 target_position, float move_speed)
 void CameraManager::ZoomingCamera(float zoom_value, float zoom_speed)
 {
 	zooming_information.zoom_value = zoom_value;
-	zooming_information.oper_value = (zoom_value > cam_zoom_value ? 0.1f : -0.1f) * zoom_speed;
+	zooming_information.oper_value = (zoom_value > cam_zoom_value ? 0.05f : -0.05f) * zoom_speed;
 
 	camera_mode[1] = true;
 }
@@ -136,6 +110,11 @@ void CameraManager::FadingScreen(float target_alpha, float fade_speed, bool fade
 	fading_information.is_ui = is_ui;
 
 	camera_mode[3] = true;
+}
+
+Vector2 CameraManager::GetPosition()
+{
+	return cam_position;
 }
 
 void CameraManager::Moving()

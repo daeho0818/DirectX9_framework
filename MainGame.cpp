@@ -15,7 +15,8 @@ void MainGame::Init()
 	IMAGE->Loading();
 
 	SCENE->AddScene("Scene_Title", new Scene_Title());
-	SCENE->ChangeScene("Scene_Title");
+	SCENE->AddScene("Scene_Loading", new Scene_Loading());
+	SCENE->ChangeScene("Scene_Loading");
 
 	SCENE->Init();
 	CAMERA->Init();

@@ -1,4 +1,5 @@
 #pragma once
+#include "Player.h"
 class Scene_Title : public Scene
 {
 public:
@@ -11,6 +12,10 @@ public:
 	virtual void Render() override;
 	virtual void UIRender() override;
 	virtual void Release() override;
+
+private:
+	Object* m_playerObject;
+	Player* m_player;
 
 };
 

@@ -10,6 +10,9 @@ Object::Object(string name, ObjType type, Vector2 position)
 {
 	m_transform = AddComponent<TransformC>();
 	m_transform->m_position = position;
+
+	is_destroy = false;
+	OnCollisionEnter = nullptr;
 }
 
 Object::~Object()

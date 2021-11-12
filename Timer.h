@@ -9,14 +9,16 @@ public:
 
 	void SetTimer(float time, int loopCount, function<void()> func, bool loop = false);
 	void TimerStart();
+	void TimerStop();
 
 private:
-	float m_time = 0;
-	float startTime = 0;
-	int m_loopCount = 0;
-	bool m_loop = false;
-	bool is_start = false;
-	bool is_end = false;
+	float m_time;
+	float startTime;
+	int m_loopCount;
+	bool m_loop;
+	bool is_start;
+	bool is_end;
+	bool is_stop;
 	function<void()> m_func = nullptr;
 
 	virtual void Update();

@@ -21,9 +21,10 @@ public:
 	ImageManager();
 	~ImageManager();
 
-	void AddImage(string key, string path, int count = 0);
-	void QuickLoad(string key, string path, int count = 0);
-	Image* FindImage(string key);
+	void AddImage(string _key, string _path, int count = 0);
+	void QuickLoad(string _key, string _path, int count = 0);
+	Image* FindImage(string _key);
+	vector<Image*> MakeAnimation(string _key);
 	void Loading();
 
 private:

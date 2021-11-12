@@ -19,6 +19,7 @@ void Player::Update()
 
 void Player::Render()
 {
+	RENDER->CenterRender(IMAGE->FindImage("Moon"), CENTER);
 }
 
 void Player::Release()

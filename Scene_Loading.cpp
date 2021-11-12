@@ -46,7 +46,7 @@ void Scene_Loading::Update()
 
 	mountain_position[0].x -= 2;
 	mountain_position[1].x -= 2;
-	
+
 	for (int i = 0; i < 2; i++)
 	{
 		if (cloud_position[i].x <= -WINSIZEX / 2)
@@ -54,6 +54,11 @@ void Scene_Loading::Update()
 
 		if (mountain_position[i].x <= -WINSIZEX / 2)
 			mountain_position[i].x = WINSIZEX + WINSIZEX / 2;
+	}
+
+	if (DXUTIsKeyDown(VK_RETURN))
+	{
+		SCENE->ChangeScene("Scene_TItle");
 	}
 }
 

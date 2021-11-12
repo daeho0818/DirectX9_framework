@@ -386,13 +386,16 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationC.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParticleC.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="RenderC.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -405,12 +408,16 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="TransformC.cpp" />
+    <ClInclude Include="AnimationC.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="MainGame.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ParticleC.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="RenderC.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
@@ -424,6 +431,7 @@
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Timer.h" />
+    <ClInclude Include="TransformC.h" />
     <None Include="DXUT\Optional\directx.ico" />
     <ClInclude Include="DXUT\Core\DXUT.h" />
     <ClInclude Include="DXUT\Core\DXUTenum.h" />

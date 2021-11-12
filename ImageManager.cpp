@@ -56,11 +56,28 @@ void ImageManager::QuickLoad(string _key, string _path, int count)
 	}
 }
 
-Image* ImageManager::FindImage(string key)
+Image* ImageManager::FindImage(string _key)
 {
-	var find = m_images.find(key);
+	var find = m_images.find(_key);
 
 	return find != m_images.end() ? find->second : nullptr;
+}
+
+vector<Image*> ImageManager::MakeAnimation(string _key)
+{
+	vector<Image*> animation;
+
+	char key[256] = "";
+
+	for (int i = 0;; i++)
+	{
+		sprintf(key, "%s%d", key, i);
+		var find = m_images.find(key);
+		if (find == m_images.end())
+			break;
+		animation.push_back(find->second);
+	}
+	return animation;
 }
 
 void ImageManager::Loading()

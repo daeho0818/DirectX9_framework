@@ -24,12 +24,12 @@ using std::function;
 
 enum ObjectType
 {
-	Player,
-	Enemy,
-	Boss,
-	Bullet,
-	Item,
-	None,
+	EPlayer,
+	EEnemy,
+	EP_Bullet,
+	EE_Bullet,
+	EItem,
+	ENone,
 } typedef ObjType;
 
 #define DEVICE DXUTGetD3D9Device()

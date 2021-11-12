@@ -19,12 +19,14 @@ void MainGame::Init()
 	SCENE->ChangeScene("Scene_Loading");
 
 	SCENE->Init();
+	OBJECT->Init();
 	CAMERA->Init();
 }
 
 void MainGame::Update()
 {
 	SCENE->Update();
+	OBJECT->Update();
 	SOUND->Update();
 	CAMERA->Update();
 }
@@ -37,6 +39,8 @@ void MainGame::Render()
 	SCENE->Render();
 	CAMERA->Render();
 
+	OBJECT->Render();
+
 	SCENE->UIRender();
 	CAMERA->UIRender();
 
@@ -46,6 +50,7 @@ void MainGame::Render()
 
 void MainGame::Release()
 {
+	OBJECT->Release();
 	SCENE->Release();
 	SOUND->StopAll();
 
@@ -54,8 +59,7 @@ void MainGame::Release()
 	RenderManager::Destroy();
 	SceneManager::Destroy();
 	SoundManager::Destroy();
-
-	SceneManager::Destroy();
+	ObjectManager::Destroy();
 }
 
 void MainGame::Begin()

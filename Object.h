@@ -32,7 +32,10 @@ public:
 	ObjType m_type;
 	TransformC* m_transform;
 
+	bool is_destroy;
+
 private:
 	map<string, Component*> components;
+	function<void(Object* other)> OnCollisionEnter;
 
 };

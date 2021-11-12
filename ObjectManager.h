@@ -10,6 +10,7 @@ public:
 
 	void Init();
 	void Update();
+	void Render();
 	void Release();
 
 	Object* CreateObject(string name, ObjType type, Vector2 position);

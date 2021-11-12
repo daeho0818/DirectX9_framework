@@ -48,12 +48,6 @@
     <Filter Include="3. Component">
       <UniqueIdentifier>{e3e4f509-5b2b-4436-8eb6-05e55e528158}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Component\RenderC">
-      <UniqueIdentifier>{1cf2bcbb-fa81-4522-a8c9-d4960b08f610}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Component\ParticleC">
-      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Component\Component">
       <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
     </Filter>
@@ -68,6 +62,27 @@
     </Filter>
     <Filter Include="5. Scene\Scene_Loading">
       <UniqueIdentifier>{992e76b6-8a44-4522-98f1-a6332a79cce8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\%281%29 Singleton\Object">
+      <UniqueIdentifier>{2fae4558-ae10-4a73-bf1a-8e4ff782718b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Object\Object">
+      <UniqueIdentifier>{5b583cf4-19a8-475e-9be6-1fbee5c28c8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Player">
+      <UniqueIdentifier>{1881cc29-b3a3-4d9c-b955-e1778132fe08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\C - AnimationC">
+      <UniqueIdentifier>{72eac0c9-7419-44f9-96dc-51d161edff93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\C - ParticleC">
+      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\C - RenderC">
+      <UniqueIdentifier>{1cf2bcbb-fa81-4522-a8c9-d4960b08f610}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\C - TransformC">
+      <UniqueIdentifier>{cd5675b7-0f1f-4192-bfc1-55ab8c599dd4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -131,9 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DX9_Framework_Project.cpp" />
-    <ClCompile Include="Object.cpp">
-      <Filter>4. Object</Filter>
-    </ClCompile>
     <ClCompile Include="Singleton.cpp">
       <Filter>2. Manager\%282%29 Object\Singleton</Filter>
     </ClCompile>
@@ -147,7 +159,7 @@
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
     </ClCompile>
     <ClCompile Include="ParticleC.cpp">
-      <Filter>3. Component\ParticleC</Filter>
+      <Filter>3. Component\C - ParticleC</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>3. Component\Component</Filter>
@@ -179,16 +191,28 @@
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClCompile>
     <ClCompile Include="RenderC.cpp">
-      <Filter>3. Component\RenderC</Filter>
+      <Filter>3. Component\C - RenderC</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Loading.cpp">
       <Filter>5. Scene\Scene_Loading</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>2. Manager\%281%29 Singleton\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>4. Object\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>3. Component\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformC.cpp">
+      <Filter>3. Component\C - TransformC</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationC.cpp">
+      <Filter>3. Component\C - AnimationC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Object.h">
-      <Filter>4. Object</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Singleton.h">
       <Filter>2. Manager\%282%29 Object\Singleton</Filter>
@@ -203,7 +227,7 @@
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
     </ClInclude>
     <ClInclude Include="ParticleC.h">
-      <Filter>3. Component\ParticleC</Filter>
+      <Filter>3. Component\C - ParticleC</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>3. Component\Component</Filter>
@@ -235,10 +259,25 @@
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClInclude>
     <ClInclude Include="RenderC.h">
-      <Filter>3. Component\RenderC</Filter>
+      <Filter>3. Component\C - RenderC</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Loading.h">
       <Filter>5. Scene\Scene_Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>2. Manager\%281%29 Singleton\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>4. Object\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>3. Component\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformC.h">
+      <Filter>3. Component\C - TransformC</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationC.h">
+      <Filter>3. Component\C - AnimationC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

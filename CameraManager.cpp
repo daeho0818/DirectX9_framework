@@ -23,13 +23,6 @@ void CameraManager::Init()
 
 void CameraManager::Update()
 {
-	if (DXUTIsKeyDown(VK_RETURN))
-		MovingCamera(Vector2(WINSIZEX / 2, 0), 5);
-	if (DXUTIsKeyDown(VK_BACK))
-		ShakingCamera(3, 5, true);
-	if (DXUTIsKeyDown(VK_SPACE))
-		ZoomingCamera(0.1f, 5);
-
 	if (camera_mode[0])
 		Moving();
 	if (camera_mode[1])

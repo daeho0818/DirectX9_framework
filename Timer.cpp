@@ -22,12 +22,18 @@ void Timer::SetTimer(float time, int loopCount, function<void()> func, bool loop
 
 void Timer::TimerStart()
 {
-	is_start = true;
+	if (!is_start) is_start = true;
+	else is_stop = false;
+}
+
+void Timer::TimerStop()
+{
+	is_stop = true;
 }
 
 void Timer::Update()
 {
-	if (!is_start) return;
+	if (!is_start || is_stop) return;
 
 	startTime += DELTA;
 

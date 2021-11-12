@@ -15,12 +15,32 @@ void ObjectManager::Init()
 
 void ObjectManager::Update()
 {
+	for (var iter = m_objects.begin(); iter != m_objects.end();)
+	{
+		if ((*iter) != nullptr)
+		{
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++c_iter)
+			{
+				if (c_iter->second != nullptr)
+					c_iter->second->Update();
+			}
+		}
+
+		if ((*iter)->is_destroy)
+		{
+			SAFE_DELETE((*iter));
+			iter = m_objects.erase(iter);
+		}
+	}
+}
+
+void ObjectManager::Render()
+{
 	for (var iter = m_objects.begin(); iter != m_objects.end(); ++iter)
 	{
-		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++c_iter)
+		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++iter)
 		{
-			if ((*c_iter).second != nullptr)
-				(*c_iter).second->Update();
+			c_iter->second->Render();
 		}
 	}
 }
@@ -33,10 +53,10 @@ void ObjectManager::Release()
 		{
 			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++c_iter)
 			{
-				if ((*c_iter).second != nullptr)
+				if (c_iter->second != nullptr)
 				{
-					(*c_iter).second->Release();
-					SAFE_DELETE((*c_iter).second);
+					c_iter->second->Release();
+					SAFE_DELETE(c_iter->second);
 				}
 			}
 			(*iter)->components.clear();

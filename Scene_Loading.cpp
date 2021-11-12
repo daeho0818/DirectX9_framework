@@ -58,7 +58,7 @@ void Scene_Loading::Update()
 
 	if (DXUTIsKeyDown(VK_RETURN))
 	{
-		SCENE->ChangeScene("Scene_TItle");
+		SCENE->ChangeScene("Scene_Title");
 	}
 }
 

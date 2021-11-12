@@ -2,7 +2,7 @@
 class AnimationC : public Component
 {
 public:
-	AnimationC();
+	AnimationC(Object* object);
 	~AnimationC();
 
 	// Component을(를) 통해 상속됨

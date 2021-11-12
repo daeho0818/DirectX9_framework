@@ -1,7 +1,7 @@
 #include "DXUT.h"
 #include "AnimationC.h"
 
-AnimationC::AnimationC()
+AnimationC::AnimationC(Object* object) : Component(object)
 {
 }
 

@@ -3,7 +3,7 @@
 class RenderC : public Component
 {
 public:
-	RenderC();
+	RenderC(Object* object);
 	~RenderC();
 
 	// Component을(를) 통해 상속됨

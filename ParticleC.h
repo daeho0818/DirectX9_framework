@@ -19,7 +19,7 @@ enum ChangeMode
 class ParticleC : public Component
 {
 public:
-	ParticleC();
+	ParticleC(Object* object);
 	~ParticleC();
 
 	void AddParticleAnim(vector<Image*> animation, Vector2 position, float frameTime, float size = 1);

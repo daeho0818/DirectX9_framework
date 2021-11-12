@@ -2,7 +2,7 @@
 class TransformC : public Component
 {
 public :
-	TransformC();
+	TransformC(Object* object);
 	~TransformC();
 
 	// Component을(를) 통해 상속됨

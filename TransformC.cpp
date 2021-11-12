@@ -1,7 +1,7 @@
 #include "DXUT.h"
 #include "TransformC.h"
 
-TransformC::TransformC()
+TransformC::TransformC(Object* object) : Component(object)
 {
 }
 

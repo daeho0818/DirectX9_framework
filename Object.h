@@ -22,10 +22,10 @@ public:
 	{
 		auto find = components.find(typeid(T).name());
 
-		if (find != components.end()) return find->second;
+		if (find != components.end()) return dynamic_cast<T*>(find->second);
 
-		Component* component;
-		return dynamic_cast<T*>(component);
+		T* component = new T(this);
+		return component;
 	}
 
 	string m_name;

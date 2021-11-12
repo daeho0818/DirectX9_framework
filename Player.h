@@ -3,7 +3,7 @@
 class Player : public Component
 {
 public:
-	Player();
+	Player(Object* object);
 	~Player();
 
 	// Component을(를) 통해 상속됨

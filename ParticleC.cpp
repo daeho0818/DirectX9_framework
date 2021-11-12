@@ -1,7 +1,7 @@
 #include "DXUT.h"
 #include "ParticleC.h"
 
-ParticleC::ParticleC()
+ParticleC::ParticleC(Object* object) : Component(object)
 {
 }
 

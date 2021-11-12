@@ -52,6 +52,7 @@ void MainGame::Release()
 {
 	OBJECT->Release();
 	SCENE->Release();
+	CAMERA->Release();
 	SOUND->StopAll();
 
 	CameraManager::Destroy();

@@ -22,6 +22,7 @@ void SceneManager::Update()
 	{
 		if (current_scene)
 			current_scene->Release();
+
 		target_scene->Init();
 		current_scene = target_scene;
 		target_scene = nullptr;
@@ -63,16 +64,19 @@ void SceneManager::Release()
 void SceneManager::AddScene(string key, Scene* scene)
 {
 	if (m_scenes.find(key) == m_scenes.end())
+	{
 		m_scenes.insert(make_pair(key, scene));
+		scene->scene_name = key;
+	}
 }
 
 void SceneManager::ChangeScene(string key)
 {
 	var find = m_scenes.find(key);
-	if (find != m_scenes.end()) target_scene = find->second;
+	target_scene = (*find).second;
 }
 
-Scene* SceneManager::GetCurrentScene()
+Scene* SceneManager::GetActiveScene()
 {
 	return current_scene;
 }

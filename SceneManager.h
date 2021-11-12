@@ -5,6 +5,7 @@
 class SceneManager : public Singleton<SceneManager>
 {
 	friend class Timer;
+	friend class Scene;
 
 public:
 	SceneManager();
@@ -18,7 +19,7 @@ public:
 
 	void AddScene(string key, Scene* scene);
 	void ChangeScene(string key);
-	Scene* GetCurrentScene();
+	Scene* GetActiveScene();
 
 private:
 	map<string, Scene*> m_scenes;

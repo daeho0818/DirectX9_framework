@@ -55,11 +55,6 @@ void Scene_Loading::Update()
 		if (mountain_position[i].x <= -WINSIZEX / 2)
 			mountain_position[i].x = WINSIZEX + WINSIZEX / 2;
 	}
-
-	if (DXUTIsKeyDown(VK_RETURN))
-	{
-		SCENE->ChangeScene("Scene_Title");
-	}
 }
 
 void Scene_Loading::Render()

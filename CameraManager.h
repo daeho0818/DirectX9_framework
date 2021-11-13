@@ -75,9 +75,10 @@ private:
 	public:
 		float target_alpha;
 		float fading_value;
-		bool fade_in;
 		bool is_ui;
 	};
+	float screen_fade_alpha;
+	float ui_screen_fade_alpha;
 
 	MovingInformation moving_information;
 	ZoomingInformation zooming_information;

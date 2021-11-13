@@ -19,6 +19,8 @@ void CameraManager::Init()
 	camUp = { 0, 1, 0 };
 
 	D3DXMatrixOrthoLH(&matProj, projPos.x, projPos.y, 0, projPos.z);
+
+	screen_fade_alpha = ui_screen_fade_alpha = 0;
 }
 
 void CameraManager::Update()
@@ -46,18 +48,12 @@ void CameraManager::Render()
 	DEVICE->SetTransform(D3DTS_PROJECTION, &matProj);
 	DEVICE->SetTransform(D3DTS_VIEW, &matView);
 
-	if (camera_mode[3] && !fading_information.is_ui)
-	{
-		RENDER->CenterRender(screen_image, CENTER, 0.5f);
-	}
+	RENDER->CenterRender(screen_image, CENTER, 1, 0, fading_information.is_ui, D3DXCOLOR(0, 0, 0, screen_fade_alpha));
 }
 
 void CameraManager::UIRender()
 {
-	if (camera_mode[3] && fading_information.is_ui)
-	{
-		RENDER->CenterRender(screen_image, CENTER);
-	}
+	RENDER->CenterRender(screen_image, CENTER, 1, 0, fading_information.is_ui, D3DXCOLOR(0, 0, 0, ui_screen_fade_alpha));
 }
 
 void CameraManager::Release()
@@ -98,8 +94,7 @@ void CameraManager::ShakingCamera(float shake_power, float shake_time, bool is_s
 void CameraManager::FadingScreen(float target_alpha, float fade_speed, bool fade_in, bool is_ui)
 {
 	fading_information.target_alpha = target_alpha;
-	fading_information.fading_value = (fade_in ? 0.05f : -0.05f) * fade_speed;
-	fading_information.fade_in = fade_in;
+	fading_information.fading_value = (fade_in ? -0.005f : 0.005f) * fade_speed;
 	fading_information.is_ui = is_ui;
 
 	camera_mode[3] = true;
@@ -157,4 +152,10 @@ void CameraManager::Shaking()
 
 void CameraManager::Fading()
 {
+	if (abs(fading_information.target_alpha - screen_fade_alpha) <= 0.00005f)
+	{
+		screen_fade_alpha = fading_information.target_alpha;
+		camera_mode[3] = false;
+	}
+	screen_fade_alpha += fading_information.fading_value;
 }

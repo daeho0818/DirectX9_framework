@@ -17,13 +17,10 @@ void ObjectManager::Update()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if ((*iter) != nullptr)
+		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 		{
-			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++c_iter)
-			{
-				if (c_iter->second != nullptr)
-					c_iter->second->Update();
-			}
+			c_iter->second->Update();
+			++c_iter;
 		}
 
 		if ((*iter)->is_destroy)
@@ -31,6 +28,7 @@ void ObjectManager::Update()
 			SAFE_DELETE((*iter));
 			iter = m_objects.erase(iter);
 		}
+		else ++iter;
 	}
 }
 
@@ -47,24 +45,7 @@ void ObjectManager::Render()
 
 void ObjectManager::Release()
 {
-	for (var iter = m_objects.begin(); iter != m_objects.end(); ++iter)
-	{
-		if ((*iter) != nullptr)
-		{
-			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++c_iter)
-			{
-				if (c_iter->second != nullptr)
-				{
-					c_iter->second->Release();
-					SAFE_DELETE(c_iter->second);
-				}
-			}
-			(*iter)->components.clear();
-
-			SAFE_DELETE((*iter));
-		}
-	}
-	m_objects.clear();
+	DestroyAllObject();
 }
 
 Object* ObjectManager::CreateObject(string name, ObjType type, Vector2 position)
@@ -100,4 +81,23 @@ list<Object*> ObjectManager::FindObject(ObjType type)
 	}
 
 	return obj_list;
+}
+
+void ObjectManager::DestroyAllObject()
+{
+	for (var iter = m_objects.begin(); iter != m_objects.end();)
+	{
+		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+		{
+			if (c_iter->second != nullptr)
+			{
+				c_iter->second->Release();
+				SAFE_DELETE(c_iter->second);
+				c_iter = (*iter)->components.erase(c_iter);
+			}
+			else ++c_iter;
+		}
+		SAFE_DELETE((*iter));
+		iter = m_objects.erase(iter);
+	}
 }

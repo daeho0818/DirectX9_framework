@@ -35,7 +35,7 @@ void Player::Update()
 
 void Player::Render()
 {
-	RENDER->CenterRender(IMAGE->FindImage("Moon"), CENTER);
+	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Cloud"), CENTER);
 }
 
 void Player::Release()

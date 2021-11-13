@@ -25,6 +25,7 @@ public:
 		if (find != components.end()) return dynamic_cast<T*>(find->second);
 
 		T* component = new T(this);
+		components.insert(make_pair(typeid(T).name(), dynamic_cast<Component*>(component)));
 		return component;
 	}
 

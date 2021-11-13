@@ -22,6 +22,8 @@ using std::map;
 using std::vector;
 using std::function;
 
+using std::make_pair;
+
 enum ObjectType
 {
 	EPlayer,

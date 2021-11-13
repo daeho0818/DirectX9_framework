@@ -34,11 +34,19 @@ void ObjectManager::Update()
 
 void ObjectManager::Render()
 {
-	for (var iter = m_objects.begin(); iter != m_objects.end(); ++iter)
+	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end(); ++iter)
+		if ((*iter) != nullptr)
 		{
-			c_iter->second->Render();
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			{
+				if ((*c_iter).second != nullptr)
+				{
+					c_iter->second->Render();
+					++c_iter;
+				}
+			}
+			++iter;
 		}
 	}
 }

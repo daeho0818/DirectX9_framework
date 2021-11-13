@@ -17,10 +17,6 @@ void Scene_Title::Init()
 
 void Scene_Title::Update()
 {
-	if (DXUTIsKeyDown(VK_RETURN))
-	{
-		SCENE->ChangeScene("Scene_Loading");
-	}
 }
 
 void Scene_Title::Render()

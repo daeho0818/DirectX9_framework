@@ -11,8 +11,6 @@ Scene_Title::~Scene_Title()
 
 void Scene_Title::Init()
 {
-	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
-	m_player = m_playerObject->AddComponent<Player>();
 }
 
 void Scene_Title::Update()

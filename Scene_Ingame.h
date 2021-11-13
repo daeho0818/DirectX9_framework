@@ -1,9 +1,10 @@
 #pragma once
-class Scene_Title : public Scene
+#include "Player.h"
+class Scene_Ingame : public Scene
 {
 public:
-	Scene_Title();
-	~Scene_Title();
+	Scene_Ingame();
+	~Scene_Ingame();
 
 	// Scene을(를) 통해 상속됨
 	virtual void Init() override;
@@ -13,6 +14,8 @@ public:
 	virtual void Release() override;
 
 private:
+	Object* m_playerObject;
+	Player* m_player;
 
 };
 

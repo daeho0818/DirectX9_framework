@@ -84,6 +84,9 @@
     <Filter Include="3. Component\C - TransformC">
       <UniqueIdentifier>{cd5675b7-0f1f-4192-bfc1-55ab8c599dd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5. Scene\Scene_Ingame">
+      <UniqueIdentifier>{2a6fa604-2775-4bfe-8f63-dcefa045a1bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -211,6 +214,9 @@
     <ClCompile Include="AnimationC.cpp">
       <Filter>3. Component\C - AnimationC</Filter>
     </ClCompile>
+    <ClCompile Include="Scene_Ingame.cpp">
+      <Filter>5. Scene\Scene_Ingame</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -278,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="AnimationC.h">
       <Filter>3. Component\C - AnimationC</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Ingame.h">
+      <Filter>5. Scene\Scene_Ingame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

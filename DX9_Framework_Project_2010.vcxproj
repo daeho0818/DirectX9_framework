@@ -400,6 +400,7 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Scene_Ingame.cpp" />
     <ClCompile Include="Scene_Loading.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="SDKsound.cpp" />
@@ -422,6 +423,7 @@
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Scene_Ingame.h" />
     <ClInclude Include="Scene_Loading.h" />
     <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="SDKsound.h" />

@@ -1,10 +1,12 @@
 #pragma once
-#include "Object.h"
-class Player : public Component
+class Bullet : public Component
 {
 public:
-	Player(Object* object);
-	~Player();
+	Bullet(Object* object);
+	~Bullet();
+
+	void SetBullet(Vector2 direction, float move_speed, Image* image);
+	bool CheckOutRange();
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -14,14 +16,14 @@ public:
 	virtual void Release() override;
 
 private:
-	void ChkMoveRange();
+	bool is_set;
 
-	Image* bullet_image;
-
-	RECT move_range;
+	Image* m_image;
 	const Vector2* m_position;
+	Vector2 m_direction;
 
-	float move_speed;
+	float m_moveSpeed = 0;
+
 };
 
-#include "Bullet.h"
+

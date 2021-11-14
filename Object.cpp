@@ -13,4 +13,10 @@ Object::Object(string name, ObjType type, Vector2 position)
 
 Object::~Object()
 {
+	for (var iter : components)
+	{
+		iter.second->Release();
+		SAFE_DELETE(iter.second);
+	}
+	components.clear();
 }

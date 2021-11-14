@@ -74,6 +74,8 @@ void SceneManager::ChangeScene(string key)
 {
 	var find = m_scenes.find(key);
 	target_scene = (*find).second;
+
+	OBJECT->DestroyAllObject();
 }
 
 Scene* SceneManager::GetActiveScene()

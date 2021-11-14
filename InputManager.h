@@ -26,12 +26,12 @@ private:
 };
 #define INPUT InputManager::Instance()
 
-#define GetKeyDown(key) this->KeyDown(key)
-#define GetKeyUp(key) this->KeyUp(key)
-#define GetKey(key) this->KeyPress(key)
+#define GetKeyDown(key) INPUT->KeyDown(key)
+#define GetKeyUp(key) INPUT->KeyUp(key)
+#define GetKey(key) INPUT->KeyPress(key)
 
-#define MouseDown(button) this->MouseDown(button)
-#define MouseUp(button) this->MouseUp(button)
-#define MouseClick(button) this->MouseClick(button)
+#define MouseDown(button) INPUT->MouseDown(button)
+#define MouseUp(button) INPUT->MouseUp(button)
+#define MouseClick(button) INPUT->MouseClick(button)
 
 #define mouse mouse_position

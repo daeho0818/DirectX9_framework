@@ -3,6 +3,8 @@
 
 TransformC::TransformC(Object* object) : Component(object)
 {
+	m_scale = 1;
+	m_rotation = 0;
 }
 
 TransformC::~TransformC()

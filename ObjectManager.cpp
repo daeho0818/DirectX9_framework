@@ -17,18 +17,20 @@ void ObjectManager::Update()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+		if (!(*iter)->is_destroy)
 		{
-			c_iter->second->Update();
-			++c_iter;
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			{
+				c_iter->second->Update();
+				++c_iter;
+			}
+			++iter;
 		}
-
-		if ((*iter)->is_destroy)
+		else 
 		{
 			SAFE_DELETE((*iter));
 			iter = m_objects.erase(iter);
 		}
-		else ++iter;
 	}
 }
 

@@ -13,5 +13,7 @@ public :
 	virtual void Release() override;
 
 	Vector2 m_position;
+	float m_scale;
+	float m_rotation;
 };
 

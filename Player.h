@@ -15,6 +15,7 @@ public:
 
 private:
 	void ChkMoveRange();
+	void Fire();
 
 	Image* bullet_image;
 
@@ -22,6 +23,9 @@ private:
 	const Vector2* m_position;
 
 	float move_speed;
+	float first_fire_count;
+	float current_fire_count;
+	float fire_range;
 };
 
 #include "Bullet.h"

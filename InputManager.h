@@ -34,4 +34,4 @@ private:
 #define MouseUp(button) INPUT->MouseUp(button)
 #define MouseClick(button) INPUT->MouseClick(button)
 
-#define mouse mouse_position
+#define mouse INPUT->mouse_position

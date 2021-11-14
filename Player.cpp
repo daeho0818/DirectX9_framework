@@ -21,6 +21,7 @@ void Player::Init()
 
 	m_position = &(m_object->m_transform->m_position);
 	move_speed = 15;
+	fire_range = 0.5f;
 
 	IMAGE->QuickLoad("bullet_player", "Object/Bullet/bullet_player");
 	bullet_image = IMAGE->FindImage("bullet_player");
@@ -45,12 +46,8 @@ void Player::Update()
 		m_object->m_transform->m_position.y += move_speed;
 	}
 
-	if (GetKeyDown(VK_SPACE))
-	{
-		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, m_object->m_transform->m_position);
-		Bullet* bullet = bulletObj->AddComponent<Bullet>();
-		bullet->SetBullet(Vector2(1, 0), 1, bullet_image);
-	}
+	if (GetKey(VK_SPACE)) Fire();
+	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();
 }
@@ -79,4 +76,17 @@ void Player::ChkMoveRange()
 		m_object->m_transform->m_position.y = move_range.top;
 	else if (m_position->y > move_range.bottom)
 		m_object->m_transform->m_position.y = move_range.bottom;
+}
+
+void Player::Fire()
+{
+	if (current_fire_count - first_fire_count > fire_range * 1000)
+	{
+		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, m_object->m_transform->m_position);
+		Bullet* bullet = bulletObj->AddComponent<Bullet>();
+		Vector2& dir = INPUT->GetMousePosition() - m_object->m_transform->m_position;
+		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image);
+
+		first_fire_count = GetTickCount64();
+	}
 }

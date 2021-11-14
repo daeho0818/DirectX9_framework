@@ -19,5 +19,6 @@ private:
 
 };
 
-#include "Scene_Title.h"
 #include "Scene_Loading.h"
+#include "Scene_Title.h"
+#include "Scene_Ingame.h"

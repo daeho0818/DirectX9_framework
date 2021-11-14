@@ -22,6 +22,10 @@ void AnimationC::Render()
 {
 }
 
+void AnimationC::UIRender()
+{
+}
+
 void AnimationC::Release()
 {
 }

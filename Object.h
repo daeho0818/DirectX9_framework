@@ -24,9 +24,11 @@ public:
 
 		if (find != components.end()) return dynamic_cast<T*>(find->second);
 
-		T* component = new T(this);
-		components.insert(make_pair(typeid(T).name(), dynamic_cast<Component*>(component)));
-		return component;
+		T* t_component = new T(this);
+		Component* component = dynamic_cast<Component*>(t_component);
+		components.insert(make_pair(typeid(T).name(), component));
+		component->Init();
+		return t_component;
 	}
 
 	string m_name;

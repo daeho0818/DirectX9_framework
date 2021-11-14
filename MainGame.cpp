@@ -16,6 +16,7 @@ void MainGame::Init()
 
 	SCENE->AddScene("Scene_Loading", new Scene_Loading());
 	SCENE->AddScene("Scene_Title", new Scene_Title());
+	SCENE->AddScene("Scene_Ingame", new Scene_Ingame());
 	SCENE->ChangeScene("Scene_Loading");
 
 	SCENE->Init();
@@ -25,6 +26,7 @@ void MainGame::Init()
 
 void MainGame::Update()
 {
+	INPUT->Update();
 	SCENE->Update();
 	OBJECT->Update();
 	SOUND->Update();
@@ -61,6 +63,7 @@ void MainGame::Release()
 	SceneManager::Destroy();
 	SoundManager::Destroy();
 	ObjectManager::Destroy();
+	InputManager::Destroy();
 }
 
 void MainGame::Begin()

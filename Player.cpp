@@ -20,32 +20,38 @@ void Player::Init()
 	};
 
 	m_position = &(m_object->m_transform->m_position);
-	move_speed = 5;
+	move_speed = 15;
 }
 
 void Player::Update()
 {
-	if (DXUTIsKeyDown(VK_LEFT))
+	if (GetKey(VK_LEFT))
 	{
 		m_object->m_transform->m_position.x -= move_speed;
 	}
-	else if (DXUTIsKeyDown(VK_RIGHT))
+	else if (GetKey(VK_RIGHT))
 	{
 		m_object->m_transform->m_position.x += move_speed;
 	}
-	else if (DXUTIsKeyDown(VK_UP))
+	else if (GetKey(VK_UP))
 	{
 		m_object->m_transform->m_position.y -= move_speed;
 	}
-	else if (DXUTIsKeyDown(VK_DOWN))
+	else if (GetKey(VK_DOWN))
 	{
 		m_object->m_transform->m_position.y += move_speed;
 	}
+
+	ChkMoveRange();
 }
 
 void Player::Render()
 {
 	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_object->m_transform->m_position);
+}
+
+void Player::UIRender()
+{
 }
 
 void Player::Release()
@@ -57,7 +63,7 @@ void Player::ChkMoveRange()
 	if (m_position->x < move_range.left)
 		m_object->m_transform->m_position.x = move_range.left;
 	else if (m_position->x > move_range.right)
-		m_object->m_transform->m_position.x = m_position->x > move_range.right;
+		m_object->m_transform->m_position.x = move_range.right;
 	
 	if (m_position->y < move_range.top)
 		m_object->m_transform->m_position.y = move_range.top;

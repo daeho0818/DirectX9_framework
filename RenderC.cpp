@@ -21,6 +21,10 @@ void RenderC::Render()
 {
 }
 
+void RenderC::UIRender()
+{
+}
+
 void RenderC::Release()
 {
 }

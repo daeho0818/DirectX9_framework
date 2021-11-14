@@ -21,6 +21,10 @@ void TransformC::Render()
 {
 }
 
+void TransformC::UIRender()
+{
+}
+
 void TransformC::Release()
 {
 }

@@ -71,6 +71,10 @@ void ParticleC::Render()
 {
 }
 
+void ParticleC::UIRender()
+{
+}
+
 void ParticleC::Release()
 {
 	m_animation.clear();

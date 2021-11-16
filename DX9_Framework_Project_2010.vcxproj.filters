@@ -99,6 +99,9 @@
     <Filter Include="3. Component\Base Component">
       <UniqueIdentifier>{f6299e8c-1eab-4612-9472-bff101fe08fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2. Manager\%281%29 Singleton\Particle">
+      <UniqueIdentifier>{da3aab2e-18db-41b2-8ea8-b077eaa342d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -235,6 +238,9 @@
     <ClCompile Include="Bullet.cpp">
       <Filter>3. Component\Game Object\Bullet\Base Bullet</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>2. Manager\%281%29 Singleton\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -311,6 +317,9 @@
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>3. Component\Game Object\Bullet\Base Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>2. Manager\%281%29 Singleton\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

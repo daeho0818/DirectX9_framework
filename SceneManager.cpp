@@ -30,13 +30,16 @@ void SceneManager::Update()
 
 	for (var iter = m_timers.begin(); iter != m_timers.end();)
 	{
-		(*iter)->Update();
 		if ((*iter)->is_end)
 		{
-			(*iter)->Release();
+			SAFE_DELETE(*iter);
 			iter = m_timers.erase(iter);
 		}
-		else ++iter;
+		else
+		{
+			(*iter)->Update();
+			++iter;
+		}
 	}
 }
 
@@ -56,6 +59,8 @@ void SceneManager::Release()
 
 	for (var iter : m_scenes)
 		SAFE_DELETE(iter.second);
+	for (var iter : m_timers)
+		SAFE_DELETE(iter);
 
 	m_timers.clear();
 	m_scenes.clear();

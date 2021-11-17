@@ -11,7 +11,6 @@ AnimationC::~AnimationC()
 
 void AnimationC::Init()
 {
-	m_timer = new Timer();
 }
 
 void AnimationC::Update()
@@ -36,7 +35,7 @@ void AnimationC::SetAnimation(string anim_key, float frame_time, bool loop)
 	animation_size = m_animation.size();
 	m_index = 0;
 
-	m_timer->SetTimer(frame_time, m_animation.size(), [&]()->void {m_index >= animation_size ? m_index = 0 : m_index++; }, loop);
+	m_timer= new Timer(frame_time, m_animation.size(), [&]()->void {m_index >= animation_size ? m_index = 0 : m_index++; }, loop);
 }
 
 void AnimationC::Play()

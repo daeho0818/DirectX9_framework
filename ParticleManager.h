@@ -15,6 +15,40 @@ enum ChangeMode
 	Big_FadeOut = 10
 };
 
+class Particle
+{
+public:
+	Particle(vector<Image*> animation, Vector2 position, float frame_time, float size);
+	~Particle();
+
+	vector<Image*> m_animation;
+	Vector2 m_position;
+	float m_size;
+	bool m_destroy;
+	int m_index;
+
+private:
+	Timer* m_timer;
+	float m_frameTime;
+};
+
+class Effect
+{
+public:
+	Effect(Image* image, Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size, float destroy_time);
+	~Effect();
+
+	Image* m_image;
+	Vector2 m_position;
+	D3DXCOLOR m_color;
+	ChangeMode m_changeMode;
+	float m_size;
+	bool m_destroy;
+
+private:
+	float m_destroyTime;
+};
+
 class ParticleManager : public Singleton<ParticleManager>
 {
 public:
@@ -37,33 +71,3 @@ private:
 	bool isParticleEffect;
 };
 #define PARTICLE ParticleManager::Instance()
-
-class Particle
-{
-public:
-	Particle(vector<Image*> animation, Vector2 position, float frame_time, float size);
-	~Particle();
-
-private:
-	vector<Image*> m_animation;
-	Vector2 m_position;
-	float m_frameTime;
-	float m_size;
-	int m_index;
-	bool m_destroy;
-};
-
-class Effect
-{
-public:
-	Effect(Image* image, Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size, float destroy_time);
-	~Effect();
-
-private:
-	Image* m_image;
-	Vector2 m_position;
-	D3DXCOLOR m_color;
-	ChangeMode m_changeMode;
-	float m_size;
-	float m_destroyTime;
-};

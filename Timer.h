@@ -4,10 +4,9 @@ class Timer
 	friend class SceneManager;
 
 public:
-	Timer();
+	Timer(float time, int loopCount, function<void()> func, bool loop = false);
 	~Timer();
 
-	void SetTimer(float time, int loopCount, function<void()> func, bool loop = false);
 	void TimerStart();
 	void TimerStop();
 
@@ -21,8 +20,7 @@ private:
 	bool is_stop;
 	function<void()> m_func = nullptr;
 
-	virtual void Update();
-	virtual void Release();
+	void Update();
 
 };
 

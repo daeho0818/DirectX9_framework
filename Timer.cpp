@@ -1,23 +1,17 @@
 #include "DXUT.h"
 #include "Timer.h"
 
-Timer::Timer()
+Timer::Timer(float time, int loopCount, function<void()> func, bool loop)
+	:m_time(time), m_loopCount(loopCount), m_func(func), m_loop(loop)
 {
+	is_start = is_stop = is_end = false;
+	startTime = 0;
+
+	SCENE->m_timers.push_back(this);
 }
 
 Timer::~Timer()
 {
-}
-
-void Timer::SetTimer(float time, int loopCount, function<void()> func, bool loop)
-{
-	m_time = time;
-	m_loopCount = loopCount;
-	m_func = func;
-
-	is_start = false;
-
-	SCENE->m_timers.push_back(this);
 }
 
 void Timer::TimerStart()
@@ -42,15 +36,11 @@ void Timer::Update()
 		m_func();
 		if (m_loopCount > 1 || m_loop)
 		{
+			OutputDebugStringW(L"Is Timer Check\n");
 			m_loopCount--;
 			startTime = 0;
 		}
 		else is_end = true;
 	}
 
-}
-
-void Timer::Release()
-{
-	delete this;
 }

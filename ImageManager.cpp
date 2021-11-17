@@ -71,7 +71,7 @@ vector<Image*> ImageManager::MakeAnimation(string _key)
 
 	for (int i = 0;; i++)
 	{
-		sprintf(key, "%s%d", key, i);
+		sprintf(key, "%s%d", _key.c_str(), i);
 		var find = m_images.find(key);
 		if (find == m_images.end())
 			break;

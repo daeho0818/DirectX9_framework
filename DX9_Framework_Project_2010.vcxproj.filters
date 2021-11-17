@@ -69,9 +69,6 @@
     <Filter Include="3. Component\C - AnimationC">
       <UniqueIdentifier>{72eac0c9-7419-44f9-96dc-51d161edff93}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Component\C - ParticleC">
-      <UniqueIdentifier>{4bb2a0c2-334d-41dc-921f-d58b7fecacfd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Component\C - RenderC">
       <UniqueIdentifier>{1cf2bcbb-fa81-4522-a8c9-d4960b08f610}</UniqueIdentifier>
     </Filter>
@@ -176,9 +173,6 @@
     <ClCompile Include="SoundManager.cpp">
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleC.cpp">
-      <Filter>3. Component\C - ParticleC</Filter>
-    </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>3. Component\Base Component</Filter>
     </ClCompile>
@@ -255,9 +249,6 @@
     </ClInclude>
     <ClInclude Include="SoundManager.h">
       <Filter>2. Manager\%281%29 Singleton\Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleC.h">
-      <Filter>3. Component\C - ParticleC</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>3. Component\Base Component</Filter>

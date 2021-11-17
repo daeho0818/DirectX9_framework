@@ -29,6 +29,7 @@ void MainGame::Update()
 	INPUT->Update();
 	SCENE->Update();
 	OBJECT->Update();
+	PARTICLE->Update();
 	SOUND->Update();
 	CAMERA->Update();
 }
@@ -42,6 +43,7 @@ void MainGame::Render()
 	CAMERA->Render();
 
 	OBJECT->Render();
+	PARTICLE->Render();
 
 	SCENE->UIRender();
 	CAMERA->UIRender();
@@ -52,6 +54,7 @@ void MainGame::Render()
 
 void MainGame::Release()
 {
+	PARTICLE->Release();
 	OBJECT->Release();
 	SCENE->Release();
 	CAMERA->Release();
@@ -64,6 +67,7 @@ void MainGame::Release()
 	SoundManager::Destroy();
 	ObjectManager::Destroy();
 	InputManager::Destroy();
+	ParticleManager::Destroy();
 }
 
 void MainGame::Begin()

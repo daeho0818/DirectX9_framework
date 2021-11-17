@@ -46,6 +46,7 @@ enum ObjectType
 #include "CameraManager.h"
 #include "ObjectManager.h"
 #include "InputManager.h"
+#include "ParticleManager.h"
 
 #ifdef _DEBUG
 #define new new (_NORMAL_BLOCK, __FILE__, __LINE__)

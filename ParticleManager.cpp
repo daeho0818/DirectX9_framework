@@ -9,6 +9,12 @@ ParticleManager::~ParticleManager()
 {
 }
 
+void ParticleManager::Init()
+{
+	IMAGE->QuickLoad("Effect", "Effect/Effect");
+	effect_image = IMAGE->FindImage("Effect");
+}
+
 void ParticleManager::Update()
 {
 	for (var iter = m_particles.begin(); iter != m_particles.end();)
@@ -46,7 +52,7 @@ void ParticleManager::Render()
 
 	for (var iter : m_effects)
 	{
-		RENDER->CenterRender(iter->m_image, iter->m_position, iter->m_size, 0, false, iter->m_color);
+		RENDER->CenterRender(effect_image, iter->m_position, iter->m_size, 0, false, iter->m_color);
 	}
 }
 
@@ -67,9 +73,9 @@ void ParticleManager::AddParticleAnim(vector<Image*> animation, Vector2 position
 	m_particles.push_back(particle);
 }
 
-void ParticleManager::AddParticleEffect(Image* image, Vector2 position, D3DXCOLOR color, ChangeMode changeMode, float size, float destroyTime)
+void ParticleManager::AddParticleEffect(Vector2 position, D3DXCOLOR color, ChangeMode changeMode, float size, float destroyTime)
 {
-	Effect* effect = new Effect(image, position, color, changeMode, size, destroyTime);
+	Effect* effect = new Effect(position, color, changeMode, size, destroyTime);
 	m_effects.push_back(effect);
 }
 
@@ -90,13 +96,32 @@ Particle::~Particle()
 {
 }
 
-Effect::Effect(Image* image, Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size, float destroy_time)
+Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size, float destroy_time)
 {
-	m_image = image;
 	m_color = color;
 	m_changeMode = change_mode;
 	m_destroyTime;
 	m_destroy = false;
+
+	switch (change_mode)
+	{
+	case Small:
+		break;
+	case Big:
+		break;
+	case FadeIn:
+		break;
+	case FadeOut:
+		break;
+	case Small_FadeIn:
+		break;
+	case Small_FadeOut:
+		break;
+	case Big_FadeIn:
+		break;
+	case Big_FadeOut:
+		break;
+	}
 }
 
 Effect::~Effect()

@@ -9,7 +9,6 @@ Scene_Ingame::~Scene_Ingame()
 {
 }
 
-Timer* m_timer;
 void Scene_Ingame::Init()
 {
 	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);

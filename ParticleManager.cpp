@@ -30,13 +30,19 @@ void ParticleManager::Update()
 
 	for (var iter = m_effects.begin(); iter != m_effects.end();)
 	{
+		(*iter)->m_destroy = (*iter)->m_size <= 0 || (*iter)->m_color.a <= 0;
+
 		if ((*iter)->m_destroy)
 		{
 			SAFE_DELETE((*iter));
 			iter = m_effects.erase(iter);
 		}
 		else
+		{
+			if ((*iter)->m_effecting)
+				(*iter)->m_effect();
 			++iter;
+		}
 	}
 }
 
@@ -73,9 +79,9 @@ void ParticleManager::AddParticleAnim(vector<Image*> animation, Vector2 position
 	m_particles.push_back(particle);
 }
 
-void ParticleManager::AddParticleEffect(Vector2 position, D3DXCOLOR color, ChangeMode changeMode, float size, float destroyTime)
+void ParticleManager::AddParticleEffect(Vector2 position, D3DXCOLOR color, ChangeMode changeMode, float size)
 {
-	Effect* effect = new Effect(position, color, changeMode, size, destroyTime);
+	Effect* effect = new Effect(position, color, changeMode, size);
 	m_effects.push_back(effect);
 }
 
@@ -88,7 +94,7 @@ Particle::Particle(vector<Image*> animation, Vector2 position, float frame_time,
 	m_index = 0;
 	m_destroy = false;
 
-	m_timer = new Timer(frame_time, animation.size(), [&]()->void {m_index++; }, false);
+	m_timer = new Timer(frame_time, animation.size(), [&]()->void {m_index++; });
 	m_timer->TimerStart();
 }
 
@@ -96,32 +102,20 @@ Particle::~Particle()
 {
 }
 
-Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size, float destroy_time)
+Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size)
 {
+	m_position = position;
 	m_color = color;
-	m_changeMode = change_mode;
-	m_destroyTime;
+	m_size = size;
+	m_effecting = false;
 	m_destroy = false;
 
-	switch (change_mode)
-	{
-	case Small:
-		break;
-	case Big:
-		break;
-	case FadeIn:
-		break;
-	case FadeOut:
-		break;
-	case Small_FadeIn:
-		break;
-	case Small_FadeOut:
-		break;
-	case Big_FadeIn:
-		break;
-	case Big_FadeOut:
-		break;
-	}
+	size_value = rand() % 10 / 100.0f;
+	alpha_value = 0.05f;
+
+	m_effect = effects[change_mode];
+	m_timer = new Timer(0.25f, 0, [&]()->void {m_effecting = true; });
+	m_timer->TimerStart();
 }
 
 Effect::~Effect()

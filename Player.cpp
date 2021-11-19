@@ -27,6 +27,7 @@ void Player::Init()
 	bullet_image = IMAGE->FindImage("bullet_player");
 }
 
+float rot = 0;
 void Player::Update()
 {
 	if (GetKey(VK_LEFT))
@@ -50,11 +51,14 @@ void Player::Update()
 	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();
+
+	if (GetKeyDown(VK_F1))
+		rot += 90;
 }
 
 void Player::Render()
 {
-	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_object->m_transform->m_position);
+	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_object->m_transform->m_position, 1, D3DXToRadian(rot));
 }
 
 void Player::UIRender()
@@ -82,9 +86,9 @@ void Player::Fire()
 {
 	if (current_fire_count - first_fire_count > fire_range * 1000)
 	{
-		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, m_object->m_transform->m_position);
+		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, (*m_position));
 		Bullet* bullet = bulletObj->AddComponent<Bullet>();
-		Vector2& dir = INPUT->GetMousePosition() - m_object->m_transform->m_position;
+		Vector2& dir = INPUT->GetMousePosition() - (*m_position);
 		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image);
 
 		first_fire_count = GetTickCount64();

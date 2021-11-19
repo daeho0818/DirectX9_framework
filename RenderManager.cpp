@@ -56,7 +56,8 @@ void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, 
 void RenderManager::TextRender(string str, Vector2 pos, float size, D3DXCOLOR color)
 {
 	D3DXMATRIXA16 mat;
-	D3DXCreateFontA(DEVICE, 1, size, 0, 10, 1, 0, DEFAULT_CHARSET, 0, 0, "나눔스퀘어 AC", &m_font);
+	D3DXCreateFontA(DEVICE, size, 0, 10, 1, 0, DEFAULT_CHARSET, 0, 0, 0, "나눔스퀘어 AC", &m_font);
+	D3DXMatrixTranslation(&mat, pos.x - size * (str.size() * 0.25), pos.y - size / 2, 0);
 	m_sprite->SetTransform(&mat);
 	m_font->DrawTextA(m_sprite, str.c_str(), str.size(), nullptr, DT_NOCLIP, color);
 	m_font->Release();

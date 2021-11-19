@@ -1,5 +1,6 @@
 #pragma once
 class Object;
+class TransformC;
 class Component
 {
 public:
@@ -13,5 +14,6 @@ public:
 	virtual void Release() = 0;
 
 	Object* m_object;
+	TransformC* m_transform;
 
 };

@@ -13,7 +13,12 @@ public :
 	virtual void Release() override;
 
 	Vector2 m_position;
+	Vector2 right;
+	Vector2 left;
+	Vector2 up;
+	Vector2 down;
+
 	float m_scale;
-	float m_rotation;
+	float m_rotationZ;
 };
 

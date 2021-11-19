@@ -49,7 +49,7 @@ void Bullet::Update()
 void Bullet::Render()
 {
 	if (is_set)
-		RENDER->CenterRender(m_image, m_object->m_transform->m_position, m_object->m_transform->m_scale, m_object->m_transform->m_rotation);
+		RENDER->CenterRender(m_image, m_object->m_transform->m_position, m_object->m_transform->m_scale, m_object->m_transform->m_rotationZ);
 }
 
 void Bullet::UIRender()

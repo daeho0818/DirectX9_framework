@@ -53,6 +53,25 @@ void ObjectManager::Render()
 	}
 }
 
+void ObjectManager::UIRender()
+{
+	for (var iter = m_objects.begin(); iter != m_objects.end();)
+	{
+		if ((*iter) != nullptr)
+		{
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			{
+				if ((*c_iter).second != nullptr)
+				{
+					c_iter->second->UIRender();
+					++c_iter;
+				}
+			}
+			++iter;
+		}
+	}
+}
+
 void ObjectManager::Release()
 {
 	DestroyAllObject();

@@ -19,7 +19,7 @@ void Player::Init()
 		WINSIZEY
 	};
 
-	m_position = &(m_object->m_transform->m_position);
+	m_position = &(m_transform->m_position);
 	move_speed = 15;
 	fire_range = 0.5f;
 
@@ -27,38 +27,39 @@ void Player::Init()
 	bullet_image = IMAGE->FindImage("bullet_player");
 }
 
-float rot = 0;
 void Player::Update()
 {
+	// 여기서 더해주는애들 방향벡터로 전환하면 각각 왼쪽, 오른쪽, 위, 아래 됨
 	if (GetKey(VK_LEFT))
 	{
-		m_object->m_transform->m_position.x -= move_speed;
+		m_transform->m_position += m_transform->left * move_speed;
 	}
 	else if (GetKey(VK_RIGHT))
 	{
-		m_object->m_transform->m_position.x += move_speed;
+		m_transform->m_position += m_transform->right * move_speed;
 	}
 	else if (GetKey(VK_UP))
 	{
-		m_object->m_transform->m_position.y -= move_speed;
+		m_transform->m_position += m_transform->up * move_speed;
 	}
 	else if (GetKey(VK_DOWN))
 	{
-		m_object->m_transform->m_position.y += move_speed;
+		m_transform->m_position += m_transform->down * move_speed;
 	}
 
 	if (GetKey(VK_SPACE)) Fire();
 	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();
-
-	if (GetKeyDown(VK_F1))
-		rot += 90;
+	if (GetKey(VK_F1))
+		m_transform->m_rotationZ += 5;
+	else if (GetKey(VK_F2))
+		m_transform->m_rotationZ -= 5;
 }
 
 void Player::Render()
 {
-	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_object->m_transform->m_position, 1, D3DXToRadian(rot));
+	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_transform->m_position, 1, D3DXToRadian(m_transform->m_rotationZ));
 }
 
 void Player::UIRender()
@@ -72,14 +73,14 @@ void Player::Release()
 void Player::ChkMoveRange()
 {
 	if (m_position->x < move_range.left)
-		m_object->m_transform->m_position.x = move_range.left;
+		m_transform->m_position.x = move_range.left;
 	else if (m_position->x > move_range.right)
-		m_object->m_transform->m_position.x = move_range.right;
+		m_transform->m_position.x = move_range.right;
 
 	if (m_position->y < move_range.top)
-		m_object->m_transform->m_position.y = move_range.top;
+		m_transform->m_position.y = move_range.top;
 	else if (m_position->y > move_range.bottom)
-		m_object->m_transform->m_position.y = move_range.bottom;
+		m_transform->m_position.y = move_range.bottom;
 }
 
 void Player::Fire()

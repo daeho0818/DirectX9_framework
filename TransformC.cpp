@@ -4,7 +4,7 @@
 TransformC::TransformC(Object* object) : Component(object)
 {
 	m_scale = 1;
-	m_rotation = 0;
+	m_rotationZ = 0;
 }
 
 TransformC::~TransformC()
@@ -17,6 +17,10 @@ void TransformC::Init()
 
 void TransformC::Update()
 {
+	left = Vector2(-cos(D3DXToRadian((int)m_rotationZ)), -sin(D3DXToRadian((int)m_rotationZ)));
+	right = Vector2(cos(D3DXToRadian((int)m_rotationZ)), sin(D3DXToRadian((int)m_rotationZ)));
+	up = Vector2(sin(D3DXToRadian((int)m_rotationZ)), -cos(D3DXToRadian((int)m_rotationZ)));
+	down = Vector2(-sin(D3DXToRadian((int)m_rotationZ)), cos(D3DXToRadian((int)m_rotationZ)));
 }
 
 void TransformC::Render()

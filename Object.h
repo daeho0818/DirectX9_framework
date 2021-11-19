@@ -27,6 +27,7 @@ public:
 		T* t_component = new T(this);
 		Component* component = dynamic_cast<Component*>(t_component);
 		components.insert(make_pair(typeid(T).name(), component));
+		component->m_transform = m_transform;
 		component->Init();
 		return t_component;
 	}

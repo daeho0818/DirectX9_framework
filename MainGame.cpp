@@ -47,6 +47,8 @@ void MainGame::Render()
 	OBJECT->Render();
 	PARTICLE->Render();
 
+	OBJECT->UIRender();
+
 	SCENE->UIRender();
 	CAMERA->UIRender();
 

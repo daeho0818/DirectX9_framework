@@ -35,11 +35,11 @@ public:
 	string m_name;
 	ObjType m_type;
 	TransformC* m_transform;
+	function<void(Object* other)> OnCollisionEnter;
 
 	bool is_destroy;
 
 private:
 	map<string, Component*> components;
-	function<void(Object* other)> OnCollisionEnter;
 
 };

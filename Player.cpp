@@ -22,6 +22,7 @@ void Player::Init()
 	m_position = &(m_transform->m_position);
 	move_speed = 15;
 	fire_range = 0.5f;
+	m_object->OnCollisionEnter = [&](Object* other)->void {};
 
 	IMAGE->QuickLoad("bullet_player", "Object/Bullet/bullet_player");
 	bullet_image = IMAGE->FindImage("bullet_player");

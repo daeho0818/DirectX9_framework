@@ -99,6 +99,15 @@
     <Filter Include="2. Manager\%281%29 Singleton\Particle">
       <UniqueIdentifier>{da3aab2e-18db-41b2-8ea8-b077eaa342d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Collider">
+      <UniqueIdentifier>{2aa28142-36ee-46a7-8325-f1c39fa7ea20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Collider\C - BoxColliderC">
+      <UniqueIdentifier>{624df4bd-0aa7-4230-9c7f-b8413ea68ef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Collider\C - CircleColliderC">
+      <UniqueIdentifier>{809ccc79-8a82-4dba-99af-e5b91195ea9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -235,6 +244,12 @@
     <ClCompile Include="ParticleManager.cpp">
       <Filter>2. Manager\%281%29 Singleton\Particle</Filter>
     </ClCompile>
+    <ClCompile Include="BoxColliderC.cpp">
+      <Filter>3. Component\Collider\C - BoxColliderC</Filter>
+    </ClCompile>
+    <ClCompile Include="CircleColliderC.cpp">
+      <Filter>3. Component\Collider\C - CircleColliderC</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -311,6 +326,12 @@
     </ClInclude>
     <ClInclude Include="ParticleManager.h">
       <Filter>2. Manager\%281%29 Singleton\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxColliderC.h">
+      <Filter>3. Component\Collider\C - BoxColliderC</Filter>
+    </ClInclude>
+    <ClInclude Include="CircleColliderC.h">
+      <Filter>3. Component\Collider\C - CircleColliderC</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

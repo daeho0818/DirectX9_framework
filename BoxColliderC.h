@@ -12,7 +12,9 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+	// Collider 크기 설정
 	void SetCollider(float width, float height);
+	// (개발자 전용) 화면에 Collider를 보여줌
 	void ShowCollider(bool active);
 
 private:

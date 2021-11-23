@@ -1,4 +1,5 @@
 #pragma once
+#include "Button.h"
 class InputManager : public Singleton<InputManager>
 {
 public:

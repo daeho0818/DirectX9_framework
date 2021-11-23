@@ -21,6 +21,10 @@ void CircleColliderC::Update()
 
 void CircleColliderC::Render()
 {
+	// if (show_collider)
+	// {
+	// 	RENDER->CenterRender(IMAGE->FindImage(""), m_transform->m_position);
+	// }
 }
 
 void CircleColliderC::UIRender()
@@ -33,8 +37,10 @@ void CircleColliderC::Release()
 
 void CircleColliderC::SetCollider(float radius)
 {
+	m_radius = radius;
 }
 
 void CircleColliderC::ShowCollider(bool active)
 {
+	show_collider = active;
 }

@@ -21,6 +21,10 @@ void BoxColliderC::Update()
 
 void BoxColliderC::Render()
 {
+	//if (show_collider)
+	//{
+	//	RENDER->CenterRender(IMAGE->FindImage(""), m_transform->m_position);
+	//}
 }
 
 void BoxColliderC::UIRender()

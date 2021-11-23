@@ -389,6 +389,7 @@
     <ClCompile Include="AnimationC.cpp" />
     <ClCompile Include="BoxColliderC.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="CircleColliderC.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -417,6 +418,7 @@
     <ClInclude Include="AnimationC.h" />
     <ClInclude Include="BoxColliderC.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="CircleColliderC.h" />
     <ClInclude Include="Component.h" />

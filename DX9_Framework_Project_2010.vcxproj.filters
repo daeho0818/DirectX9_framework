@@ -108,6 +108,9 @@
     <Filter Include="3. Component\Collider\C - CircleColliderC">
       <UniqueIdentifier>{809ccc79-8a82-4dba-99af-e5b91195ea9d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Button">
+      <UniqueIdentifier>{664f2120-550e-42b4-8cb9-d52e2b74c0d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -250,6 +253,9 @@
     <ClCompile Include="CircleColliderC.cpp">
       <Filter>3. Component\Collider\C - CircleColliderC</Filter>
     </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>3. Component\Game Object\Button</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -332,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="CircleColliderC.h">
       <Filter>3. Component\Collider\C - CircleColliderC</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>3. Component\Game Object\Button</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

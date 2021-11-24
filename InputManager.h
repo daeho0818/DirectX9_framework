@@ -16,11 +16,17 @@ public:
 	bool IsMouseUp(int button);
 	bool IsMouseClick(int button);
 
+	bool IsMouseOver(int button, Button* buttonObj);
+	bool IsMouseClick(int button, Button* buttonObj);
+
 	Vector2 GetMousePosition();
 
 private:
 	bool now_key[256] = { false, };
 	bool old_key[256] = { false, };
+
+	bool left_button_down = false;
+	bool left_button_up = false;
 
 	POINT mouse_position;
 

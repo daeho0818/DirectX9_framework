@@ -31,6 +31,7 @@ enum ObjectType
 	EP_Bullet,
 	EE_Bullet,
 	EItem,
+	EButton,
 	ENone,
 } typedef ObjType;
 

@@ -29,10 +29,13 @@ void Button::Release()
 {
 }
 
-void Button::SetButton(Vector2 position, RECT size)
+void Button::SetButton(Vector2 position, RECT size, Image* images[3])
 {
 	m_transform->m_position = position;
 	m_size = size;
+	m_image = images[0];
+	m_image_up = images[1];
+	m_image_press = images[2];
 }
 
 void Button::SetOnClickListener(function<void()> func)

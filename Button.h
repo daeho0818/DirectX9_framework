@@ -12,11 +12,15 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
-	void SetButton(Vector2 position, RECT size);
+	// images : 기본 상태, 마우스 올렸을 때, 눌려질 때
+	void SetButton(Vector2 position, RECT size, Image* images[3]);
 	void SetOnClickListener(function<void()> func);
 
 private:
 	RECT m_size;
+	Image* m_image;
+	Image* m_image_up;
+	Image* m_image_press;
 	function<void()> onClickListener;
 };
 

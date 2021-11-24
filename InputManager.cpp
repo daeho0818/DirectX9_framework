@@ -48,6 +48,11 @@ bool InputManager::IsMouseClick(int button)
 	return false;
 }
 
+bool InputManager::IsMouseClick(int button, Button* buttonObj)
+{
+	return false;
+}
+
 Vector2 InputManager::GetMousePosition()
 {
 	return Vector2(mouse_position.x, mouse_position.y);

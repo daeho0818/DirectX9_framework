@@ -16,25 +16,13 @@ public :
 	template <typename T>
 	T* GetComponent()
 	{
-		auto find = m_object->components.find(typeid(T).name());
-
-		if (find != m_object->components.end()) return dynamic_cast<T*>(find->second);
-		return nullptr;
+		return m_object->GetComponent<T>();
 	}
 
 	template <typename T>
 	T* AddComponent()
 	{
-		auto find = m_object->components.find(typeid(T).name());
-
-		if (find != m_object->components.end()) return dynamic_cast<T*>(find->second);
-
-		T* t_component = new T(this);
-		Component* component = dynamic_cast<Component*>(t_component);
-		m_object->components.insert(make_pair(typeid(T).name(), component));
-		component->m_transform = m_transform;
-		component->Init();
-		return t_component;
+		return m_object->AddComponent<T>();
 	}
 
 	Vector2 m_position;

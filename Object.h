@@ -13,7 +13,7 @@ public:
 	T* GetComponent()
 	{
 		auto find = components.find(typeid(T).name());
-		
+
 		if (find != components.end()) return dynamic_cast<T*>(find->second);
 		return nullptr;
 	}
@@ -26,10 +26,10 @@ public:
 		if (find != components.end()) return dynamic_cast<T*>(find->second);
 
 		T* t_component = new T(this);
-		Component* component = dynamic_cast<Component*>(t_component);
-		components.insert(make_pair(typeid(T).name(), component));
+		Component* component = (Component*)(t_component);
 		component->m_transform = m_transform;
 		component->Init();
+		components.insert(make_pair(typeid(T).name(), component));
 		return t_component;
 	}
 

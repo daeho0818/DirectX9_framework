@@ -19,7 +19,11 @@ void RendererC::Update()
 
 void RendererC::Render()
 {
-	RENDER->CenterRender(m_image, m_transform->m_position, m_transform->m_scale, D3DXToRadian(m_transform->m_rotationZ), false, m_color);
+	if (m_image)
+	{
+		RENDER->CenterRender(m_image, m_transform->m_position, m_transform->m_scale, D3DXToRadian(m_transform->m_rotationZ), false, m_color);
+		OutputDebugStringW(L"응애응애");
+	}
 }
 
 void RendererC::UIRender()
@@ -30,6 +34,12 @@ void RendererC::Release()
 {
 }
 
+void RendererC::Setting(Image* image, D3DXCOLOR color)
+{
+	m_image = image;
+	m_color = color;
+}
+
 void RendererC::SetImage(Image* image)
 {
 	m_image = image;
@@ -38,4 +48,14 @@ void RendererC::SetImage(Image* image)
 Image* RendererC::GetImage()
 {
 	return m_image;
+}
+
+void RendererC::SetColor(D3DXCOLOR color)
+{
+	m_color;
+}
+
+D3DXCOLOR RendererC::GetColor()
+{
+	return m_color;
 }

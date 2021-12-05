@@ -30,26 +30,48 @@ void Player::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	render = m_object->AddComponent<RendererC>();
 
-	render->SetImage(IMAGE->FindImage("Main_BG_Moon"));
+	render->Setting(IMAGE->FindImage("Main_BG_Moon"), D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Player::Update()
 {
-	if (GetKey(VK_LEFT))
+	if (is_wasd)
 	{
-		m_transform->m_position += m_transform->left * move_speed;
+		if (GetKey('A'))
+		{
+			m_transform->m_position += m_transform->left * move_speed;
+		}
+		else if (GetKey('D'))
+		{
+			m_transform->m_position += m_transform->right * move_speed;
+		}
+		else if (GetKey('W'))
+		{
+			m_transform->m_position += m_transform->up * move_speed;
+		}
+		else if (GetKey('S'))
+		{
+			m_transform->m_position += m_transform->down * move_speed;
+		}
 	}
-	else if (GetKey(VK_RIGHT))
+	else
 	{
-		m_transform->m_position += m_transform->right * move_speed;
-	}
-	else if (GetKey(VK_UP))
-	{
-		m_transform->m_position += m_transform->up * move_speed;
-	}
-	else if (GetKey(VK_DOWN))
-	{
-		m_transform->m_position += m_transform->down * move_speed;
+		if (GetKey(VK_LEFT))
+		{
+			m_transform->m_position += m_transform->left * move_speed;
+		}
+		else if (GetKey(VK_RIGHT))
+		{
+			m_transform->m_position += m_transform->right * move_speed;
+		}
+		else if (GetKey(VK_UP))
+		{
+			m_transform->m_position += m_transform->up * move_speed;
+		}
+		else if (GetKey(VK_DOWN))
+		{
+			m_transform->m_position += m_transform->down * move_speed;
+		}
 	}
 
 	if (GetKey(VK_SPACE)) Fire();
@@ -72,9 +94,12 @@ void Player::Render()
 
 void Player::UIRender()
 {
-	if (collider->OBBCheck(other_player->m_transform))
+	if (other_player != nullptr)
 	{
-		RENDER->TextRender("충돌함!", CENTER, 500);
+		if (collider->OBBCheck(other_player->m_transform))
+		{
+			RENDER->TextRender("충돌함!", CENTER, 500);
+		}
 	}
 }
 

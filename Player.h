@@ -15,8 +15,8 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
-	Player* other_player;
-	bool  is_wasd = false;
+	Player* other_player = nullptr;
+	bool  is_wasd;
 
 private:
 	void ChkMoveRange();

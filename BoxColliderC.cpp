@@ -13,8 +13,6 @@ void BoxColliderC::Init()
 {
 	m_width = m_height = 0;
 	show_collider = false;
-
-	render_c = m_object->GetComponent<RendererC>();
 }
 
 void BoxColliderC::Update()
@@ -52,32 +50,27 @@ bool BoxColliderC::OBBCheck(TransformC* other_transform)
 {
 	Vector2 directions[] = { m_transform->right, m_transform->up, other_transform->right, other_transform->up };
 
-	bool is_overlap[4] = { false, };
 	for (int i = 0; i < 4; i++)
-	{
-		is_overlap[i] = Dotting(directions[i], other_transform);
-	}
+		if (!Dotting(directions[i], other_transform)) return false;
 
-	return is_overlap[0] == is_overlap[1] == is_overlap[2] == is_overlap[3];
+	return true;
 }
 
 bool BoxColliderC::Dotting(Vector2 direction, TransformC* other_transform)
 {
-	D3DXIMAGE_INFO img1_info = render_c->GetImage()->info;
-	Vector2 obj1_point = img1_info.Width * m_transform->right + img1_info.Height * m_transform->up;
+	D3DXIMAGE_INFO img1_info = m_object->GetComponent<RendererC>()->GetImage()->info;
+	Vector2 obj1_right_distance = img1_info.Width / 2 * m_transform->right - m_transform->m_position;
+	Vector2 obj1_up_distance = img1_info.Height / 2 * m_transform->up - m_transform->m_position;
 
-	float value1 = D3DXVec2Dot(&direction, &(obj1_point - m_transform->m_position));
+	float value1 = D3DXVec2Dot(&direction, &obj1_right_distance) + D3DXVec2Dot(&direction, &obj1_up_distance);
 
 	D3DXIMAGE_INFO img2_info = other_transform->GetComponent<RendererC>()->GetImage()->info;
-	Vector2 obj2_point = img2_info.Width * other_transform->right + img2_info.Height * other_transform->up;
+	Vector2 obj2_right_distance = img2_info.Width / 2 * m_transform->right - other_transform->m_position;
+	Vector2 obj2_up_distance = img2_info.Height / 2 * m_transform->up - other_transform->m_position;
 
-	float up_dot = D3DXVec2Dot(&(other_transform->up), &(obj2_point - other_transform->m_position));
-	float value2 = D3DXVec2Dot(&direction, &(up_dot * other_transform->up));
+	float value2 = D3DXVec2Dot(&direction, &obj2_right_distance) + D3DXVec2Dot(&direction, &obj2_up_distance);
 
-	float right_dot = D3DXVec2Dot(&(other_transform->right), &(obj2_point - other_transform->m_position));
-	float value3 = D3DXVec2Dot(&direction, &(right_dot * other_transform->up));
+	float distance = D3DXVec2Dot(&direction, &(other_transform->m_position - m_transform->m_position));
 
-	float distance_dot = D3DXVec2Dot(&direction, &(other_transform->m_position - m_transform->m_position));
-
-	return distance_dot <= value1 + value2 + value3;
+	return distance < value1 + value2;
 }

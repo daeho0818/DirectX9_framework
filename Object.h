@@ -3,6 +3,7 @@
 #include "TransformC.h"
 class Object
 {
+	friend class TransformC;
 	friend class ObjectManager;
 public:
 	Object(string name, ObjType type, Vector2 position);
@@ -13,7 +14,7 @@ public:
 	{
 		auto find = components.find(typeid(T).name());
 		
-		if (find != components.end()) return find->second;
+		if (find != components.end()) return dynamic_cast<T*>(find->second);
 		return nullptr;
 	}
 

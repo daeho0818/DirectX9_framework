@@ -48,6 +48,11 @@ bool InputManager::IsMouseClick(int button)
 	return false;
 }
 
+bool InputManager::IsMouseOver(int button, Button* buttonObj)
+{
+	return false;
+}
+
 bool InputManager::IsMouseClick(int button, Button* buttonObj)
 {
 	return false;

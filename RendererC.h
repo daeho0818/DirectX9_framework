@@ -1,10 +1,10 @@
 #pragma once
 #include "Component.h"
-class RenderC : public Component
+class RendererC : public Component
 {
 public:
-	RenderC(Object* object);
-	~RenderC();
+	RendererC(Object* object);
+	~RendererC();
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -12,5 +12,12 @@ public:
 	virtual void Render() override;
 	virtual void UIRender() override;
 	virtual void Release() override;
+
+	void SetImage(Image* image);
+	Image* GetImage();
+private:
+	Image* m_image;
+	D3DXCOLOR m_color;
+
 };
 

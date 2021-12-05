@@ -214,7 +214,7 @@
     <ClCompile Include="Timer.cpp">
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="RenderC.cpp">
+    <ClCompile Include="RendererC.cpp">
       <Filter>3. Component\C - RenderC</Filter>
     </ClCompile>
     <ClCompile Include="Scene_Loading.cpp">
@@ -300,7 +300,7 @@
     <ClInclude Include="Timer.h">
       <Filter>2. Manager\%282%29 Object\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="RenderC.h">
+    <ClInclude Include="RendererC.h">
       <Filter>3. Component\C - RenderC</Filter>
     </ClInclude>
     <ClInclude Include="Scene_Loading.h">

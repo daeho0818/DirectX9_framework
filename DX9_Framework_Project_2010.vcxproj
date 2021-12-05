@@ -401,7 +401,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RenderC.cpp" />
+    <ClCompile Include="RendererC.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -429,7 +429,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ParticleManager.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="RenderC.h" />
+    <ClInclude Include="RendererC.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />

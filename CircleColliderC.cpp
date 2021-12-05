@@ -2,6 +2,7 @@
 #include "CircleColliderC.h"
 
 CircleColliderC::CircleColliderC(Object* object)
+	:Component(object)
 {
 }
 

@@ -1,4 +1,6 @@
 #pragma once
+#include "RendererC.h"
+#include "BoxColliderC.h"
 #include "Object.h"
 class Player : public Component
 {
@@ -13,6 +15,9 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+	Player* other_player;
+	bool  is_wasd = false;
+
 private:
 	void ChkMoveRange();
 	void Fire();
@@ -21,6 +26,9 @@ private:
 
 	RECT move_range;
 	const Vector2* m_position;
+
+	BoxColliderC* collider;
+	RendererC* render;
 
 	float move_speed;
 	float first_fire_count;

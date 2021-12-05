@@ -1,4 +1,5 @@
 #pragma once
+#include "RendererC.h"
 class BoxColliderC : Component
 {
 public:
@@ -17,10 +18,15 @@ public:
 	// (개발자 전용) 화면에 Collider를 보여줌
 	void ShowCollider(bool active);
 
+	bool OBBCheck(TransformC* other_transform);
+
 private:
 	Image* rect_image;
+	RendererC* render_c;
 
 	float m_width;
 	float m_height;
 	bool show_collider;
+
+	bool Dotting(Vector2 direction, TransformC* other_transform);
 };

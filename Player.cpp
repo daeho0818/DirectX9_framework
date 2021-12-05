@@ -26,11 +26,15 @@ void Player::Init()
 
 	IMAGE->QuickLoad("bullet_player", "Object/Bullet/bullet_player");
 	bullet_image = IMAGE->FindImage("bullet_player");
+
+	collider = m_object->AddComponent<BoxColliderC>();
+	render = m_object->AddComponent<RendererC>();
+
+	render->SetImage(IMAGE->FindImage("Main_BG_Moon"));
 }
 
 void Player::Update()
 {
-	// 여기서 더해주는애들 방향벡터로 전환하면 각각 왼쪽, 오른쪽, 위, 아래 됨
 	if (GetKey(VK_LEFT))
 	{
 		m_transform->m_position += m_transform->left * move_speed;
@@ -52,19 +56,26 @@ void Player::Update()
 	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();
-	if (GetKey(VK_F1))
-		m_transform->m_rotationZ += 5;
-	else if (GetKey(VK_F2))
-		m_transform->m_rotationZ -= 5;
+
+	if (is_wasd)
+	{
+		if (GetKey(VK_F1))
+			m_transform->m_rotationZ += 5;
+		else if (GetKey(VK_F2))
+			m_transform->m_rotationZ -= 5;
+	}
 }
 
 void Player::Render()
 {
-	RENDER->CenterRender(IMAGE->FindImage("Main_BG_Moon"), m_transform->m_position, 1, D3DXToRadian(m_transform->m_rotationZ));
 }
 
 void Player::UIRender()
 {
+	if (collider->OBBCheck(other_player->m_transform))
+	{
+		RENDER->TextRender("충돌함!", CENTER, 500);
+	}
 }
 
 void Player::Release()

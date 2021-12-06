@@ -412,6 +412,7 @@
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
+    <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformC.cpp" />
     <ClInclude Include="AnimationC.h" />
@@ -440,6 +441,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformC.h" />
     <None Include="DXUT\Optional\directx.ico" />

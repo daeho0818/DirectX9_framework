@@ -108,6 +108,9 @@
     <Filter Include="3. Component\Game Object\Button">
       <UniqueIdentifier>{664f2120-550e-42b4-8cb9-d52e2b74c0d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Enemy">
+      <UniqueIdentifier>{0a9577d0-8479-4602-b503-1bded8ddd7d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -250,6 +253,9 @@
     <ClCompile Include="Button.cpp">
       <Filter>3. Component\Game Object\Button</Filter>
     </ClCompile>
+    <ClCompile Include="TestEnemy.cpp">
+      <Filter>3. Component\Game Object\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -332,6 +338,9 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>3. Component\Game Object\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="TestEnemy.h">
+      <Filter>3. Component\Game Object\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

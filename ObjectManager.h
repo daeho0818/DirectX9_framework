@@ -1,10 +1,12 @@
 #pragma once
 #include "BoxColliderC.h"
+#include "Bullet.h"
 #include "Object.h"
 
 class ObjectManager : public Singleton<ObjectManager>
 {
 	friend class Object;
+	friend class Player;
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -24,7 +26,7 @@ public:
 private:
 	list<Object*> m_objects;
 
-	Object* m_player;
+	Object* m_player = nullptr;
 	list<Object*> m_eBullets;
 	list<Object*> m_pBullets;
 	list<Object*> m_enemies;

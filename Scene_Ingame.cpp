@@ -17,6 +17,13 @@ void Scene_Ingame::Init()
 
 void Scene_Ingame::Update()
 {
+	srand(time(NULL));
+
+	if (GetKeyDown('E'))
+	{
+		var enemy = OBJECT->CreateObject("Enemy", ObjType::EEnemy, Vector2(rand() % 1920, -50));
+		enemy->AddComponent<TestEnemy>();
+	}
 }
 
 void Scene_Ingame::Render()

@@ -20,7 +20,7 @@ void Player::Init()
 	};
 
 	m_position = &(m_transform->m_position);
-	move_speed = 15;
+	move_speed = 1000;
 	fire_range = 0.5f;
 	m_object->OnCollisionEnter = [&](Object* other)->void {};
 
@@ -28,26 +28,28 @@ void Player::Init()
 	bullet_image = IMAGE->FindImage("bullet_player");
 
 	collider = m_object->AddComponent<BoxColliderC>();
-	render = m_object->AddComponent<RendererC>();
+	renderer = m_object->AddComponent<RendererC>();
+
+	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Player::Update()
 {
 	if (GetKey(VK_LEFT))
 	{
-		m_transform->m_position += m_transform->left * move_speed;
+		m_transform->m_position += m_transform->left * DELTA * move_speed;
 	}
 	else if (GetKey(VK_RIGHT))
 	{
-		m_transform->m_position += m_transform->right * move_speed;
+		m_transform->m_position += m_transform->right * DELTA * move_speed;
 	}
 	else if (GetKey(VK_UP))
 	{
-		m_transform->m_position += m_transform->up * move_speed;
+		m_transform->m_position += m_transform->up * DELTA * move_speed;
 	}
 	else if (GetKey(VK_DOWN))
 	{
-		m_transform->m_position += m_transform->down * move_speed;
+		m_transform->m_position += m_transform->down * DELTA * move_speed;
 	}
 
 	if (GetKey(VK_SPACE)) Fire();
@@ -88,7 +90,7 @@ void Player::Fire()
 	{
 		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, (*m_position));
 		Bullet* bullet = bulletObj->AddComponent<Bullet>();
-		Vector2& dir = INPUT->GetMousePosition() - (*m_position);
+		Vector2 dir = INPUT->GetMousePosition() - (*m_position);
 		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image);
 
 		first_fire_count = GetTickCount64();

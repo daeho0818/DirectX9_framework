@@ -4,6 +4,7 @@
 #include "Object.h"
 class Player : public Component
 {
+	friend class ObjectManager;
 public:
 	Player(Object* object);
 	~Player();
@@ -25,7 +26,7 @@ private:
 	const Vector2* m_position;
 
 	BoxColliderC* collider;
-	RendererC* render;
+	RendererC* renderer;
 
 	float move_speed;
 	float first_fire_count;

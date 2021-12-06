@@ -6,7 +6,6 @@ public:
 	~Bullet();
 
 	void SetBullet(Vector2 direction, float move_speed, Image* image);
-	bool CheckOutRange();
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -16,12 +15,12 @@ public:
 	virtual void Release() override;
 
 private:
-	bool is_set;
+	RendererC* renderer = nullptr;
 
-	Image* m_image;
-	const Vector2* m_position;
+	const Vector2* m_position = nullptr;
 	Vector2 m_direction;
 
+	bool is_set;
 	float m_moveSpeed = 0;
 
 };

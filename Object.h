@@ -7,7 +7,7 @@ class Object
 	friend class ObjectManager;
 public:
 	Object(string name, ObjType type, Vector2 position);
-	virtual ~Object();
+	~Object();
 
 	template <typename T>
 	T* GetComponent()
@@ -31,6 +31,11 @@ public:
 		component->Init();
 		components.insert(make_pair(typeid(T).name(), component));
 		return t_component;
+	}
+
+	void CheckOut()
+	{
+		is_destroy = m_transform->m_position.x > WINSIZEX + 200 || m_transform->m_position.x < -200 || m_transform->m_position.y > WINSIZEY + 200 || m_transform->m_position.y < -200;
 	}
 
 	string m_name;

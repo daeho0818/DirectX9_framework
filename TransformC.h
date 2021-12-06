@@ -25,6 +25,8 @@ public :
 		return m_object->AddComponent<T>();
 	}
 
+	void Translate(Vector2 translation);
+
 	Vector2 m_position;
 	Vector2 right;
 	Vector2 left;

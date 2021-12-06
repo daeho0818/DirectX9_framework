@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "TestEnemy.h"
 class Scene_Ingame : public Scene
 {
 public:

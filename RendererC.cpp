@@ -22,7 +22,6 @@ void RendererC::Render()
 	if (m_image)
 	{
 		RENDER->CenterRender(m_image, m_transform->m_position, m_transform->m_scale, D3DXToRadian(m_transform->m_rotationZ), false, m_color);
-		OutputDebugStringW(L"응애응애");
 	}
 }
 

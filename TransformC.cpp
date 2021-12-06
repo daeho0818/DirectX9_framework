@@ -34,3 +34,8 @@ void TransformC::UIRender()
 void TransformC::Release()
 {
 }
+
+void TransformC::Translate(Vector2 translation)
+{
+	m_position += translation;
+}

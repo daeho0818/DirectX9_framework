@@ -59,18 +59,26 @@ bool BoxColliderC::OBBCheck(TransformC* other_transform)
 bool BoxColliderC::Dotting(Vector2 direction, TransformC* other_transform)
 {
 	D3DXIMAGE_INFO img1_info = m_object->GetComponent<RendererC>()->GetImage()->info;
-	Vector2 obj1_right_distance = img1_info.Width / 2 * m_transform->right - m_transform->m_position;
-	Vector2 obj1_up_distance = img1_info.Height / 2 * m_transform->up - m_transform->m_position;
+	Vector2 obj1_right_distance = img1_info.Width / 2 * m_transform->right;
+	Vector2 obj1_up_distance = img1_info.Height / 2 * m_transform->up;
 
-	float value1 = D3DXVec2Dot(&direction, &obj1_right_distance) + D3DXVec2Dot(&direction, &obj1_up_distance);
+	float value1 =
+		fabs(D3DXVec2Dot(&direction, &obj1_right_distance)) + fabs(D3DXVec2Dot(&direction, &obj1_up_distance));
 
 	D3DXIMAGE_INFO img2_info = other_transform->GetComponent<RendererC>()->GetImage()->info;
-	Vector2 obj2_right_distance = img2_info.Width / 2 * m_transform->right - other_transform->m_position;
-	Vector2 obj2_up_distance = img2_info.Height / 2 * m_transform->up - other_transform->m_position;
+	Vector2 obj2_right_distance = img2_info.Width / 2 * other_transform->right;
+	Vector2 obj2_up_distance = img2_info.Height / 2 * other_transform->up;
 
-	float value2 = D3DXVec2Dot(&direction, &obj2_right_distance) + D3DXVec2Dot(&direction, &obj2_up_distance);
+	float value2 =
+		fabs(D3DXVec2Dot(&direction, &obj2_right_distance)) + fabs(D3DXVec2Dot(&direction, &obj2_up_distance));
 
-	float distance = D3DXVec2Dot(&direction, &(other_transform->m_position - m_transform->m_position));
+	float distance =
+		fabs(D3DXVec2Dot(&direction, &(other_transform->m_position - m_transform->m_position)));
+
+	if (GetKeyDown(VK_F6))
+	{
+		printf("È÷È÷");
+	}
 
 	return distance < value1 + value2;
 }

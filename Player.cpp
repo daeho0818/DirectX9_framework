@@ -30,7 +30,9 @@ void Player::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	render = m_object->AddComponent<RendererC>();
 
-	render->Setting(IMAGE->FindImage("Main_BG_Moon"), D3DXCOLOR(1, 1, 1, 1));
+	render->Setting(IMAGE->FindImage("White"), D3DXCOLOR(1, 1, 1, 1));
+	if (is_wasd)
+		render->SetColor(D3DXCOLOR(1, 1, 0, 1));
 }
 
 void Player::Update()

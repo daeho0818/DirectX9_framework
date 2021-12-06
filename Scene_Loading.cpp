@@ -15,6 +15,7 @@ void Scene_Loading::Init()
 	IMAGE->QuickLoad("Main_BG_Moon", "Scene/Title/Main_BG_Moon");
 	IMAGE->QuickLoad("Main_BG_Cloud", "Scene/Title/Main_BG_Cloud");
 	IMAGE->QuickLoad("Main_BG_Mountains", "Scene/Title/Main_BG_Mountains");
+	IMAGE->QuickLoad("White", "White");
 
 	i_background = IMAGE->FindImage("Main_BG");
 	i_moon = IMAGE->FindImage("Main_BG_Moon");

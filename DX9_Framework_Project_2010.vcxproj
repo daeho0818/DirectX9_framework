@@ -391,7 +391,6 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
-    <ClCompile Include="CircleColliderC.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
@@ -420,7 +419,6 @@
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CameraManager.h" />
-    <ClInclude Include="CircleColliderC.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />

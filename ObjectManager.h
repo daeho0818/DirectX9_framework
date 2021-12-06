@@ -1,4 +1,5 @@
 #pragma once
+#include "BoxColliderC.h"
 #include "Object.h"
 
 class ObjectManager : public Singleton<ObjectManager>
@@ -18,9 +19,16 @@ public:
 	list<Object*> FindObject(string name);
 	list<Object*> FindObject(ObjType type);
 	void DestroyAllObject();
+	void CheckAllCollider();
 
 private:
 	list<Object*> m_objects;
+
+	Object* m_player;
+	list<Object*> m_eBullets;
+	list<Object*> m_pBullets;
+	list<Object*> m_enemies;
+	list<Object*> m_items;
 
 };
 #define OBJECT ObjectManager::Instance()

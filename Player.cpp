@@ -29,51 +29,25 @@ void Player::Init()
 
 	collider = m_object->AddComponent<BoxColliderC>();
 	render = m_object->AddComponent<RendererC>();
-
-	render->Setting(IMAGE->FindImage("White"), D3DXCOLOR(1, 1, 1, 1));
-	if (is_wasd)
-		render->SetColor(D3DXCOLOR(1, 1, 0, 1));
 }
 
 void Player::Update()
 {
-	if (is_wasd)
+	if (GetKey(VK_LEFT))
 	{
-		if (GetKey('A'))
-		{
-			m_transform->m_position += m_transform->left * move_speed;
-		}
-		else if (GetKey('D'))
-		{
-			m_transform->m_position += m_transform->right * move_speed;
-		}
-		else if (GetKey('W'))
-		{
-			m_transform->m_position += m_transform->up * move_speed;
-		}
-		else if (GetKey('S'))
-		{
-			m_transform->m_position += m_transform->down * move_speed;
-		}
+		m_transform->m_position += m_transform->left * move_speed;
 	}
-	else
+	else if (GetKey(VK_RIGHT))
 	{
-		if (GetKey(VK_LEFT))
-		{
-			m_transform->m_position += m_transform->left * move_speed;
-		}
-		else if (GetKey(VK_RIGHT))
-		{
-			m_transform->m_position += m_transform->right * move_speed;
-		}
-		else if (GetKey(VK_UP))
-		{
-			m_transform->m_position += m_transform->up * move_speed;
-		}
-		else if (GetKey(VK_DOWN))
-		{
-			m_transform->m_position += m_transform->down * move_speed;
-		}
+		m_transform->m_position += m_transform->right * move_speed;
+	}
+	else if (GetKey(VK_UP))
+	{
+		m_transform->m_position += m_transform->up * move_speed;
+	}
+	else if (GetKey(VK_DOWN))
+	{
+		m_transform->m_position += m_transform->down * move_speed;
 	}
 
 	if (GetKey(VK_SPACE)) Fire();
@@ -81,13 +55,6 @@ void Player::Update()
 
 	ChkMoveRange();
 
-	if (is_wasd)
-	{
-		if (GetKey(VK_F1))
-			m_transform->m_rotationZ += 5;
-		else if (GetKey(VK_F2))
-			m_transform->m_rotationZ -= 5;
-	}
 }
 
 void Player::Render()
@@ -96,13 +63,6 @@ void Player::Render()
 
 void Player::UIRender()
 {
-	if (other_player != nullptr)
-	{
-		if (collider->OBBCheck(other_player->m_transform))
-		{
-			RENDER->TextRender("Ãæµ¹ÇÔ!", CENTER, 500);
-		}
-	}
 }
 
 void Player::Release()

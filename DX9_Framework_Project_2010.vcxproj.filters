@@ -105,9 +105,6 @@
     <Filter Include="3. Component\Collider\C - BoxColliderC">
       <UniqueIdentifier>{624df4bd-0aa7-4230-9c7f-b8413ea68ef0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Component\Collider\C - CircleColliderC">
-      <UniqueIdentifier>{809ccc79-8a82-4dba-99af-e5b91195ea9d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Component\Game Object\Button">
       <UniqueIdentifier>{664f2120-550e-42b4-8cb9-d52e2b74c0d6}</UniqueIdentifier>
     </Filter>
@@ -250,9 +247,6 @@
     <ClCompile Include="BoxColliderC.cpp">
       <Filter>3. Component\Collider\C - BoxColliderC</Filter>
     </ClCompile>
-    <ClCompile Include="CircleColliderC.cpp">
-      <Filter>3. Component\Collider\C - CircleColliderC</Filter>
-    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>3. Component\Game Object\Button</Filter>
     </ClCompile>
@@ -335,9 +329,6 @@
     </ClInclude>
     <ClInclude Include="BoxColliderC.h">
       <Filter>3. Component\Collider\C - BoxColliderC</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleColliderC.h">
-      <Filter>3. Component\Collider\C - CircleColliderC</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>3. Component\Game Object\Button</Filter>

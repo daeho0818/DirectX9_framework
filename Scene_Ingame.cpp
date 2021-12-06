@@ -13,11 +13,6 @@ void Scene_Ingame::Init()
 {
 	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
 	m_player = m_playerObject->AddComponent<Player>();
-	m_player->is_wasd = true;
-
-	Object* other_object = OBJECT->CreateObject("Player2", ObjType::EPlayer, CENTER);
-	m_player->other_player = other_object->AddComponent<Player>();
-	m_player->other_player->is_wasd = false;
 }
 
 void Scene_Ingame::Update()

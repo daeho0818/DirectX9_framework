@@ -26,12 +26,31 @@ void ObjectManager::Update()
 			}
 			++iter;
 		}
-		else 
+		else
 		{
+			switch ((*iter)->m_type)
+			{
+			case ObjType::EPlayer:
+				SAFE_DELETE(m_player);
+				break;
+			case ObjType::EEnemy:
+				m_enemies.erase(iter);
+				break;
+			case ObjType::EE_Bullet:
+				m_eBullets.erase(iter);
+				break;
+			case ObjType::EP_Bullet:
+				m_pBullets.erase(iter);
+				break;
+			case ObjType::EItem:
+				m_items.erase(iter);
+			}
 			SAFE_DELETE((*iter));
 			iter = m_objects.erase(iter);
 		}
 	}
+
+	CheckAllCollider();
 }
 
 void ObjectManager::Render()
@@ -112,21 +131,43 @@ list<Object*> ObjectManager::FindObject(ObjType type)
 	return obj_list;
 }
 
-void ObjectManager::DestroyAllObject()
+void ObjectManager::CheckAllCollider()
 {
-	for (var iter = m_objects.begin(); iter != m_objects.end();)
+	BoxColliderC* player_collider = m_player->GetComponent<BoxColliderC>();
+
+	for (var e_iter : m_enemies)
 	{
-		for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+		if (player_collider->OBBCheck(e_iter->m_transform))
 		{
-			if (c_iter->second != nullptr)
-			{
-				c_iter->second->Release();
-				SAFE_DELETE(c_iter->second);
-				c_iter = (*iter)->components.erase(c_iter);
-			}
-			else ++c_iter;
+			player_collider->m_object->OnCollisionEnter(e_iter);
+			e_iter->OnCollisionEnter(player_collider->m_object);
 		}
-		SAFE_DELETE((*iter));
-		iter = m_objects.erase(iter);
+
+		for (var pb_iter : m_pBullets)
+		{
+			if (e_iter->GetComponent<BoxColliderC>()->OBBCheck(pb_iter->m_transform))
+			{
+				e_iter->OnCollisionEnter(pb_iter);
+				pb_iter->OnCollisionEnter(e_iter);
+			}
+		}
+	}
+
+	for (var eb_iter : m_eBullets)
+	{
+		if (player_collider->OBBCheck(eb_iter->m_transform))
+		{
+			player_collider->m_object->OnCollisionEnter(eb_iter);
+			eb_iter->OnCollisionEnter(player_collider->m_object);
+		}
+	}
+
+	for (var i_iter : m_items)
+	{
+		if (player_collider->OBBCheck(i_iter->m_transform))
+		{
+			player_collider->m_object->OnCollisionEnter(i_iter);
+			i_iter->OnCollisionEnter(player_collider->m_object);
+		}
 	}
 }

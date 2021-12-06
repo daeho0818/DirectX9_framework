@@ -1,6 +1,6 @@
 #pragma once
 #include "RendererC.h"
-class BoxColliderC : Component
+class BoxColliderC : public Component
 {
 public:
 	BoxColliderC(Object* object);
@@ -13,20 +13,13 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
-	// Collider 크기 설정
-	void SetCollider(float width, float height);
 	// (개발자 전용) 화면에 Collider를 보여줌
 	void ShowCollider(bool active);
 
 	bool OBBCheck(TransformC* other_transform);
 
 private:
-	Image* rect_image;
-	RendererC* render_c;
-
-	float m_width;
-	float m_height;
 	bool show_collider;
 
-	bool Dotting(Vector2 direction, TransformC* other_transform);
+	bool Dotting(Vector2 direction, TransformC* other_transform, RendererC* other_renderer);
 };

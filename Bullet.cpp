@@ -26,6 +26,7 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image)
 		}
 	};
 
+	m_transform->m_rotationZ = 90 + D3DXToDegree(atan2(direction.y, direction.x));
 }
 
 void Bullet::Init()

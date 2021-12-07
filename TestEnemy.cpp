@@ -28,10 +28,6 @@ void TestEnemy::Init()
 
 void TestEnemy::Update()
 {
-	if (GetKey('M'))
-		m_transform->m_position += m_transform->down * DELTA * 500;
-	//m_transform->Translate(m_transform->down * DELTA);
-
 	m_object->CheckOut();
 }
 

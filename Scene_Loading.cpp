@@ -15,16 +15,14 @@ void Scene_Loading::Init()
 	IMAGE->QuickLoad("Main_BG_Moon", "Scene/Title/Main_BG_Moon");
 	IMAGE->QuickLoad("Main_BG_Cloud", "Scene/Title/Main_BG_Cloud");
 	IMAGE->QuickLoad("Main_BG_Mountains", "Scene/Title/Main_BG_Mountains");
-	IMAGE->QuickLoad("White", "White");
+
+	AddImage("bullet_player", "Object/Bullet/bullet_player");
+	AddImage("White", "White");
 
 	i_background = IMAGE->FindImage("Main_BG");
 	i_moon = IMAGE->FindImage("Main_BG_Moon");
 	i_cloud = IMAGE->FindImage("Main_BG_Cloud");
 	i_mountain = IMAGE->FindImage("Main_BG_Mountains");
-
-	// IMAGE->AddImage("", "");
-
-	// IMAGE->Loading();
 
 	moon_position = Vector2(300, 200);
 
@@ -57,10 +55,15 @@ void Scene_Loading::Update()
 			mountain_position[i].x = WINSIZEX + WINSIZEX / 2;
 	}
 
-	if (DXUTIsKeyDown(VK_RETURN))
+	if (!image_informations.empty())
 	{
-		SCENE->ChangeScene("Scene_Ingame");
+		ImageInfo image_info = image_informations.back();
+		image_informations.pop_back();
+		IMAGE->QuickLoad(image_info.key, image_info.path, image_info.count);
 	}
+	else
+		//SCENE->ChangeScene("Scene_Title");
+		SCENE->ChangeScene("Scene_Ingame");
 }
 
 void Scene_Loading::Render()
@@ -81,4 +84,11 @@ void Scene_Loading::UIRender()
 
 void Scene_Loading::Release()
 {
+	image_informations.clear();
+}
+
+
+void Scene_Loading::AddImage(string key, string path, int count)
+{
+	image_informations.push_back(ImageInfo(key, path, count));
 }

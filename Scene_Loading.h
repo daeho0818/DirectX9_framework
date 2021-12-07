@@ -13,6 +13,24 @@ public:
 	virtual void Release() override;
 
 private:
+	void AddImage(string _key, string _path, int count = 0);
+
+	struct ImageInfo
+	{
+		ImageInfo() {}
+		ImageInfo(string key, string path, int count)
+		{
+			this->key = key;
+			this->path = path;
+			this->count = count;
+		}
+		string key;
+		string path;
+		int count;
+	};
+	vector<ImageInfo> image_informations;
+
+
 	Image* i_background = nullptr;
 	Image* i_moon = nullptr;
 	Image* i_cloud = nullptr;

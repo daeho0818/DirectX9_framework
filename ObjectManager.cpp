@@ -188,7 +188,7 @@ void ObjectManager::CheckAllCollider()
 		}
 	}
 
-	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end(); ++eb_iter)
+	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end();)
 	{
 		if (!(*eb_iter)->is_destroy)
 		{
@@ -205,7 +205,7 @@ void ObjectManager::CheckAllCollider()
 		}
 	}
 
-	for (var i_iter = m_items.begin(); i_iter != m_items.end(); ++i_iter)
+	for (var i_iter = m_items.begin(); i_iter != m_items.end();)
 	{
 		if (!(*i_iter)->is_destroy)
 		{

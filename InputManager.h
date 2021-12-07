@@ -37,8 +37,7 @@ private:
 #define GetKeyUp(key) INPUT->KeyUp(key)
 #define GetKey(key) INPUT->KeyPress(key)
 
-#define MouseDown(button) INPUT->MouseDown(button)
-#define MouseUp(button) INPUT->MouseUp(button)
-#define MouseClick(button) INPUT->MouseClick(button)
+#define MouseDown(button) INPUT->IsMouseDown(button)
+#define MouseUp(button) INPUT->IsMouseUp(button)
 
 #define mouse INPUT->mouse_position

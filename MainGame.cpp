@@ -11,12 +11,9 @@ MainGame::~MainGame()
 
 void MainGame::Init()
 {
-	IMAGE->AddImage("Speed+", "Speed+");
-	IMAGE->Loading();
-
 	SCENE->AddScene("Scene_Loading", new Scene_Loading());
 	SCENE->AddScene("Scene_Title", new Scene_Title());
-	SCENE->AddScene("Scene_Ingame", new Scene_Ingame());
+	SCENE->AddScene("Scene_Ingame", new Scene_Stage1());
 
 	SCENE->Init();
 	OBJECT->Init();

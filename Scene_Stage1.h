@@ -1,11 +1,12 @@
 #pragma once
 #include "Player.h"
+#include "Boss1_1.h"
 #include "TestEnemy.h"
-class Scene_Ingame : public Scene
+class Scene_Stage1 : public Scene
 {
 public:
-	Scene_Ingame();
-	~Scene_Ingame();
+	Scene_Stage1();
+	~Scene_Stage1();
 
 	// Scene을(를) 통해 상속됨
 	virtual void Init() override;
@@ -18,5 +19,7 @@ private:
 	Object* m_playerObject;
 	Player* m_player;
 
-};
+	Object* m_bossObject;
+	Boss1_1* m_boss;
 
+};

@@ -24,7 +24,6 @@ void Player::Init()
 	fire_range = 0.5f;
 	m_object->OnCollisionEnter = [&](Object* other)->void {};
 
-	IMAGE->QuickLoad("bullet_player", "Object/Bullet/bullet_player");
 	bullet_image = IMAGE->FindImage("bullet_player");
 
 	collider = m_object->AddComponent<BoxColliderC>();
@@ -35,24 +34,24 @@ void Player::Init()
 
 void Player::Update()
 {
-	if (GetKey(VK_LEFT))
+	if (GetKey('A'))
 	{
 		m_transform->m_position += m_transform->left * DELTA * move_speed;
 	}
-	else if (GetKey(VK_RIGHT))
+	else if (GetKey('D'))
 	{
 		m_transform->m_position += m_transform->right * DELTA * move_speed;
 	}
-	else if (GetKey(VK_UP))
+	else if (GetKey('W'))
 	{
 		m_transform->m_position += m_transform->up * DELTA * move_speed;
 	}
-	else if (GetKey(VK_DOWN))
+	else if (GetKey('S'))
 	{
 		m_transform->m_position += m_transform->down * DELTA * move_speed;
 	}
 
-	if (GetKey(VK_SPACE)) Fire();
+	if (MouseDown(0)) Fire();
 	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();

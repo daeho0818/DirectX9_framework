@@ -9,6 +9,7 @@ public:
 
 	void TimerStart();
 	void TimerStop();
+	float GetTime();
 
 private:
 	float m_time;

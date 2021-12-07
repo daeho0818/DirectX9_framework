@@ -16,12 +16,15 @@ private:
 	void Pattern1();
 	void Pattern2();
 
-	BoxColliderC* collider;
-	RendererC* renderer;
+	void CircleBullet(float speed, float interval = 1);
 
-	Image* bullet_image;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
 
-	Timer* timer = nullptr;
+	Image* bullet_image = nullptr;
+
+	Timer* t_pattern1 = nullptr;
+	bool b_pattern1;
 
 };
 

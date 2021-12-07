@@ -25,6 +25,11 @@ void Timer::TimerStop()
 	is_stop = true;
 }
 
+float Timer::GetTime()
+{
+	return startTime;
+}
+
 void Timer::Update()
 {
 	if (!is_start || is_stop) return;

@@ -25,9 +25,9 @@ void Boss1_1::Init()
 
 	};
 
-	//pattern_helper->SetPattern(0, 7, 10, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-	//pattern_helper->SetPattern(0, 6, 10, [&](float current_count, bool is_end)->void
-	//	{ Pattern2(current_count, is_end); });
+	pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+	pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void
+		{ Pattern2(current_count, is_end); });
 }
 
 void Boss1_1::Update()
@@ -45,9 +45,6 @@ void Boss1_1::Update()
 		m_transform->Translate(m_transform->down * DELTA * 500);
 
 	pattern_helper->Update();
-
-	if (GetKeyDown(VK_SPACE))
-		CAMERA->ShakingCamera(3, 3, true);
 }
 
 void Boss1_1::Render()
@@ -69,13 +66,13 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 {
 	if (is_end)
 	{
-		devide_value = 5;
+		devide_value = 2;
 	}
 
 	else if (current_count >= 5)
-		devide_value = 2;
+		devide_value = 0.5f;
 
-	sin_value += DELTA * 100;
+	sin_value += DELTA * 500;
 
 	direction.y = m_transform->down.y;
 	direction.x += sin(D3DXToRadian(sin_value)) / devide_value;

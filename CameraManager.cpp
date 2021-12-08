@@ -84,9 +84,9 @@ void CameraManager::ShakingCamera(float shake_power, float shake_time, bool is_s
 	shaking_information.shake_time = shake_time;
 	shaking_information.is_smooth_end = is_smooth_end;
 
-	shaking_information.return_position = cam_position;
+	shaking_information.current_count = 0;
 
-	shaking_information.start_count = shaking_information.current_count = GetTickCount64();
+	shaking_information.return_position = cam_position;
 
 	camera_mode[2] = true;
 }
@@ -99,6 +99,14 @@ void CameraManager::FadingScreen(float target_alpha, float fade_speed, bool fade
 
 	camera_mode[3] = true;
 }
+
+bool CameraManager::IsMoving() { return camera_mode[0]; }
+
+bool CameraManager::IsZooming() { return camera_mode[1]; }
+
+bool CameraManager::IsShaking() { return camera_mode[2]; }
+
+bool CameraManager::IsFading() { return camera_mode[3]; }
 
 Vector2 CameraManager::GetPosition()
 {
@@ -130,30 +138,34 @@ float random_x = 0;
 float random_y = 0;
 void CameraManager::Shaking()
 {
-	if (shaking_information.current_count - shaking_information.start_count >= shaking_information.shake_time * 1000) // 끝
+	if (shaking_information.current_count >= shaking_information.shake_time) // 끝
 	{
 		cam_position = shaking_information.return_position;
+		shaking_information.current_count = 0;
 		camera_mode[2] = false;
 		return;
 	}
-	else if (shaking_information.current_count - shaking_information.start_count >= (shaking_information.shake_time / 3) * 1000) // 흔들림 감소 시작
-	{
-		shaking_information.shake_power -= shaking_information.shake_power / 5;
-	}
+	if (shaking_information.is_smooth_end)
+		shaking_information.shake_power -=
+		shaking_information.shake_power / 50;
+
+
+	shaking_information.current_count += DELTA;
 
 	cam_position -= Vector2(random_x, random_y);
 
-	shaking_information.current_count = GetTickCount64();
-
 	random_x = rand() % 10 * shaking_information.shake_power;
 	random_y = rand() % 10 * shaking_information.shake_power;
+
+	if ((int)random_x % 2 == 0) random_x *= -1;
+	if ((int)random_y % 2 == 1) random_y *= -1;
 
 	cam_position += Vector2(random_x, random_y);
 }
 
 void CameraManager::Fading()
 {
-	if (abs(fading_information.target_alpha - screen_fade_alpha) <= 0.00005f)
+	if (abs(fading_information.target_alpha - screen_fade_alpha) <= 0.05f)
 	{
 		screen_fade_alpha = fading_information.target_alpha;
 		camera_mode[3] = false;

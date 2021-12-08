@@ -120,6 +120,9 @@
     <Filter Include="3. Component\Game Object\Enemy\Stage 1\Boss">
       <UniqueIdentifier>{8ced48bf-4239-40c2-bb69-438076013b5c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Pattern Helper">
+      <UniqueIdentifier>{291435c5-d5a2-4d8b-b2c2-efa2256e579f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -268,6 +271,9 @@
     <ClCompile Include="Boss1_1.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="PatternHelper.cpp">
+      <Filter>2. Manager\%282%29 Object\Pattern Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -356,6 +362,9 @@
     </ClInclude>
     <ClInclude Include="Boss1_1.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="PatternHelper.h">
+      <Filter>2. Manager\%282%29 Object\Pattern Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

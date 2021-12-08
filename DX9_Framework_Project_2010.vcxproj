@@ -400,6 +400,7 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="ParticleManager.cpp" />
+    <ClCompile Include="PatternHelper.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RendererC.cpp" />
     <ClCompile Include="RenderManager.cpp" />
@@ -429,6 +430,7 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="ParticleManager.h" />
+    <ClInclude Include="PatternHelper.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RendererC.h" />
     <ClInclude Include="RenderManager.h" />

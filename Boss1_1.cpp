@@ -8,6 +8,7 @@ Boss1_1::Boss1_1(Object* object)
 
 Boss1_1::~Boss1_1()
 {
+	SAFE_DELETE(pattern_helper);
 }
 
 void Boss1_1::Init()
@@ -24,13 +25,15 @@ void Boss1_1::Init()
 
 	};
 
-	b_pattern1 = true;
+	//pattern_helper->SetPattern(0, 7, 10, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+	//pattern_helper->SetPattern(0, 6, 10, [&](float current_count, bool is_end)->void
+	//	{ Pattern2(current_count, is_end); });
 }
 
 void Boss1_1::Update()
 {
-	if (GetKeyDown('F'))
-		CircleBullet(3, 5);
+	if (GetKey('F'))
+		Pattern2(0, false);
 
 	if (GetKey(VK_LEFT))
 		m_transform->Translate(m_transform->left * DELTA * 500);
@@ -41,22 +44,10 @@ void Boss1_1::Update()
 	if (GetKey(VK_DOWN))
 		m_transform->Translate(m_transform->down * DELTA * 500);
 
-	if (b_pattern1)
-	{
-		Pattern1();
-	}
-	else
-	{
-		if (t_pattern1 == nullptr)
-		{
-			t_pattern1 = new Timer(10, 0, [&]()->void
-				{
-					b_pattern1 = true;
-					t_pattern1 = nullptr;
-				});
-			t_pattern1->TimerStart();
-		}
-	}
+	pattern_helper->Update();
+
+	if (GetKeyDown(VK_SPACE))
+		CAMERA->ShakingCamera(3, 3, true);
 }
 
 void Boss1_1::Render()
@@ -71,42 +62,70 @@ void Boss1_1::Release()
 {
 }
 
-float direction_x = -0.5f;
+Vector2 direction;
 float sin_value = 0;
-float devide_value = 50;
-void Boss1_1::Pattern1()
+float devide_value = 5;
+void Boss1_1::Pattern1(float current_count, bool is_end)
 {
-	if (t_pattern1 == nullptr)
+	if (is_end)
 	{
-		t_pattern1 = new Timer(7, 0, [&]()->void
-			{
-				b_pattern1 = false;
-				devide_value = 50;
-				sin_value = 0;
-				direction_x = -0.5f;
-				t_pattern1 = nullptr;
-			});
-		t_pattern1->TimerStart();
+		devide_value = 5;
 	}
 
-	if (t_pattern1->GetTime() >= 5)
-		devide_value = 20;
+	else if (current_count >= 5)
+		devide_value = 2;
 
 	sin_value += DELTA * 100;
 
-	direction_x += sin(D3DXToRadian(sin_value)) / devide_value;
+	direction.y = m_transform->down.y;
+	direction.x += sin(D3DXToRadian(sin_value)) / devide_value;
 
 	Object* object;
 	Bullet* bullet;
 
 	object = OBJECT->CreateObject("Normal_Bullet", ObjType::EE_Bullet, m_transform->m_position);
 	bullet = object->AddComponent<Bullet>();
-	bullet->SetBullet(Vector2(direction_x, 1), 3, bullet_image);
-
+	bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 3, bullet_image);
 }
 
-void Boss1_1::Pattern2()
+Vector2 target_position;
+float lerp_percent;
+bool is_pattern2 = true;
+void Boss1_1::Pattern2(float current_count, bool is_end)
 {
+	if (is_end)
+	{
+		is_pattern2 = true;
+		return;
+	}
+	if (!is_pattern2) return;
+
+	if (current_count < 5)
+	{
+		target_position = Vector2(WINSIZEX / 2, 50);
+		lerp_percent = 0.01f;
+	}
+	else
+	{
+		target_position = Vector2(WINSIZEX / 2, 500);
+		lerp_percent = 0.2f;
+
+		if (D3DXVec2Length(&(target_position - m_transform->m_position)) <= 1.0f)
+		{
+			lerp_percent = 0;
+
+			CircleBullet(1, 5);
+			CircleBullet(2, 4);
+			CircleBullet(3, 3);
+
+			CAMERA->ShakingCamera(5, 2, true);
+
+			is_pattern2 = false;
+		}
+	}
+
+	D3DXVec2Lerp(&m_transform->m_position, &m_transform->m_position,
+		&target_position, lerp_percent);
 }
 
 void Boss1_1::CircleBullet(float speed, float interval)

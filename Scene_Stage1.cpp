@@ -14,7 +14,7 @@ void Scene_Stage1::Init()
 	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
 	m_player = m_playerObject->AddComponent<Player>();
 
-	m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(0, 300));
+	m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, 500));
 	m_boss = m_bossObject->AddComponent<Boss1_1>();
 }
 

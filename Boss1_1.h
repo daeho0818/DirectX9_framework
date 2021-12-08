@@ -1,4 +1,5 @@
 #pragma once
+#include "PatternHelper.h"
 class Boss1_1 : public Component
 {
 public:
@@ -13,8 +14,8 @@ public:
 	virtual void Release() override;
 
 private:
-	void Pattern1();
-	void Pattern2();
+	void Pattern1(float current_count, bool is_end);
+	void Pattern2(float current_count, bool is_end);
 
 	void CircleBullet(float speed, float interval = 1);
 
@@ -23,8 +24,7 @@ private:
 
 	Image* bullet_image = nullptr;
 
-	Timer* t_pattern1 = nullptr;
-	bool b_pattern1;
+	PatternHelper* pattern_helper = new PatternHelper();
 
 };
 

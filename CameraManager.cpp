@@ -130,19 +130,20 @@ float random_x = 0;
 float random_y = 0;
 void CameraManager::Shaking()
 {
-	if (shaking_information.current_count - shaking_information.start_count >= (shaking_information.shake_time - shaking_information.shake_time / 3) * 1000) // 흔들림 감소 시작
-	{
-		shaking_information.shake_power -= shaking_information.shake_power / 5;
-	}
-	else if (shaking_information.current_count - shaking_information.start_count >= shaking_information.shake_time * 1000) // 끝
+	if (shaking_information.current_count - shaking_information.start_count >= shaking_information.shake_time * 1000) // 끝
 	{
 		cam_position = shaking_information.return_position;
 		camera_mode[2] = false;
+		return;
+	}
+	else if (shaking_information.current_count - shaking_information.start_count >= (shaking_information.shake_time / 3) * 1000) // 흔들림 감소 시작
+	{
+		shaking_information.shake_power -= shaking_information.shake_power / 5;
 	}
 
-	shaking_information.current_count = GetTickCount64();
-
 	cam_position -= Vector2(random_x, random_y);
+
+	shaking_information.current_count = GetTickCount64();
 
 	random_x = rand() % 10 * shaking_information.shake_power;
 	random_y = rand() % 10 * shaking_information.shake_power;

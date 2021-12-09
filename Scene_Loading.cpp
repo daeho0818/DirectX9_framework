@@ -63,7 +63,7 @@ void Scene_Loading::Update()
 	}
 	else
 		//SCENE->ChangeScene("Scene_Title");
-		SCENE->ChangeScene("Scene_Ingame");
+		SCENE->ChangeScene("Scene_Stage1");
 }
 
 void Scene_Loading::Render()

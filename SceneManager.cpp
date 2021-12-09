@@ -18,15 +18,9 @@ void SceneManager::Update()
 {
 	if (current_scene) current_scene->Update();
 
-	if (target_scene && !CAMERA->IsFading())
+	if (target_scene && !CAMERA->IsAction(3))
 	{
-		if (current_scene)
-			current_scene->Release();
-
-		target_scene->Init();
-		current_scene = target_scene;
-		target_scene = nullptr;
-		CAMERA->FadingScreen(1, 5, true, true);
+		SceneLoading();
 	}
 
 	for (var iter = m_timers.begin(); iter != m_timers.end();)
@@ -78,7 +72,16 @@ void SceneManager::AddScene(string key, Scene* scene)
 
 void SceneManager::ChangeScene(string key)
 {
-	CAMERA->FadingScreen(0, 5, false, true);
+	if (target_scene)
+		for (var iter : m_scenes)
+			if (iter.second == target_scene) return;
+
+	if (CAMERA->IsAction(3) && target_scene)
+	{
+		CAMERA->StopAction(3);
+		SceneLoading();
+	}
+	CAMERA->FadingScreen(10, false, true);
 
 	var find = m_scenes.find(key);
 	target_scene = find->second;
@@ -89,4 +92,15 @@ void SceneManager::ChangeScene(string key)
 Scene* SceneManager::GetActiveScene()
 {
 	return current_scene;
+}
+
+void SceneManager::SceneLoading()
+{
+	if (current_scene)
+		current_scene->Release();
+
+	target_scene->Init();
+	current_scene = target_scene;
+	target_scene = nullptr;
+	CAMERA->FadingScreen(1, true, true);
 }

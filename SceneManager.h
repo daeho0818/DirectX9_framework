@@ -28,5 +28,7 @@ private:
 	Scene* target_scene = nullptr;
 
 	vector<Timer*> m_timers;
+
+	void SceneLoading();
 };
 #define SCENE SceneManager::Instance()

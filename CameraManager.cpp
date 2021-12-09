@@ -91,22 +91,57 @@ void CameraManager::ShakingCamera(float shake_power, float shake_time, bool is_s
 	camera_mode[2] = true;
 }
 
-void CameraManager::FadingScreen(float target_alpha, float fade_speed, bool fade_in, bool is_ui)
+void CameraManager::FadingScreen(float fade_speed, bool fade_in, bool is_ui)
 {
-	fading_information.target_alpha = target_alpha;
+	fading_information.target_alpha = fade_in ? 0 : 1;
+
+	if (is_ui)
+		ui_screen_fade_alpha = 1 - fading_information.target_alpha;
+	else
+		screen_fade_alpha = 1 - fading_information.target_alpha;
+
 	fading_information.fading_value = (fade_in ? -0.005f : 0.005f) * fade_speed;
 	fading_information.is_ui = is_ui;
 
 	camera_mode[3] = true;
 }
 
-bool CameraManager::IsMoving() { return camera_mode[0]; }
+bool CameraManager::IsAction(int index) { return camera_mode[index]; };
 
-bool CameraManager::IsZooming() { return camera_mode[1]; }
+void CameraManager::StopAction(int index)
+{
+	camera_mode[index] = false;
 
-bool CameraManager::IsShaking() { return camera_mode[2]; }
+	switch (index)
+	{
+	case 0:
+		cam_position = moving_information.target_position;
+		camera_mode[0] = false;
+		break;
+	case 1:
+		cam_zoom_value = zooming_information.zoom_value;
+		camera_mode[1] = false;
+		break;
+	case 2:
+		cam_position = shaking_information.return_position;
+		shaking_information.current_count = 0;
+		camera_mode[2] = false;
+		break;
+	case 3:
+		if (fading_information.is_ui)
+		{
+			ui_screen_fade_alpha = fading_information.target_alpha;
+			camera_mode[3] = false;
+		}
+		else
+		{
+			screen_fade_alpha = fading_information.target_alpha;
+			camera_mode[3] = false;
+		}
+		break;
+	}
+}
 
-bool CameraManager::IsFading() { return camera_mode[3]; }
 
 Vector2 CameraManager::GetPosition()
 {
@@ -165,10 +200,26 @@ void CameraManager::Shaking()
 
 void CameraManager::Fading()
 {
-	if (abs(fading_information.target_alpha - screen_fade_alpha) <= 0.05f)
+	if (fading_information.is_ui)
 	{
-		screen_fade_alpha = fading_information.target_alpha;
-		camera_mode[3] = false;
+		if (abs(fading_information.target_alpha - ui_screen_fade_alpha) <= 0.05f)
+		{
+			ui_screen_fade_alpha = fading_information.target_alpha;
+			camera_mode[3] = false;
+		}
 	}
-	screen_fade_alpha += fading_information.fading_value;
+	else
+	{
+		if (abs(fading_information.target_alpha - screen_fade_alpha) <= 0.05f)
+		{
+			screen_fade_alpha = fading_information.target_alpha;
+			camera_mode[3] = false;
+		}
+	}
+
+
+	if (fading_information.is_ui)
+		ui_screen_fade_alpha += fading_information.fading_value;
+	else
+		screen_fade_alpha += fading_information.fading_value;
 }

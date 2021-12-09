@@ -15,12 +15,10 @@ public:
 	void MovingCamera(Vector2 target_position, float move_speed);
 	void ZoomingCamera(float zoom_value, float zoom_speed);
 	void ShakingCamera(float shake_power, float shake_time, bool is_smooth_end);
-	void FadingScreen(float target_alpha, float fade_speed, bool fade_in, bool is_ui);
+	void FadingScreen(float fade_speed, bool fade_in, bool is_ui);
 
-	bool IsMoving();
-	bool IsZooming();
-	bool IsShaking();
-	bool IsFading();
+	bool IsAction(int index);
+	void StopAction(int index);
 
 	Vector2 GetPosition();
 

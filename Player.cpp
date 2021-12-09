@@ -51,7 +51,7 @@ void Player::Update()
 		m_transform->m_position += m_transform->down * DELTA * move_speed;
 	}
 
-	if (MouseDown(0)) Fire();
+	if (MousePressed(0)) Fire();
 	current_fire_count = GetTickCount64();
 
 	ChkMoveRange();

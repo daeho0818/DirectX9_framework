@@ -43,7 +43,7 @@ public:
 
 	function<void()> effects[7] =
 	{
-		nullptr,
+		null,
 
 		[&]()->void {
 			if (m_size > 0) m_size -= size_value;
@@ -51,7 +51,7 @@ public:
 
 		[&]()->void { if (m_size < 50) m_size += size_value; },
 
-		nullptr,
+		null,
 
 		[&]()->void {
 			if (m_color.a > 0) m_color.a -= alpha_value;

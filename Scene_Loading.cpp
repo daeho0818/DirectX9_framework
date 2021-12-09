@@ -33,7 +33,6 @@ void Scene_Loading::Init()
 	mountain_position[1] = mountain_position[0] + Vector2(WINSIZEX, 0);
 }
 
-float moon_sin_value = 0;
 void Scene_Loading::Update()
 {
 	moon_sin_value += DELTA * 50;
@@ -63,7 +62,7 @@ void Scene_Loading::Update()
 	}
 	else
 		//SCENE->ChangeScene("Scene_Title");
-		SCENE->ChangeScene("Scene_Stage1");
+		SCENE->ChangeScene("Scene_Title");
 }
 
 void Scene_Loading::Render()

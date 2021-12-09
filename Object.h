@@ -15,7 +15,7 @@ public:
 		auto find = components.find(typeid(T).name());
 
 		if (find != components.end()) return dynamic_cast<T*>(find->second);
-		return nullptr;
+		return null;
 	}
 
 	template <typename T>

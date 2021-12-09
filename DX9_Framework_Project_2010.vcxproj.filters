@@ -123,6 +123,9 @@
     <Filter Include="2. Manager\%282%29 Object\Pattern Helper">
       <UniqueIdentifier>{291435c5-d5a2-4d8b-b2c2-efa2256e579f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 1">
+      <UniqueIdentifier>{222869bb-0e7f-4741-b8fd-49556576865c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -274,6 +277,9 @@
     <ClCompile Include="PatternHelper.cpp">
       <Filter>2. Manager\%282%29 Object\Pattern Helper</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy1_1.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -365,6 +371,9 @@
     </ClInclude>
     <ClInclude Include="PatternHelper.h">
       <Filter>2. Manager\%282%29 Object\Pattern Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy1_1.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

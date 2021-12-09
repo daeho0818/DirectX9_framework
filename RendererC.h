@@ -21,7 +21,7 @@ public:
 	D3DXCOLOR GetColor();
 
 private:
-	Image* m_image;
+	Image* m_image = null;
 	D3DXCOLOR m_color;
 
 };

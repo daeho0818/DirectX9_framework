@@ -18,13 +18,16 @@ private:
 	void Pattern2(float current_count, bool is_end);
 
 	void CircleBullet(float speed, float interval = 1);
+	void SpawnAnimation();
 
-	BoxColliderC* collider = nullptr;
-	RendererC* renderer = nullptr;
+	BoxColliderC* collider = null;
+	RendererC* renderer = null;
 
-	Image* bullet_image = nullptr;
+	Image* bullet_image = null;
 
 	PatternHelper* pattern_helper = new PatternHelper();
+
+	bool is_spawned;
 
 };
 

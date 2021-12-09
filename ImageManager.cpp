@@ -41,7 +41,7 @@ void ImageManager::QuickLoad(string _key, string _path, int count)
 			}
 
 			if (D3DXCreateTextureFromFileExA(DEVICE, path, -2, -2, 0, 0,
-				D3DFMT_UNKNOWN, D3DPOOL_MANAGED, -1, -1, 0, &info, nullptr, &ptr) == S_OK)
+				D3DFMT_UNKNOWN, D3DPOOL_MANAGED, -1, -1, 0, &info, null, &ptr) == S_OK)
 			{
 				Image* image = new Image(ptr, info);
 				m_images.insert(make_pair((string)key, image));
@@ -54,7 +54,7 @@ Image* ImageManager::FindImage(string _key)
 {
 	var find = m_images.find(_key);
 
-	return find != m_images.end() ? find->second : nullptr;
+	return find != m_images.end() ? find->second : null;
 }
 
 vector<Image*> ImageManager::MakeAnimation(string _key)

@@ -39,6 +39,7 @@ enum ObjectType
 #define DELTA DXUTGetElapsedTime()
 #define var auto
 #define CENTER Vector2(WINSIZEX / 2, WINSIZEY / 2)
+#define null nullptr
 
 #include "RenderManager.h"
 #include "SoundManager.h"

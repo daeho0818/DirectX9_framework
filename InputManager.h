@@ -14,6 +14,7 @@ public:
 
 	bool IsMouseDown(int button);
 	bool IsMouseUp(int button);
+	bool IsMousePressed(int button);
 	bool IsMouseClick(int button);
 
 	bool IsMouseOver(int button, Button* buttonObj);
@@ -39,5 +40,6 @@ private:
 
 #define MouseDown(button) INPUT->IsMouseDown(button)
 #define MouseUp(button) INPUT->IsMouseUp(button)
+#define MousePressed(button) INPUT->IsMousePressed(button)
 
 #define mouse INPUT->mouse_position

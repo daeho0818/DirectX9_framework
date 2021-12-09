@@ -1,5 +1,6 @@
 #pragma once
 #include "Player.h"
+#include "Enemy1_1.h"
 #include "Boss1_1.h"
 #include "TestEnemy.h"
 class Scene_Stage1 : public Scene
@@ -16,10 +17,13 @@ public:
 	virtual void Release() override;
 
 private:
-	Object* m_playerObject;
-	Player* m_player;
+	PatternHelper* pattern_helper = null;
+	Object* m_playerObject = null;
+	Player* m_player = null;
 
-	Object* m_bossObject;
-	Boss1_1* m_boss;
+	Object* m_bossObject = null;
+	Boss1_1* m_boss = null;
+
+	Timer* t_enemy1_spawn = null;
 
 };

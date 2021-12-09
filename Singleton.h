@@ -22,4 +22,4 @@ public:
 	}
 };
 template <typename T>
-T* Singleton<T>::p = nullptr;
+T* Singleton<T>::p = null;

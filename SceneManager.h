@@ -24,8 +24,8 @@ public:
 private:
 	map<string, Scene*> m_scenes;
 
-	Scene* current_scene = nullptr;
-	Scene* target_scene = nullptr;
+	Scene* current_scene = null;
+	Scene* target_scene = null;
 
 	vector<Timer*> m_timers;
 

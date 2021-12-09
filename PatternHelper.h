@@ -5,7 +5,7 @@ public:
 	PatternHelper();
 	~PatternHelper();
 
-	void SetPattern(int index, int duration, int coolTime, function<void(int current_count, bool is_end)> func);
+	void SetPattern(int index, int duration, int coolTime, function<void(float current_count, bool is_end)> func);
 
 	void Update();
 
@@ -17,9 +17,9 @@ private:
 		int m_duration;
 		int m_coolTime;
 		float m_currentTIme;
-		function<void(int current_count, bool is_end)> m_func;
+		function<void(float current_count, bool is_end)> m_func;
 
-		Pattern(int index, int duration, int coolTime, function<void(int current_count, bool is_end)> func)
+		Pattern(int index, int duration, int coolTime, function<void(float current_count, bool is_end)> func)
 			: m_index(index), m_duration(duration), m_coolTime(coolTime), m_func(func)
 		{
 			m_currentTIme = 0;

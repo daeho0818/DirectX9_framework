@@ -43,6 +43,11 @@ bool InputManager::IsMouseUp(int button)
 	return false;
 }
 
+bool InputManager::IsMousePressed(int button)
+{
+	return false;
+}
+
 bool InputManager::IsMouseClick(int button)
 {
 	return false;

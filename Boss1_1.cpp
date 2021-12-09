@@ -20,18 +20,22 @@ void Boss1_1::Init()
 
 	bullet_image = IMAGE->FindImage("bullet_player");
 
+	is_spawned = false;
+
 	m_object->OnCollisionEnter = [&](Object* object)->void
 	{
-
+		if (!is_spawned) return;
 	};
-
-	pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-	pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void
-		{ Pattern2(current_count, is_end); });
 }
 
 void Boss1_1::Update()
 {
+	if (!is_spawned)
+	{
+		SpawnAnimation();
+		return;
+	}
+
 	if (GetKey('F'))
 		Pattern2(0, false);
 
@@ -104,7 +108,7 @@ void Boss1_1::Pattern2(float current_count, bool is_end)
 	}
 	else
 	{
-		target_position = Vector2(WINSIZEX / 2, 500);
+		target_position = Vector2(WINSIZEX / 2, 300);
 		lerp_percent = 0.2f;
 
 		if (D3DXVec2Length(&(target_position - m_transform->m_position)) <= 1.0f)
@@ -135,5 +139,21 @@ void Boss1_1::CircleBullet(float speed, float interval)
 		object = OBJECT->CreateObject("Normal_Bullet", ObjType::EE_Bullet, m_transform->m_position);
 		bullet = object->AddComponent<Bullet>();
 		bullet->SetBullet(Vector2(cos(D3DXToRadian(i)), sin(D3DXToRadian(i))), speed, bullet_image);
+	}
+}
+
+void Boss1_1::SpawnAnimation()
+{
+	D3DXVec2Lerp(&m_transform->m_position, &m_transform->m_position,
+		&Vector2(WINSIZEX / 2, 300), 0.01f);
+
+	if (D3DXVec2Length(
+		&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
+	{
+		pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+		pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void
+			{ Pattern2(current_count, is_end); });
+
+		is_spawned = true;
 	}
 }

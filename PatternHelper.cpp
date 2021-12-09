@@ -14,7 +14,7 @@ PatternHelper::~PatternHelper()
 	m_patterns.clear();
 }
 
-void PatternHelper::SetPattern(int index, int duration, int coolTime, function<void(int current_count, bool is_end)> func)
+void PatternHelper::SetPattern(int index, int duration, int coolTime, function<void(float current_count, bool is_end)> func)
 {
 	if (!m_patterns.empty())
 		for (var iter = m_patterns.begin(); iter != m_patterns.end();)
@@ -38,13 +38,10 @@ void PatternHelper::Update()
 		if (is_coolTime || iter->m_index != play_pattern_index) continue;
 
 		iter->m_currentTIme += DELTA;
-		if (iter->m_currentTIme <= (float)iter->m_duration)
+			iter->m_func(iter->m_currentTIme, !(iter->m_currentTIme <= (float)iter->m_duration));
+
+		if(!(iter->m_currentTIme <= (float)iter->m_duration))
 		{
-			iter->m_func(iter->m_currentTIme, false);
-		}
-		else
-		{
-			iter->m_func(iter->m_currentTIme, true);
 			iter->m_currentTIme = 0;
 			is_coolTime = true;
 			t_pattern = new Timer(iter->m_coolTime, 0, [&]()->void {is_coolTime = false; });

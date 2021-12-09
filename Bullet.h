@@ -15,9 +15,9 @@ public:
 	virtual void Release() override;
 
 private:
-	RendererC* renderer = nullptr;
+	RendererC* renderer = null;
 
-	const Vector2* m_position = nullptr;
+	const Vector2* m_position = null;
 	Vector2 m_direction;
 
 	bool is_set;

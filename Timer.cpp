@@ -41,7 +41,6 @@ void Timer::Update()
 		m_func();
 		if (m_loopCount > 1 || m_loop)
 		{
-			OutputDebugStringW(L"Is Timer Check\n");
 			m_loopCount--;
 			startTime = 0;
 		}

@@ -11,7 +11,7 @@ SceneManager::~SceneManager()
 
 void SceneManager::Init()
 {
-	srand(time(nullptr));
+	srand(time(null));
 }
 
 void SceneManager::Update()
@@ -101,6 +101,6 @@ void SceneManager::SceneLoading()
 
 	target_scene->Init();
 	current_scene = target_scene;
-	target_scene = nullptr;
-	CAMERA->FadingScreen(1, true, true);
+	target_scene = null;
+	CAMERA->FadingScreen(5, true, true);
 }

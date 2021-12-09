@@ -40,11 +40,11 @@ void ObjectManager::Render()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if ((*iter) != nullptr)
+		if ((*iter) != null)
 		{
 			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 			{
-				if ((*c_iter).second != nullptr)
+				if ((*c_iter).second != null)
 				{
 					c_iter->second->Render();
 					++c_iter;
@@ -59,11 +59,11 @@ void ObjectManager::UIRender()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if ((*iter) != nullptr)
+		if ((*iter) != null)
 		{
 			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 			{
-				if ((*c_iter).second != nullptr)
+				if ((*c_iter).second != null)
 				{
 					c_iter->second->UIRender();
 					++c_iter;
@@ -160,8 +160,11 @@ void ObjectManager::CheckAllCollider()
 		{
 			if (player_collider->OBBCheck((*e_iter)->m_transform))
 			{
-				player_collider->m_object->OnCollisionEnter((*e_iter));
-				(*e_iter)->OnCollisionEnter(player_collider->m_object);
+				if (player_collider->m_object->OnCollisionEnter)
+					player_collider->m_object->OnCollisionEnter((*e_iter));
+
+				if ((*e_iter)->OnCollisionEnter)
+					(*e_iter)->OnCollisionEnter(player_collider->m_object);
 			}
 
 			for (var pb_iter = m_pBullets.begin(); pb_iter != m_pBullets.end();)
@@ -170,8 +173,11 @@ void ObjectManager::CheckAllCollider()
 				{
 					if ((*e_iter)->GetComponent<BoxColliderC>()->OBBCheck((*pb_iter)->m_transform))
 					{
-						(*e_iter)->OnCollisionEnter((*pb_iter));
-						(*pb_iter)->OnCollisionEnter((*e_iter));
+						if ((*e_iter)->OnCollisionEnter)
+							(*e_iter)->OnCollisionEnter((*pb_iter));
+
+						if ((*pb_iter)->OnCollisionEnter)
+							(*pb_iter)->OnCollisionEnter((*e_iter));
 					}
 					pb_iter++;
 				}
@@ -194,12 +200,15 @@ void ObjectManager::CheckAllCollider()
 		{
 			if (player_collider->OBBCheck((*eb_iter)->m_transform))
 			{
-				player_collider->m_object->OnCollisionEnter((*eb_iter));
-				(*eb_iter)->OnCollisionEnter(player_collider->m_object);
+				if (player_collider->m_object->OnCollisionEnter)
+					player_collider->m_object->OnCollisionEnter((*eb_iter));
+
+				if ((*eb_iter)->OnCollisionEnter)
+					(*eb_iter)->OnCollisionEnter(player_collider->m_object);
 			}
 			eb_iter++;
 		}
-		else 
+		else
 		{
 			eb_iter = m_eBullets.erase(eb_iter);
 		}
@@ -211,12 +220,15 @@ void ObjectManager::CheckAllCollider()
 		{
 			if (player_collider->OBBCheck((*i_iter)->m_transform))
 			{
-				player_collider->m_object->OnCollisionEnter((*i_iter));
-				(*i_iter)->OnCollisionEnter(player_collider->m_object);
+				if (player_collider->m_object->OnCollisionEnter)
+					player_collider->m_object->OnCollisionEnter((*i_iter));
+
+				if ((*i_iter)->OnCollisionEnter)
+					(*i_iter)->OnCollisionEnter(player_collider->m_object);
 			}
 			i_iter++;
 		}
-		else 
+		else
 		{
 			i_iter = m_items.erase(i_iter);
 		}

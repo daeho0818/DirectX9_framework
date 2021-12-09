@@ -31,13 +31,15 @@ private:
 	vector<ImageInfo> image_informations;
 
 
-	Image* i_background = nullptr;
-	Image* i_moon = nullptr;
-	Image* i_cloud = nullptr;
-	Image* i_mountain = nullptr;
+	Image* i_background = null;
+	Image* i_moon = null;
+	Image* i_cloud = null;
+	Image* i_mountain = null;
 
 	Vector2 moon_position;
 	Vector2 cloud_position[2];
 	Vector2 mountain_position[2];
+
+	float moon_sin_value = 0;
 };
 

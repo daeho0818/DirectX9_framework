@@ -19,6 +19,8 @@ void ObjectManager::Update()
 	{
 		if (!(*iter)->is_destroy)
 		{
+			(*iter)->CheckOut();
+
 			if ((*iter)->activeSelf)
 			{
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
@@ -32,13 +34,12 @@ void ObjectManager::Update()
 		}
 		else
 		{
-			if ((*iter)->m_type == ObjType::EE_Bullet || (*iter)->m_type == ObjType::EP_Bullet)
+			if ((*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
 			{
-				Bullet* bullet = (*iter)->GetComponent<Bullet>();
-				bullet->ReturnBullet();
+				SAFE_DELETE(*iter);
+				iter = m_objects.erase(iter);
 			}
-
-			iter = m_objects.erase(iter);
+			else ++iter;
 		}
 	}
 
@@ -161,6 +162,7 @@ void ObjectManager::DestroyAllObject()
 		}
 		iter->components.clear();
 		SAFE_DELETE(iter);
+		printf("¿¿æ÷");
 	}
 	m_objects.clear();
 }

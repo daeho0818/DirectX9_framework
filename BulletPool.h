@@ -10,12 +10,7 @@ public:
 	{
 		current_count = 0;
 	}
-	~BulletPool()
-	{
-		for (var iter : m_bullets)
-			SAFE_DELETE(iter);
-		m_bullets.clear();
-	}
+	~BulletPool() {}
 
 	T* GetBullet(Vector2 position)
 	{

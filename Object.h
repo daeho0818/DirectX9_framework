@@ -35,7 +35,10 @@ public:
 
 	void CheckOut()
 	{
-		is_destroy = m_transform->m_position.x > WINSIZEX + 200 || m_transform->m_position.x < -200 || m_transform->m_position.y > WINSIZEY + 200 || m_transform->m_position.y < -200;
+		is_destroy = m_transform->m_position.x > WINSIZEX + 300 ||
+			m_transform->m_position.x < -300 ||
+			m_transform->m_position.y > WINSIZEY + 300 ||
+			m_transform->m_position.y < -300;
 	}
 
 	void SetActive(bool active) { activeSelf = active; }

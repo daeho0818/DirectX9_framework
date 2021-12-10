@@ -45,15 +45,15 @@ void Player::Update()
 	{
 		m_transform->m_position += m_transform->left * DELTA * move_speed;
 	}
-	else if (GetKey('D'))
+	if (GetKey('D'))
 	{
 		m_transform->m_position += m_transform->right * DELTA * move_speed;
 	}
-	else if (GetKey('W'))
+	if (GetKey('W'))
 	{
 		m_transform->m_position += m_transform->up * DELTA * move_speed;
 	}
-	else if (GetKey('S'))
+	if (GetKey('S'))
 	{
 		m_transform->m_position += m_transform->down * DELTA * move_speed;
 	}

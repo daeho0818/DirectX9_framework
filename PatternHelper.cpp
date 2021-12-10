@@ -38,9 +38,9 @@ void PatternHelper::Update()
 		if (is_coolTime || iter->m_index != play_pattern_index) continue;
 
 		iter->m_currentTIme += DELTA;
-			iter->m_func(iter->m_currentTIme, !(iter->m_currentTIme <= (float)iter->m_duration));
+		iter->m_func(iter->m_currentTIme, !(iter->m_currentTIme <= (float)iter->m_duration));
 
-		if(!(iter->m_currentTIme <= (float)iter->m_duration))
+		if (!(iter->m_currentTIme <= (float)iter->m_duration))
 		{
 			iter->m_currentTIme = 0;
 			is_coolTime = true;

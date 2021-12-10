@@ -38,6 +38,9 @@ public:
 		is_destroy = m_transform->m_position.x > WINSIZEX + 200 || m_transform->m_position.x < -200 || m_transform->m_position.y > WINSIZEY + 200 || m_transform->m_position.y < -200;
 	}
 
+	void SetActive(bool active) { activeSelf = active; }
+	bool ActiveSelf() { return activeSelf; };
+
 	string m_name;
 	ObjType m_type;
 	TransformC* m_transform;
@@ -47,5 +50,7 @@ public:
 
 private:
 	map<string, Component*> components;
+
+	bool activeSelf;
 
 };

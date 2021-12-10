@@ -39,6 +39,7 @@ bool BoxColliderC::OBBCheck(TransformC* other_transform)
 {
 	Vector2 directions[] = { m_transform->right, m_transform->up, other_transform->right, other_transform->up };
 	RendererC* other_renderer = other_transform->GetComponent<RendererC>();
+	if (!other_renderer->enabled) return false;
 
 	for (int i = 0; i < 4; i++)
 		if (!Dotting(directions[i], other_transform, other_renderer)) return false;

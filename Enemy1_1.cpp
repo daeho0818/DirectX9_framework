@@ -36,9 +36,8 @@ void Enemy1_1::Update()
 		if (check_time >= 3)
 		{
 			is_fire = false;
-			D3DXVec2Lerp(&m_transform->m_position,
-				&m_transform->m_position,
-				&Vector2(m_transform->m_position.x, WINSIZEY + 200), DELTA);
+
+			m_transform->Translate(m_transform->down * DELTA * 500);
 		}
 	}
 

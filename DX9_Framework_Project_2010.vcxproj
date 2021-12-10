@@ -394,6 +394,7 @@
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Enemy1_1.cpp" />
+    <ClCompile Include="Enemy1_2.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
@@ -426,6 +427,7 @@
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Enemy1_1.h" />
+    <ClInclude Include="Enemy1_2.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
     <ClInclude Include="InputManager.h" />

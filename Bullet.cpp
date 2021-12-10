@@ -10,10 +10,11 @@ Bullet::~Bullet()
 {
 }
 
-void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image)
+void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image, BulletPool<Bullet>* bullet_pool)
 {
 	m_direction = direction;
 	m_moveSpeed = move_speed;
+	this->bullet_pool = bullet_pool;
 
 	renderer->Setting(image, D3DXCOLOR(1, 1, 1, 1));
 
@@ -59,4 +60,10 @@ void Bullet::UIRender()
 
 void Bullet::Release()
 {
+}
+
+void Bullet::ReturnBullet()
+{
+	is_set = false;
+	bullet_pool->ReturnBullet(this);
 }

@@ -1,4 +1,5 @@
 #pragma once
+#include "BulletPool.h"
 #include "PatternHelper.h"
 class Boss1_1 : public Component
 {
@@ -26,6 +27,7 @@ private:
 	Image* bullet_image = nullptr;
 
 	PatternHelper* pattern_helper = new PatternHelper();
+	BulletPool<Bullet>* bullet_pool;
 
 	bool is_spawned;
 

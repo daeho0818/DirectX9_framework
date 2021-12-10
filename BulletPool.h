@@ -10,7 +10,12 @@ public:
 	{
 		current_count = 0;
 	}
-	~BulletPool() { m_bullets.clear(); }
+	~BulletPool()
+	{
+		for (var iter : m_bullets)
+			SAFE_DELETE(iter);
+		m_bullets.clear();
+	}
 
 	T* GetBullet(Vector2 position)
 	{
@@ -29,7 +34,7 @@ public:
 		}
 		else
 		{
-			Object* object = OBJECT->CreateObject(m_bulletName, m_bulletType, position);
+			Object* object = ObjectManager::Instance()->CreateObject(m_bulletName, m_bulletType, position);
 			bullet = object->AddComponent<T>();
 		}
 

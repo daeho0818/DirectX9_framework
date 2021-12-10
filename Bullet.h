@@ -1,11 +1,12 @@
 #pragma once
+#include "BulletPool.h"
 class Bullet : public Component
 {
 public:
 	Bullet(Object* object);
 	~Bullet();
 
-	void SetBullet(Vector2 direction, float move_speed, Image* image);
+	void SetBullet(Vector2 direction, float move_speed, Image* image, BulletPool<Bullet>* bullet_pool);
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -14,6 +15,10 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+	void ReturnBullet();
+
+	BulletPool<Bullet>* bullet_pool;
+
 private:
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
@@ -21,9 +26,7 @@ private:
 	const Vector2* m_position = nullptr;
 	Vector2 m_direction;
 
-	bool is_set;
+		bool is_set;
 	float m_moveSpeed = 0;
 
 };
-
-

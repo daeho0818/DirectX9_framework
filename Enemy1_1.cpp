@@ -20,31 +20,21 @@ void Enemy1_1::Init()
 
 	bullet_image = IMAGE->FindImage("bullet_player");
 
-	check_time = fire_check_time = 0;
-	is_fire = true;
+	bullet_pool = new BulletPool<Bullet>("Enemy1_1 Bullet", ObjType::EE_Bullet, 0.25f, bullet_image, D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Enemy1_1::Update()
 {
+	bullet_pool->Update();
+	Fire();
+
 	if (m_transform->m_position.y < 380)
 		D3DXVec2Lerp(&m_transform->m_position,
 			&m_transform->m_position,
 			&Vector2(m_transform->m_position.x, 400), DELTA);
 	else
 	{
-		check_time += DELTA;
-		if (check_time >= 3)
-		{
-			is_fire = false;
-
-			m_transform->Translate(m_transform->down * DELTA * 500);
-		}
-	}
-
-	if (is_fire)
-	{
-		fire_check_time += DELTA;
-		Fire();
+		m_transform->Translate(m_transform->down * DELTA * 500);
 	}
 }
 
@@ -58,15 +48,17 @@ void Enemy1_1::UIRender()
 
 void Enemy1_1::Release()
 {
+	SAFE_DELETE(bullet_pool);
 }
 
 void Enemy1_1::Fire()
 {
-	if (fire_check_time > 0.25f)
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	if (!bullet)
 	{
-		fire_check_time = 0;
-		Object* object = OBJECT->CreateObject("EBullet", ObjType::EE_Bullet, m_transform->m_position);
-		Bullet* bullet = object->AddComponent<Bullet>();
-		bullet->SetBullet(m_transform->down, 15, bullet_image);
+		if (GetKeyDown('G'))
+			OutputDebugStringW(L"ÀÀ¾Ö!");
+		return;
 	}
+	bullet->SetBullet(m_transform->down, 15, bullet_image, bullet_pool);
 }

@@ -7,6 +7,7 @@ Object::Object(string name, ObjType type, Vector2 position)
 	m_transform = AddComponent<TransformC>();
 	m_transform->m_position = position;
 
+	activeSelf = true;
 	is_destroy = false;
 	OnCollisionEnter = null;
 }

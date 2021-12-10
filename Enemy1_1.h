@@ -1,4 +1,5 @@
 #pragma once
+#include "BulletPool.h"
 class Enemy1_1 : public Component
 {
 public:
@@ -20,8 +21,5 @@ private:
 
 	Image* bullet_image = nullptr;
 
-	float check_time;
-	float fire_check_time;
-	bool is_fire;
+	BulletPool<Bullet>* bullet_pool;
 };
-

@@ -18,17 +18,17 @@ void Scene_Stage1::Init()
 
 	pattern2 = false;
 
-	pattern_helper->SetPattern(0, 3, 10, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern1(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(1, 3, 10, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern2(current_coolTime, is_end);
-		});
+	//pattern_helper->SetPattern(0, 3, 10, [&](float current_coolTime, bool is_end)->void
+	//	{
+	//		WavePattern1(current_coolTime, is_end);
+	//	});
+	//pattern_helper->SetPattern(1, 3, 10, [&](float current_coolTime, bool is_end)->void
+	//	{
+	//		WavePattern2(current_coolTime, is_end);
+	//	});
 
-	// m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
-	// m_boss = m_bossObject->AddComponent<Boss1_1>();
+	 m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
+	 m_boss = m_bossObject->AddComponent<Boss1_1>();
 
 	enemy2_position[0] = Vector2(-50, 50);
 	enemy2_position[1] = Vector2(WINSIZEX + 50, 50);

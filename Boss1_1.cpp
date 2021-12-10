@@ -26,6 +26,9 @@ void Boss1_1::Init()
 	{
 		if (!is_spawned) return;
 	};
+
+	bullet_pool = new	 BulletPool<Bullet>("Enemy Bullet",
+		ObjType::EE_Bullet, 0, bullet_image, D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Boss1_1::Update()
@@ -35,6 +38,8 @@ void Boss1_1::Update()
 		SpawnAnimation();
 		return;
 	}
+
+	bullet_pool->Update();
 
 	if (GetKey('F'))
 		Pattern2(0, false);
@@ -61,6 +66,7 @@ void Boss1_1::UIRender()
 
 void Boss1_1::Release()
 {
+	SAFE_DELETE(bullet_pool);
 }
 
 Vector2 direction;
@@ -81,12 +87,12 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 	direction.y = m_transform->down.y;
 	direction.x += sin(D3DXToRadian(sin_value)) / devide_value;
 
-	Object* object;
 	Bullet* bullet;
 
-	object = OBJECT->CreateObject("Normal_Bullet", ObjType::EE_Bullet, m_transform->m_position);
-	bullet = object->AddComponent<Bullet>();
-	bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 3, bullet_image);
+	bullet = bullet_pool->GetBullet(m_transform->m_position);
+	if (!bullet) return;
+
+	bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 3, bullet_image, bullet_pool);
 }
 
 Vector2 target_position;
@@ -134,11 +140,16 @@ void Boss1_1::CircleBullet(float speed, float interval)
 	Vector2 direction;
 	Object* object;
 	Bullet* bullet;
+
+	int fireCount = 0;
 	for (int i = 0; i < 360; i += 1 * interval)
 	{
-		object = OBJECT->CreateObject("Normal_Bullet", ObjType::EE_Bullet, m_transform->m_position);
-		bullet = object->AddComponent<Bullet>();
-		bullet->SetBullet(Vector2(cos(D3DXToRadian(i)), sin(D3DXToRadian(i))), speed, bullet_image);
+		bullet = bullet_pool->GetBullet(m_transform->m_position);
+		if (!bullet) 
+			return;
+
+		bullet->SetBullet(Vector2(cos(D3DXToRadian(i)), sin(D3DXToRadian(i))), speed, bullet_image, bullet_pool);
+		fireCount++;
 	}
 }
 
@@ -150,8 +161,8 @@ void Boss1_1::SpawnAnimation()
 	if (D3DXVec2Length(
 		&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-		pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void
+		pattern_helper->SetPattern(1, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+		pattern_helper->SetPattern(0, 6, 5, [&](float current_count, bool is_end)->void
 			{ Pattern2(current_count, is_end); });
 
 		is_spawned = true;

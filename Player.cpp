@@ -71,6 +71,7 @@ void Player::UIRender()
 
 void Player::Release()
 {
+	SAFE_DELETE(bullet_pool);
 }
 
 void Player::ChkMoveRange()
@@ -92,6 +93,6 @@ void Player::Fire()
 	if (bullet)
 	{
 		Vector2 dir = INPUT->GetMousePosition() - (*m_position);
-		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image);
+		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image, bullet_pool);
 	}
 }

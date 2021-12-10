@@ -32,7 +32,12 @@ void ObjectManager::Update()
 		}
 		else
 		{
-			SAFE_DELETE((*iter));
+			if ((*iter)->m_type == ObjType::EE_Bullet || (*iter)->m_type == ObjType::EP_Bullet)
+			{
+				Bullet* bullet = (*iter)->GetComponent<Bullet>();
+				bullet->ReturnBullet();
+			}
+
 			iter = m_objects.erase(iter);
 		}
 	}
@@ -211,7 +216,7 @@ void ObjectManager::CheckAllCollider()
 		else
 		{
 			e_iter = m_enemies.erase(e_iter);
-		}        
+		}
 	}
 
 	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end();)

@@ -26,7 +26,7 @@ private:
 		}
 	};
 	list<Pattern*> m_patterns;
-	Timer* t_pattern;
+	Timer* t_pattern = nullptr;
 
 	int play_pattern_index;
 	bool is_coolTime;

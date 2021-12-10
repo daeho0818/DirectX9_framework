@@ -20,10 +20,10 @@ private:
 	void CircleBullet(float speed, float interval = 1);
 	void SpawnAnimation();
 
-	BoxColliderC* collider = null;
-	RendererC* renderer = null;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
 
-	Image* bullet_image = null;
+	Image* bullet_image = nullptr;
 
 	PatternHelper* pattern_helper = new PatternHelper();
 

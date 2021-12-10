@@ -14,6 +14,7 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image)
 {
 	m_direction = direction;
 	m_moveSpeed = move_speed;
+
 	renderer->Setting(image, D3DXCOLOR(1, 1, 1, 1));
 
 	is_set = true;
@@ -33,6 +34,8 @@ void Bullet::Init()
 {
 	is_set = false;
 	m_position = &m_object->m_transform->m_position;
+
+	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 }
 

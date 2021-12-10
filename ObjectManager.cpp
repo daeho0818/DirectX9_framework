@@ -19,15 +19,16 @@ void ObjectManager::Update()
 	{
 		if (!(*iter)->is_destroy)
 		{
-			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			if ((*iter)->activeSelf)
 			{
-				(*c_iter).second->enabled = (*iter)->activeSelf;
-
-				if ((c_iter)->second->enabled)
-					c_iter->second->Update();
-				++c_iter;
+				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+				{
+					if ((c_iter)->second->enabled)
+						c_iter->second->Update();
+					++c_iter;
+				}
+				++iter;
 			}
-			++iter;
 		}
 		else
 		{
@@ -45,16 +46,19 @@ void ObjectManager::Render()
 	{
 		if ((*iter) != null)
 		{
-			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			if ((*iter)->activeSelf)
 			{
-				if ((*c_iter).second != null)
+				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
-					if ((c_iter)->second->enabled)
-						c_iter->second->Render();
-					++c_iter;
+					if ((*c_iter).second != null)
+					{
+						if ((c_iter)->second->enabled)
+							c_iter->second->Render();
+						++c_iter;
+					}
 				}
+				++iter;
 			}
-			++iter;
 		}
 	}
 }
@@ -65,16 +69,19 @@ void ObjectManager::UIRender()
 	{
 		if ((*iter) != null)
 		{
-			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+			if ((*iter)->activeSelf)
 			{
-				if ((*c_iter).second != null)
+				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
-					if ((c_iter)->second->enabled)
-						c_iter->second->UIRender();
-					++c_iter;
+					if ((*c_iter).second != null)
+					{
+						if ((c_iter)->second->enabled)
+							c_iter->second->UIRender();
+						++c_iter;
+					}
 				}
+				++iter;
 			}
-			++iter;
 		}
 	}
 }
@@ -204,7 +211,7 @@ void ObjectManager::CheckAllCollider()
 		else
 		{
 			e_iter = m_enemies.erase(e_iter);
-		}
+		}        
 	}
 
 	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end();)

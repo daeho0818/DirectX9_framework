@@ -43,8 +43,8 @@ public:
 
 	string m_name;
 	ObjType m_type;
-	TransformC* m_transform;
-	function<void(Object* other)> OnCollisionEnter;
+	TransformC* m_transform = nullptr;
+	function<void(Object* other)> OnCollisionEnter = nullptr;
 
 	bool is_destroy;
 

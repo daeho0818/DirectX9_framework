@@ -13,10 +13,10 @@ public:
 	virtual void Release() override;
 
 private:
-	Image* i_background = null;
-	Image* i_moon = null;
-	Image* i_cloud = null;
-	Image* i_mountain = null;
+	Image* i_background = nullptr;
+	Image* i_moon = nullptr;
+	Image* i_cloud = nullptr;
+	Image* i_mountain = nullptr;
 
 	Vector2 moon_position;
 	Vector2 cloud_position[2];

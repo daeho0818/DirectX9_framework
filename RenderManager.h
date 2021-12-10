@@ -19,7 +19,7 @@ public:
 	void TextRender(string str, Vector2 pos, float size = 50, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
 
 private:
-	LPD3DXSPRITE m_sprite;
-	LPD3DXFONT m_font;
+	LPD3DXSPRITE m_sprite = nullptr;
+	LPD3DXFONT m_font = nullptr;
 };
 #define RENDER RenderManager::Instance()

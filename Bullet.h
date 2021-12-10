@@ -15,9 +15,10 @@ public:
 	virtual void Release() override;
 
 private:
-	RendererC* renderer = null;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
 
-	const Vector2* m_position = null;
+	const Vector2* m_position = nullptr;
 	Vector2 m_direction;
 
 	bool is_set;

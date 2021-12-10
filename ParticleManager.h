@@ -36,7 +36,7 @@ public:
 
 	Vector2 m_position;
 	D3DXCOLOR m_color;
-	function<void()> m_effect;
+	function<void()> m_effect = nullptr;
 	float m_size;
 	bool m_effecting;
 	bool m_destroy;
@@ -70,7 +70,7 @@ public:
 	};
 
 private:
-	Timer* m_timer;
+	Timer* m_timer = nullptr;
 	float size_value;
 	float alpha_value;
 };
@@ -94,6 +94,6 @@ private:
 	vector<Particle*> m_particles;
 	vector<Effect*> m_effects;
 
-	Image* effect_image;
+	Image* effect_image = nullptr;
 };
 #define PARTICLE ParticleManager::Instance()

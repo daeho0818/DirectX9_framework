@@ -8,6 +8,6 @@ public:
 
 	LONG m_volume;
 	bool m_loop;
-	CSound* m_cSound;
+	CSound* m_cSound = nullptr;
 };
 

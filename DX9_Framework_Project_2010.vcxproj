@@ -390,6 +390,7 @@
     <ClCompile Include="Boss1_1.cpp" />
     <ClCompile Include="BoxColliderC.cpp" />
     <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
@@ -416,13 +417,13 @@
     <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundManager.cpp" />
-    <ClCompile Include="TestEnemy.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="TransformC.cpp" />
     <ClInclude Include="AnimationC.h" />
     <ClInclude Include="Boss1_1.h" />
     <ClInclude Include="BoxColliderC.h" />
     <ClInclude Include="Bullet.h" />
+    <ClInclude Include="BulletPool.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
@@ -449,7 +450,6 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="TestEnemy.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="TransformC.h" />
     <None Include="DXUT\Optional\directx.ico" />

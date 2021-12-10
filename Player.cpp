@@ -30,10 +30,17 @@ void Player::Init()
 	renderer = m_object->AddComponent<RendererC>();
 
 	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(1, 1, 1, 1));
+
+	bullet_pool = new BulletPool<Bullet>("Player Bullet", ObjType::EP_Bullet, fire_range,
+		bullet_image, D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Player::Update()
 {
+	ChkMoveRange();
+
+	bullet_pool->Update();
+
 	if (GetKey('A'))
 	{
 		m_transform->m_position += m_transform->left * DELTA * move_speed;
@@ -51,11 +58,7 @@ void Player::Update()
 		m_transform->m_position += m_transform->down * DELTA * move_speed;
 	}
 
-	if (MousePressed(0)) Fire();
-	current_fire_count = GetTickCount64();
-
-	ChkMoveRange();
-
+	if (GetKey(VK_SPACE)) Fire();
 }
 
 void Player::Render()
@@ -85,13 +88,10 @@ void Player::ChkMoveRange()
 
 void Player::Fire()
 {
-	if (current_fire_count - first_fire_count > fire_range * 1000)
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	if (bullet)
 	{
-		Object* bulletObj = OBJECT->CreateObject("player_bullet", ObjType::EP_Bullet, (*m_position));
-		Bullet* bullet = bulletObj->AddComponent<Bullet>();
 		Vector2 dir = INPUT->GetMousePosition() - (*m_position);
 		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image);
-
-		first_fire_count = GetTickCount64();
 	}
 }

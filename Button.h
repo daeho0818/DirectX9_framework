@@ -18,9 +18,9 @@ public:
 
 private:
 	RECT m_size;
-	Image* m_image;
-	Image* m_image_up;
-	Image* m_image_press;
-	function<void()> onClickListener;
+	Image* m_image = nullptr;
+	Image* m_image_up = nullptr;
+	Image* m_image_press = nullptr;
+	function<void()> onClickListener = nullptr;
 };
 

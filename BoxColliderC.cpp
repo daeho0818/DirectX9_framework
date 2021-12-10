@@ -61,7 +61,7 @@ bool BoxColliderC::Dotting(Vector2 direction, TransformC* other_transform, Rende
 	float value1 =
 		fabs(D3DXVec2Dot(&direction, &obj1_right_distance)) + 
 		fabs(D3DXVec2Dot(&direction, &obj1_up_distance));
-
+	    
 	D3DXIMAGE_INFO img2_info = other_renderer->GetImage()->info;
 
 	Vector2 obj2_right_distance =

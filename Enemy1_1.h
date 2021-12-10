@@ -15,10 +15,10 @@ public:
 private:
 	void Fire();
 
-	BoxColliderC* collider = null;
-	RendererC* renderer = null;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
 
-	Image* bullet_image = null;
+	Image* bullet_image = nullptr;
 
 	float check_time;
 	float fire_check_time;

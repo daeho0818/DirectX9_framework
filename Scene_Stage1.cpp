@@ -39,11 +39,6 @@ void Scene_Stage1::Update()
 	srand(time(NULL));
 
 	pattern_helper->Update();
-
-	if (GetKeyDown(VK_SPACE))
-	{
-		WavePattern2(0, false);
-	}
 }
 
 void Scene_Stage1::Render()

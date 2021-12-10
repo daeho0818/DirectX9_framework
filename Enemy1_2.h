@@ -15,10 +15,10 @@ public:
 	void SetEnemy(int index);
 
 private:
-	BoxColliderC* collider;
-	RendererC* renderer;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
 
-	Timer* wait_timer;
+	Timer* wait_timer = nullptr;
 
 	int m_index;
 	int oper_values[4];

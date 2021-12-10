@@ -13,7 +13,7 @@ public:
 	virtual void UIRender() = 0;
 	virtual void Release() = 0;
 
-	Object* m_object;
+	Object* m_object = nullptr;
 	TransformC* m_transform;
 
 	bool  enabled;

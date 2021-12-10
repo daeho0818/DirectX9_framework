@@ -129,6 +129,12 @@
     <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 2">
       <UniqueIdentifier>{cc3e4a65-44d1-48c2-831b-7eff2a472748}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Object Pool">
+      <UniqueIdentifier>{4778b86b-5c60-44b1-b8ce-d35b5e394313}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Object Pool\Bullet Pool">
+      <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -271,9 +277,6 @@
     <ClCompile Include="Button.cpp">
       <Filter>3. Component\Game Object\Button</Filter>
     </ClCompile>
-    <ClCompile Include="TestEnemy.cpp">
-      <Filter>3. Component\Game Object\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="Boss1_1.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Boss</Filter>
     </ClCompile>
@@ -285,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="Enemy1_2.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 2</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletPool.cpp">
+      <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -369,9 +375,6 @@
     <ClInclude Include="Button.h">
       <Filter>3. Component\Game Object\Button</Filter>
     </ClInclude>
-    <ClInclude Include="TestEnemy.h">
-      <Filter>3. Component\Game Object\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="Boss1_1.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Boss</Filter>
     </ClInclude>
@@ -383,6 +386,9 @@
     </ClInclude>
     <ClInclude Include="Enemy1_2.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 2</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletPool.h">
+      <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ private:
 	bool is_start;
 	bool is_end;
 	bool is_stop;
-	function<void()> m_func = null;
+	function<void()> m_func = nullptr;
 
 	void Update();
 

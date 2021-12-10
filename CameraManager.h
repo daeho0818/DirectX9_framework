@@ -87,7 +87,7 @@ private:
 	ShakingInformation shaking_information;
 	FadingInformation fading_information;
 
-	Image* screen_image = null;
+	Image* screen_image = nullptr;
 
 	void Moving();
 	void Zooming();

@@ -1,6 +1,7 @@
 #pragma once
 #include "RendererC.h"
 #include "BoxColliderC.h"
+#include "BulletPool.h"
 #include "Object.h"
 class Player : public Component
 {
@@ -20,17 +21,17 @@ private:
 	void ChkMoveRange();
 	void Fire();
 
-	Image* bullet_image;
+	Image* bullet_image = nullptr;
 
 	RECT move_range;
-	const Vector2* m_position;
+	const Vector2* m_position = nullptr;
 
-	BoxColliderC* collider;
-	RendererC* renderer;
+	BoxColliderC* collider = nullptr;
+	RendererC* renderer = nullptr;
+
+	BulletPool<Bullet>* bullet_pool;
 
 	float move_speed;
-	float first_fire_count;
-	float current_fire_count;
 	float fire_range;
 };
 

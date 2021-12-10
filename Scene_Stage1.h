@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy1_1.h"
 #include "Enemy1_2.h"
+#include "Enemy1_3.h"
 #include "Boss1_1.h"
 class Scene_Stage1 : public Scene
 {
@@ -34,5 +35,7 @@ private:
 
 	bool pattern2;
 	Vector2 enemy2_position[2];
+
+	Timer* t_enemy3_spawn = nullptr;
 
 };

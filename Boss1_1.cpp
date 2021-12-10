@@ -27,7 +27,8 @@ void Boss1_1::Init()
 		if (!is_spawned) return;
 	};
 
-	bullet_pool = new	 BulletPool<Bullet>("Enemy Bullet", EE_Bullet, 0, bullet_image);
+	bullet_pool = new	 BulletPool<Bullet>("Enemy Bullet",
+		ObjType::EE_Bullet, 0, bullet_image, D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Boss1_1::Update()

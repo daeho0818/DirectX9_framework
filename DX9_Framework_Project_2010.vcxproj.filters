@@ -135,6 +135,9 @@
     <Filter Include="2. Manager\%282%29 Object\Object Pool\Bullet Pool">
       <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 3">
+      <UniqueIdentifier>{053a97bd-68c0-49ff-bc63-3548cbca1825}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -292,6 +295,9 @@
     <ClCompile Include="BulletPool.cpp">
       <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy1_3.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -389,6 +395,9 @@
     </ClInclude>
     <ClInclude Include="BulletPool.h">
       <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy1_3.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

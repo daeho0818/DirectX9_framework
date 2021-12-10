@@ -19,6 +19,8 @@ public:
 private:
 	void WavePattern1(float current_coolTime, bool is_end);
 	void WavePattern2(float current_coolTime, bool is_end);
+	void WavePattern3(float current_coolTime, bool is_end);
+	void WavePattern4(float current_coolTime, bool is_end);
 
 	PatternHelper* pattern_helper = nullptr;
 	Object* m_playerObject = nullptr;

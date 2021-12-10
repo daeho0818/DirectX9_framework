@@ -3,7 +3,7 @@
 
 TransformC::TransformC(Object* object) : Component(object)
 {
-	m_scale = 1;
+	m_localScale = Vector2(1, 1);
 	m_rotationZ = 0;
 }
 

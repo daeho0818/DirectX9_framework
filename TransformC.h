@@ -33,7 +33,8 @@ public :
 	Vector2 up;
 	Vector2 down;
 
-	float m_scale;
+	Vector2 m_localScale;
+
 	float m_rotationZ;
 };
 

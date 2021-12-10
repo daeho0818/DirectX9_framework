@@ -1,9 +1,9 @@
 #pragma once
-class Enemy1_2 : public Component
+class Enemy1_3 : public Component
 {
 public:
-	Enemy1_2(Object* object);
-	~Enemy1_2();
+	Enemy1_3(Object* object);
+	~Enemy1_3();
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -11,26 +11,12 @@ public:
 	virtual void Render() override;
 	virtual void UIRender() override;
 	virtual void Release() override;
-	
-	void SetEnemy(int index);
 
 private:
-	void Fire();
-
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
-	Timer* wait_timer = nullptr;
-
 	Image* bullet_image = nullptr;
 
-	BulletPool<Bullet>* bullet_pool = nullptr;
-
-	int m_index;
-	int oper_values[4];
-
-	float sin_value;
-
-	bool move_able;
-
 };
+

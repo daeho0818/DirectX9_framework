@@ -29,8 +29,8 @@ void ObjectManager::Update()
 						c_iter->second->Update();
 					++c_iter;
 				}
-				++iter;
 			}
+			++iter;
 		}
 		else
 		{
@@ -65,8 +65,8 @@ void ObjectManager::Render()
 					++c_iter;
 				}
 			}
-			++iter;
 		}
+		++iter;
 	}
 }
 
@@ -85,8 +85,8 @@ void ObjectManager::UIRender()
 					++c_iter;
 				}
 			}
-			++iter;
 		}
+		++iter;
 	}
 }
 

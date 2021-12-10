@@ -21,7 +21,9 @@ void RendererC::Render()
 {
 	if (m_image)
 	{
-		RENDER->CenterRender(m_image, m_transform->m_position, m_transform->m_scale, D3DXToRadian(m_transform->m_rotationZ), false, m_color);
+		RENDER->CenterRender(m_image, m_transform->m_position, 
+			m_transform->m_localScale, D3DXToRadian(m_transform->m_rotationZ),
+			false, m_color);
 	}
 }
 

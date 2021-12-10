@@ -6,7 +6,8 @@ public:
 	Bullet(Object* object);
 	~Bullet();
 
-	void SetBullet(Vector2 direction, float move_speed, Image* image, BulletPool<Bullet>* bullet_pool);
+	void SetBullet(Vector2 direction, float move_speed, Image* image,
+		BulletPool<Bullet>* bullet_pool, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -26,7 +27,7 @@ private:
 	const Vector2* m_position = nullptr;
 	Vector2 m_direction;
 
-		bool is_set;
+	bool is_set;
 	float m_moveSpeed = 0;
 
 };

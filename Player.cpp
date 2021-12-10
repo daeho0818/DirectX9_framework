@@ -24,6 +24,8 @@ void Player::Init()
 	fire_range = 0.5f;
 	m_object->OnCollisionEnter = [&](Object* other)->void {};
 
+	m_transform->m_localScale = Vector2(1, 0.5f);
+
 	bullet_image = IMAGE->FindImage("bullet_player");
 
 	collider = m_object->AddComponent<BoxColliderC>();
@@ -59,6 +61,8 @@ void Player::Update()
 	}
 
 	if (GetKey(VK_SPACE)) Fire();
+
+	if (GetKey('R')) m_transform->m_rotationZ++;
 }
 
 void Player::Render()

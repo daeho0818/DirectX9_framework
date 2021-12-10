@@ -4,7 +4,7 @@ class BulletPool
 {
 public:
 	BulletPool(string bullet_name, ObjType bullet_type, float fire_range,
-		Image* bullet_image, D3DXCOLOR bullet_color)
+		Image* bullet_image, D3DXCOLOR bullet_color = D3DXCOLOR(1, 1, 1, 1))
 		:m_bulletName(bullet_name), m_bulletType(bullet_type), m_fireRange(fire_range),
 		m_bulletImage(bullet_image), m_bulletColor(bullet_color)
 	{

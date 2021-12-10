@@ -41,6 +41,16 @@ void RenderManager::CenterRender(Image* image, Vector2 pos, float size, float ro
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, null, null, null, color);
 }
+void RenderManager::CenterRender(Image* image, Vector2 pos, Vector2 scale, float rot, bool is_ui, D3DXCOLOR color)
+{
+	Vector2 cam_position = CAMERA->GetPosition();
+
+	D3DXMATRIXA16 mat;
+	Vector2 center = { image->info.Width / 2 * scale.x + (is_ui ? cam_position.x : 0), image->info.Height / 2 * scale.y + (is_ui ? cam_position.y : 0) };
+	D3DXMatrixTransformation2D(&mat, &center, 0, &scale, &center, rot, &(pos - center));
+	m_sprite->SetTransform(&mat);
+	m_sprite->Draw(image->ptr, null, null, null, color);
+}
 
 void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, float rot, bool is_ui, D3DXCOLOR color)
 {
@@ -48,7 +58,7 @@ void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, 
 
 	D3DXMATRIXA16 mat;
 	Vector2 center = { image->info.Width / 2 * size + (is_ui ? cam_position.x : 0), image->info.Height / 2 * size + (is_ui ? cam_position.y : 0) };
-	D3DXMatrixAffineTransformation2D(&mat, size, &center , rot, &(pos - center));
+	D3DXMatrixAffineTransformation2D(&mat, size, &center, rot, &(pos - center));
 	m_sprite->SetTransform(&mat);
 	m_sprite->Draw(image->ptr, &rc, null, null, color);
 }

@@ -21,5 +21,9 @@ private:
 
 	Image* bullet_image = nullptr;
 
+	Timer* wait_timer = nullptr;
+
 	BulletPool<Bullet>* bullet_pool;
+
+	bool move_able;
 };

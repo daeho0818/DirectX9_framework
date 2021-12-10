@@ -18,13 +18,17 @@ void Scene_Stage1::Init()
 
 	pattern2 = false;
 
-	pattern_helper->SetPattern(0, 3, 10, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(0, 3, 7, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern1(current_coolTime, is_end);
 		});
-	pattern_helper->SetPattern(1, 3, 10, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(1, 3, 7, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern2(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(2, 3, 7, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern3(current_coolTime, is_end);
 		});
 
 	 // m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
@@ -58,7 +62,7 @@ void Scene_Stage1::WavePattern1(float current_coolTime, bool is_end)
 {
 	if (is_end)
 	{
-		enemy1_position_x = WINSIZEX / 2 - 300;
+		enemy1_position_x = WINSIZEX / 2 - 50;
 		t_enemy1_spawn = null;
 	}
 	else if (t_enemy1_spawn == null)
@@ -98,4 +102,14 @@ void Scene_Stage1::WavePattern2(float current_coolTime, bool is_end)
 
 		pattern2 = false;
 	}
+}
+
+void Scene_Stage1::WavePattern3(float current_coolTime, bool is_end)
+{
+	WavePattern1(current_coolTime, is_end);
+	WavePattern2(current_coolTime, is_end);
+}
+
+void Scene_Stage1::WavePattern4(float current_coolTime, bool is_end)
+{
 }

@@ -16,7 +16,7 @@ void Enemy1_2::Init()
 	renderer = m_object->AddComponent<RendererC>();
 	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(0, 0, 0, 1));
 
-	m_transform->m_scale = 0.3f;
+	m_transform->m_localScale = Vector2(0.3f, 0.3f);
 
 	sin_value = 0;
 
@@ -27,6 +27,10 @@ void Enemy1_2::Init()
 
 	move_able = false;
 
+	bullet_image = IMAGE->FindImage("bullet_player");
+
+	bullet_pool = new BulletPool<Bullet>("Enemy1_2 Bullet", EE_Bullet, 0.25f, bullet_image);
+
 	wait_timer = new Timer(5, 0, [&]()->void
 		{
 			move_able = true;
@@ -36,6 +40,8 @@ void Enemy1_2::Init()
 
 void Enemy1_2::Update()
 {
+	bullet_pool->Update();
+
 	if (sin_value < 90)
 	{
 		sin_value += DELTA * 50;
@@ -49,6 +55,8 @@ void Enemy1_2::Update()
 	{
 		m_transform->Translate(m_transform->down * DELTA * 500);
 	}
+
+	Fire();
 }
 
 void Enemy1_2::Render()
@@ -66,4 +74,12 @@ void Enemy1_2::Release()
 void Enemy1_2::SetEnemy(int index)
 {
 	m_index = index;
+}
+
+void Enemy1_2::Fire()
+{
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	if (!bullet) return;
+
+	bullet->SetBullet(m_transform->down, 15, bullet_image, bullet_pool);
 }

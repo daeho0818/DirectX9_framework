@@ -19,10 +19,10 @@ void ObjectManager::Update()
 	{
 		if (!(*iter)->is_destroy)
 		{
-			(*iter)->CheckOut();
-
 			if ((*iter)->activeSelf)
 			{
+				(*iter)->CheckOut();
+
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
 					if ((c_iter)->second->enabled)
@@ -34,12 +34,16 @@ void ObjectManager::Update()
 		}
 		else
 		{
-			if ((*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
+			if ((*iter)->m_type != ObjType::EE_Bullet && (*iter)->m_type != ObjType::EP_Bullet)
 			{
 				SAFE_DELETE(*iter);
 				iter = m_objects.erase(iter);
 			}
-			else ++iter;
+			else
+			{
+				(*iter)->GetComponent<Bullet>()->ReturnBullet();
+				++iter;
+			}
 		}
 	}
 
@@ -50,21 +54,18 @@ void ObjectManager::Render()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if ((*iter) != null)
+		if ((*iter)->activeSelf)
 		{
-			if ((*iter)->activeSelf)
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 			{
-				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+				if ((*c_iter).second != null)
 				{
-					if ((*c_iter).second != null)
-					{
-						if ((c_iter)->second->enabled)
-							c_iter->second->Render();
-						++c_iter;
-					}
+					if ((c_iter)->second->enabled)
+						c_iter->second->Render();
+					++c_iter;
 				}
-				++iter;
 			}
+			++iter;
 		}
 	}
 }
@@ -73,21 +74,18 @@ void ObjectManager::UIRender()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if ((*iter) != null)
+		if ((*iter)->activeSelf)
 		{
-			if ((*iter)->activeSelf)
+			for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 			{
-				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
+				if ((*c_iter).second != null)
 				{
-					if ((*c_iter).second != null)
-					{
-						if ((c_iter)->second->enabled)
-							c_iter->second->UIRender();
-						++c_iter;
-					}
+					if ((c_iter)->second->enabled)
+						c_iter->second->UIRender();
+					++c_iter;
 				}
-				++iter;
 			}
+			++iter;
 		}
 	}
 }
@@ -162,7 +160,6 @@ void ObjectManager::DestroyAllObject()
 		}
 		iter->components.clear();
 		SAFE_DELETE(iter);
-		printf("ÀÀ¾Ö");
 	}
 	m_objects.clear();
 }
@@ -179,15 +176,18 @@ void ObjectManager::CheckAllCollider()
 		if (!(*e_iter)->is_destroy)
 		{
 			other_collider = (*e_iter)->GetComponent<BoxColliderC>();
-			if (player_collider->enabled && other_collider->enabled)
+			if (player_collider->m_object->activeSelf && (*e_iter)->activeSelf)
 			{
-				if (player_collider->OBBCheck((*e_iter)->m_transform))
+				if (player_collider->enabled && other_collider->enabled)
 				{
-					if (player_collider->m_object->OnCollisionEnter)
-						player_collider->m_object->OnCollisionEnter((*e_iter));
+					if (player_collider->OBBCheck((*e_iter)->m_transform))
+					{
+						if (player_collider->m_object->OnCollisionEnter)
+							player_collider->m_object->OnCollisionEnter((*e_iter));
 
-					if ((*e_iter)->OnCollisionEnter)
-						(*e_iter)->OnCollisionEnter(player_collider->m_object);
+						if ((*e_iter)->OnCollisionEnter)
+							(*e_iter)->OnCollisionEnter(player_collider->m_object);
+					}
 				}
 			}
 
@@ -195,15 +195,18 @@ void ObjectManager::CheckAllCollider()
 			{
 				if (!(*pb_iter)->is_destroy)
 				{
-					if (other_collider->enabled && (*pb_iter)->GetComponent<BoxColliderC>()->enabled)
+					if (player_collider->m_object->activeSelf && (*pb_iter)->activeSelf)
 					{
-						if (other_collider->OBBCheck((*pb_iter)->m_transform))
+						if (other_collider->enabled && (*pb_iter)->GetComponent<BoxColliderC>()->enabled)
 						{
-							if ((*e_iter)->OnCollisionEnter)
-								(*e_iter)->OnCollisionEnter((*pb_iter));
+							if (other_collider->OBBCheck((*pb_iter)->m_transform))
+							{
+								if ((*e_iter)->OnCollisionEnter)
+									(*e_iter)->OnCollisionEnter((*pb_iter));
 
-							if ((*pb_iter)->OnCollisionEnter)
-								(*pb_iter)->OnCollisionEnter((*e_iter));
+								if ((*pb_iter)->OnCollisionEnter)
+									(*pb_iter)->OnCollisionEnter((*e_iter));
+							}
 						}
 					}
 					pb_iter++;
@@ -225,15 +228,18 @@ void ObjectManager::CheckAllCollider()
 	{
 		if (!(*eb_iter)->is_destroy)
 		{
-			if (player_collider->enabled && (*eb_iter)->GetComponent<BoxColliderC>()->enabled)
+			if (player_collider->m_object->activeSelf && (*eb_iter)->activeSelf)
 			{
-				if (player_collider->OBBCheck((*eb_iter)->m_transform))
+				if (player_collider->enabled && (*eb_iter)->GetComponent<BoxColliderC>()->enabled)
 				{
-					if (player_collider->m_object->OnCollisionEnter)
-						player_collider->m_object->OnCollisionEnter((*eb_iter));
+					if (player_collider->OBBCheck((*eb_iter)->m_transform))
+					{
+						if (player_collider->m_object->OnCollisionEnter)
+							player_collider->m_object->OnCollisionEnter((*eb_iter));
 
-					if ((*eb_iter)->OnCollisionEnter)
-						(*eb_iter)->OnCollisionEnter(player_collider->m_object);
+						if ((*eb_iter)->OnCollisionEnter)
+							(*eb_iter)->OnCollisionEnter(player_collider->m_object);
+					}
 				}
 			}
 			eb_iter++;
@@ -248,15 +254,18 @@ void ObjectManager::CheckAllCollider()
 	{
 		if (!(*i_iter)->is_destroy)
 		{
-			if (player_collider->enabled && (*i_iter)->GetComponent<BoxColliderC>()->enabled)
+			if (player_collider->m_object->activeSelf && (*i_iter)->activeSelf)
 			{
-				if (player_collider->OBBCheck((*i_iter)->m_transform))
+				if (player_collider->enabled && (*i_iter)->GetComponent<BoxColliderC>()->enabled)
 				{
-					if (player_collider->m_object->OnCollisionEnter)
-						player_collider->m_object->OnCollisionEnter((*i_iter));
+					if (player_collider->OBBCheck((*i_iter)->m_transform))
+					{
+						if (player_collider->m_object->OnCollisionEnter)
+							player_collider->m_object->OnCollisionEnter((*i_iter));
 
-					if ((*i_iter)->OnCollisionEnter)
-						(*i_iter)->OnCollisionEnter(player_collider->m_object);
+						if ((*i_iter)->OnCollisionEnter)
+							(*i_iter)->OnCollisionEnter(player_collider->m_object);
+					}
 				}
 			}
 			i_iter++;

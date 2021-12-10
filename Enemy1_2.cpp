@@ -20,10 +20,10 @@ void Enemy1_2::Init()
 
 	sin_value = 0;
 
-	oper_values[0] = 7;
-	oper_values[1] = -7;
-	oper_values[2] = 9;
-	oper_values[3] = -9;
+	oper_values[0] = 4;
+	oper_values[1] = -4;
+	oper_values[2] = 8;
+	oper_values[3] = -8;
 
 	move_able = false;
 

@@ -28,4 +28,3 @@ private:
 	bool move_able;
 
 };
-

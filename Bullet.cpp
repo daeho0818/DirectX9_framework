@@ -22,10 +22,6 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image, Bullet
 
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
-		if (other->m_type == ObjType::EEnemy)
-		{
-			m_object->is_destroy = true;
-		}
 	};
 
 	m_transform->m_rotationZ = 90 + D3DXToDegree(atan2(direction.y, direction.x));

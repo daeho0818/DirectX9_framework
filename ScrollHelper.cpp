@@ -9,6 +9,8 @@ ScrollHelper::ScrollHelper(Image* bg_image)
 	bg3_position = CENTER + Vector2(0, m_bgImage->info.Height);
 
 	SCENE->SetScrollHelper(this);
+
+	scroll_speed = 100;
 }
 
 ScrollHelper::~ScrollHelper()
@@ -17,9 +19,9 @@ ScrollHelper::~ScrollHelper()
 
 void ScrollHelper::Update()
 {
-	bg1_position.y += DELTA * 5;
-	bg2_position.y += DELTA * 5;
-	bg3_position.y += DELTA * 5;
+	bg1_position.y += DELTA * scroll_speed;
+	bg2_position.y += DELTA * scroll_speed;
+	bg3_position.y += DELTA * scroll_speed;
 
 	if (bg3_position.y > m_bgImage->info.Height * 2)
 		bg3_position.y = bg1_position.y - m_bgImage->info.Height;

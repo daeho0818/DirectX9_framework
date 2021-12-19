@@ -16,5 +16,6 @@ private:
 	Vector2 bg2_position;
 	Vector2 bg3_position;
 
+	float scroll_speed;
 };
 

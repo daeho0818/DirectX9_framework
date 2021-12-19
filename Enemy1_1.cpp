@@ -20,15 +20,13 @@ void Enemy1_1::Init()
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
-	bullet_pool = new BulletPool<Bullet>("Enemy1_1 Bullet", EE_Bullet,
-		0.25f, bullet_image);
-
 	move_able = true;
+
+	bullet_pool = m_object->GetBulletPool();
 }
 
 void Enemy1_1::Update()
 {
-	bullet_pool->Update();
 	Fire();
 
 	if (m_transform->m_position.y < 380)
@@ -61,12 +59,11 @@ void Enemy1_1::UIRender()
 
 void Enemy1_1::Release()
 {
-	SAFE_DELETE(bullet_pool);
 }
 
 void Enemy1_1::Fire()
 {
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_1 Bullet", EE_Bullet);
 	if (!bullet)
 	{
 		return;

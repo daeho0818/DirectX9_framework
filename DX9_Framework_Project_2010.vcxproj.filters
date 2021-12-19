@@ -135,11 +135,11 @@
     <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 3">
       <UniqueIdentifier>{053a97bd-68c0-49ff-bc63-3548cbca1825}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2. Manager\%281%29 Singleton\Bullet Pool">
-      <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2. Manager\%282%29 Object\Scroll Helper">
       <UniqueIdentifier>{f6819345-0651-4646-9895-fc5120f2f3b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Object Pool\Bullet Pool">
+      <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -296,7 +296,7 @@
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 2</Filter>
     </ClCompile>
     <ClCompile Include="BulletPool.cpp">
-      <Filter>2. Manager\%281%29 Singleton\Bullet Pool</Filter>
+      <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
     </ClCompile>
     <ClCompile Include="Enemy1_3.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>
@@ -400,7 +400,7 @@
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 2</Filter>
     </ClInclude>
     <ClInclude Include="BulletPool.h">
-      <Filter>2. Manager\%281%29 Singleton\Bullet Pool</Filter>
+      <Filter>2. Manager\%282%29 Object\Object Pool\Bullet Pool</Filter>
     </ClInclude>
     <ClInclude Include="Enemy1_3.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>

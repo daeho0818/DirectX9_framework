@@ -44,6 +44,9 @@ public:
 	void SetActive(bool active) { activeSelf = active; }
 	bool ActiveSelf() { return activeSelf; };
 
+	void SetBulletPool(BulletPool* pool) { bullet_pool = pool; }
+	BulletPool* GetBulletPool() { return bullet_pool; }
+
 	string m_name;
 	ObjType m_type;
 	TransformC* m_transform = nullptr;
@@ -53,6 +56,7 @@ public:
 
 private:
 	map<string, Component*> components;
+	BulletPool* bullet_pool = nullptr;
 
 	bool activeSelf;
 

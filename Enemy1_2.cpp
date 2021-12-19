@@ -29,19 +29,17 @@ void Enemy1_2::Init()
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_2");
 
-	bullet_pool = new BulletPool<Bullet>("Enemy1_2 Bullet", EE_Bullet, 0.25f, bullet_image);
-
 	wait_timer = new Timer(5, 0, [&]()->void
 		{
 			move_able = true;
 		});
 	wait_timer->TimerStart();
+
+	bullet_pool = m_object->GetBulletPool();
 }
 
 void Enemy1_2::Update()
 {
-	bullet_pool->Update();
-
 	if (sin_value < 90)
 	{
 		sin_value += DELTA * 50;
@@ -78,7 +76,7 @@ void Enemy1_2::SetEnemy(int index)
 
 void Enemy1_2::Fire()
 {
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_2 Bullet", EE_Bullet);
 	if (!bullet) return;
 
 	bullet->SetBullet(m_transform->down, 15, bullet_image, bullet_pool);

@@ -20,15 +20,13 @@ void Enemy1_3::Init()
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_3");
 
-	bullet_pool = new BulletPool<Bullet>("Enemy1_3 Bullet", EE_Bullet, 0, bullet_image);
-
 	move_able = true;
+
+	bullet_pool = m_object->GetBulletPool();
 }
 
 void Enemy1_3::Update()
 {
-	bullet_pool->Update();
-
 	if (move_able)
 		m_transform->Translate(m_transform->down * DELTA * 100);
 
@@ -64,7 +62,7 @@ void Enemy1_3::CircleBullet(float speed, float interval)
 	int fireCount = 0;
 	for (int i = 0; i < 360; i += 1 * interval)
 	{
-		bullet = bullet_pool->GetBullet(m_transform->m_position);
+		bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_3 Bullet", EE_Bullet);
 		if (!bullet)
 			return;
 

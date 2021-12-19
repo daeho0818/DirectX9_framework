@@ -27,7 +27,7 @@ private:
 	Image* bullet_image = nullptr;
 
 	PatternHelper* pattern_helper = new PatternHelper();
-	BulletPool<Bullet>* bullet_pool;
+	BulletPool* bullet_pool;
 
 	bool is_spawned;
 

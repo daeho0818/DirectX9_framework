@@ -22,7 +22,7 @@ private:
 
 	Timer* wait_timer = nullptr;
 
-	BulletPool<Bullet>* bullet_pool = nullptr;
+	BulletPool* bullet_pool = nullptr;
 
 	bool move_able;
 };

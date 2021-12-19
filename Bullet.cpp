@@ -11,7 +11,7 @@ Bullet::~Bullet()
 }
 
 void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image, 
-	BulletPool<Bullet>* bullet_pool, D3DXCOLOR color)
+	BulletPool* bullet_pool, D3DXCOLOR color)
 {
 	m_direction = direction;
 	m_moveSpeed = move_speed;

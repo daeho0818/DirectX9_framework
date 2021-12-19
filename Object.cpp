@@ -20,4 +20,6 @@ Object::~Object()
 		SAFE_DELETE(iter.second);
 	}
 	components.clear();
+
+	SAFE_DELETE(bullet_pool);
 }

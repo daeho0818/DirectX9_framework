@@ -29,7 +29,7 @@ private:
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
-	BulletPool<Bullet>* bullet_pool;
+	BulletPool* bullet_pool = nullptr;
 
 	float move_speed;
 	float fire_range;

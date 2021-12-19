@@ -23,6 +23,8 @@ private:
 	void WavePattern3(float current_coolTime, bool is_end);
 	void WavePattern4(float current_coolTime, bool is_end);
 
+	BulletPool* bullet_pool = nullptr;
+
 	PatternHelper* pattern_helper = nullptr;
 	Object* m_playerObject = nullptr;
 	Player* m_player = nullptr;

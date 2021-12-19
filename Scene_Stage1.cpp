@@ -11,9 +11,11 @@ Scene_Stage1::~Scene_Stage1()
 
 void Scene_Stage1::Init()
 {
+	bullet_pool = new BulletPool();
 	pattern_helper = new	PatternHelper();
 
 	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
+	m_playerObject->SetBulletPool(bullet_pool);
 	m_player = m_playerObject->AddComponent<Player>();
 
 	pattern2 = false;
@@ -80,10 +82,11 @@ void Scene_Stage1::WavePattern1(float current_coolTime, bool is_end)
 
 		t_enemy1_spawn = new Timer(0.7f, 3, [&]()-> void
 			{
-				Object* enemy =
+				Object* object =
 					OBJECT->CreateObject("Enemy1_1", EEnemy, Vector2(enemy1_position_x, -300));
+				object->SetBulletPool(bullet_pool);
+				object->AddComponent<Enemy1_1>();
 
-				enemy->AddComponent<Enemy1_1>();
 				enemy1_position_x += 300;
 			}, false);
 		t_enemy1_spawn->TimerStart();
@@ -105,6 +108,7 @@ void Scene_Stage1::WavePattern2(float current_coolTime, bool is_end)
 		for (int i = 0; i < 4; i++)
 		{
 			object[i] = OBJECT->CreateObject("Enemy1_2", EEnemy, enemy2_position[i % 2]);
+			object[i]->SetBulletPool(bullet_pool);
 			enemies[i] = object[i]->AddComponent<Enemy1_2>();
 			enemies[i]->SetEnemy(i);
 		}
@@ -127,13 +131,15 @@ void Scene_Stage1::WavePattern4(float current_coolTime, bool is_end)
 	}
 	else if (!t_enemy3_spawn)
 	{
-		OBJECT->CreateObject("Enemy1_3", EEnemy, Vector2(200, -50))
-			->AddComponent<Enemy1_3>();
+		Object* object = OBJECT->CreateObject("Enemy1_3", EEnemy, Vector2(200, -50));
+		object->SetBulletPool(bullet_pool);
+		object->AddComponent<Enemy1_3>();
 
 		t_enemy3_spawn = new Timer(3, 0, [&]()->void
 			{
-				OBJECT->CreateObject("Enemy1_3", EEnemy, Vector2(1400, -50))
-					->AddComponent<Enemy1_3>();
+				Object* object = OBJECT->CreateObject("Enemy1_3", EEnemy, Vector2(1400, -50));
+				object->SetBulletPool(bullet_pool);
+				object->AddComponent<Enemy1_3>();
 			});
 	}
 }

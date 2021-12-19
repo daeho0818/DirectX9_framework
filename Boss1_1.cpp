@@ -26,9 +26,6 @@ void Boss1_1::Init()
 	{
 		if (!is_spawned) return;
 	};
-
-	bullet_pool = new	 BulletPool<Bullet>("Enemy Bullet",
-		ObjType::EE_Bullet, 0, bullet_image, D3DXCOLOR(1, 1, 1, 1));
 }
 
 void Boss1_1::Update()
@@ -38,8 +35,6 @@ void Boss1_1::Update()
 		SpawnAnimation();
 		return;
 	}
-
-	bullet_pool->Update();
 
 	if (GetKey('F'))
 		Pattern2(0, false);
@@ -89,7 +84,7 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 
 	Bullet* bullet;
 
-	bullet = bullet_pool->GetBullet(m_transform->m_position);
+	bullet = bullet_pool->GetBullet(m_transform->m_position, "Boss1_1 Bullet", EE_Bullet);
 	if (!bullet) return;
 
 	bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 3, bullet_image, bullet_pool);
@@ -144,7 +139,7 @@ void Boss1_1::CircleBullet(float speed, float interval)
 	int fireCount = 0;
 	for (int i = 0; i < 360; i += 1 * interval)
 	{
-		bullet = bullet_pool->GetBullet(m_transform->m_position);
+		bullet = bullet_pool->GetBullet(m_transform->m_position, "Boss1_1 Bullet", EE_Bullet);
 		if (!bullet) 
 			return;
 

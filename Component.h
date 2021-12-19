@@ -4,7 +4,10 @@ class TransformC;
 class Component
 {
 public:
-	Component(Object* object) : m_object(object) { enabled = true; }
+	Component(Object* object) : m_object(object)
+	{
+		enabled = true;
+	}
 	virtual ~Component() {}
 
 	virtual void Init() = 0;
@@ -14,7 +17,7 @@ public:
 	virtual void Release() = 0;
 
 	Object* m_object = nullptr;
-	TransformC* m_transform;
+	TransformC* m_transform = nullptr;
 
 	bool  enabled;
 

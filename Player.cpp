@@ -33,15 +33,12 @@ void Player::Init()
 
 	renderer->Setting(IMAGE->FindImage("Player"), D3DXCOLOR(1, 1, 1, 1));
 
-	bullet_pool = new BulletPool<Bullet>("Player Bullet", ObjType::EP_Bullet, fire_range,
-		bullet_image, D3DXCOLOR(1, 1, 1, 1));
+	bullet_pool = m_object->GetBulletPool();
 }
 
 void Player::Update()
 {
 	ChkMoveRange();
-
-	bullet_pool->Update();
 
 	if (GetKey('A'))
 	{
@@ -75,7 +72,6 @@ void Player::UIRender()
 
 void Player::Release()
 {
-	SAFE_DELETE(bullet_pool);
 }
 
 void Player::ChkMoveRange()
@@ -93,7 +89,7 @@ void Player::ChkMoveRange()
 
 void Player::Fire()
 {
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position);
+	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Player Bullet", EE_Bullet);
 	if (bullet)
 	{
 		Vector2 dir = INPUT->GetMousePosition() - (*m_position);

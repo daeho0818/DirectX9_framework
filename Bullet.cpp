@@ -63,7 +63,6 @@ void Bullet::ReturnBullet()
 {
 	is_set = false;
 
-	m_transform->m_position = CENTER;
 	m_object->is_destroy = false;
 
 	bullet_pool->ReturnBullet(this);

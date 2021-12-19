@@ -17,10 +17,11 @@ void SceneManager::Init()
 void SceneManager::Update()
 {
 	if (m_scrollHelper)
-		m_scrollHelper->Render();
+		m_scrollHelper->Update();
 
 	if (current_scene) current_scene->Update();
 
+	// 화면 Fading이 끝났다면
 	if (target_scene && !CAMERA->IsAction(3))
 	{
 		SceneLoading();
@@ -58,10 +59,12 @@ void SceneManager::Release()
 {
 	if (current_scene) current_scene->Release();
 
-	for (var iter : m_scenes)
-		SAFE_DELETE(iter.second);
 	for (var iter : m_timers)
 		SAFE_DELETE(iter);
+	for (var iter : m_scenes)
+		SAFE_DELETE(iter.second);
+
+	SAFE_DELETE(m_scrollHelper);
 
 	m_timers.clear();
 	m_scenes.clear();
@@ -80,20 +83,12 @@ void SceneManager::ChangeScene(string key)
 {
 	// 이미 씬을 바꾸는 중인지 검사
 	if (target_scene)
-		for (var iter : m_scenes)
-			if (iter.second == target_scene) return;
+		return;
 
-	if (CAMERA->IsAction(3) && target_scene)
-	{
-		CAMERA->StopAction(3);
-		SceneLoading();
-	}
 	CAMERA->FadingScreen(10, false, true);
 
 	var find = m_scenes.find(key);
 	target_scene = find->second;
-
-	OBJECT->DestroyAllObject();
 }
 
 Scene* SceneManager::GetActiveScene()
@@ -109,7 +104,10 @@ void SceneManager::SetScrollHelper(ScrollHelper* scroll_helper)
 void SceneManager::SceneLoading()
 {
 	if (current_scene)
+	{
 		current_scene->Release();
+		OBJECT->DestroyAllObject();
+	}
 
 	target_scene->Init();
 	current_scene = target_scene;

@@ -9,6 +9,7 @@ public:
 
 	void TimerStart();
 	void TimerStop();
+	void ShutTimer();
 	float GetTime();
 
 private:

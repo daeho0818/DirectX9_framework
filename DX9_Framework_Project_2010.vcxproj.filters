@@ -138,6 +138,9 @@
     <Filter Include="2. Manager\%281%29 Singleton\Bullet Pool">
       <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Scroll Helper">
+      <UniqueIdentifier>{f6819345-0651-4646-9895-fc5120f2f3b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -298,6 +301,9 @@
     <ClCompile Include="Enemy1_3.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>
     </ClCompile>
+    <ClCompile Include="ScrollHelper.cpp">
+      <Filter>2. Manager\%282%29 Object\Scroll Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -398,6 +404,9 @@
     </ClInclude>
     <ClInclude Include="Enemy1_3.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 3</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollHelper.h">
+      <Filter>2. Manager\%282%29 Object\Scroll Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

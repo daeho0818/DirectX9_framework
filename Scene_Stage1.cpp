@@ -30,8 +30,7 @@ void Scene_Stage1::Init()
 		{
 			WavePattern3(current_coolTime, is_end);
 		});
-	pattern_helper->SetPattern(3
-, 3, 7, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(3, 3, 7, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern4(current_coolTime, is_end);
 		});
@@ -41,6 +40,8 @@ void Scene_Stage1::Init()
 
 	enemy2_position[0] = Vector2(-50, 50);
 	enemy2_position[1] = Vector2(WINSIZEX + 50, 50);
+
+	ScrollHelper* scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
 }
 
 void Scene_Stage1::Update()
@@ -61,6 +62,9 @@ void Scene_Stage1::UIRender()
 void Scene_Stage1::Release()
 {
 	SAFE_DELETE(pattern_helper);
+
+	if (t_enemy1_spawn)
+		t_enemy1_spawn->ShutTimer();
 }
 
 void Scene_Stage1::WavePattern1(float current_coolTime, bool is_end)

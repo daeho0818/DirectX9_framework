@@ -11,6 +11,7 @@ PatternHelper::~PatternHelper()
 {
 	for (var iter : m_patterns)
 		SAFE_DELETE(iter);
+
 	m_patterns.clear();
 }
 

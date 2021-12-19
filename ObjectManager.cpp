@@ -162,6 +162,12 @@ void ObjectManager::DestroyAllObject()
 		SAFE_DELETE(iter);
 	}
 	m_objects.clear();
+
+	m_player = null;
+	m_eBullets.clear();
+	m_pBullets.clear();
+	m_enemies.clear();
+	m_items.clear();
 }
 
 void ObjectManager::CheckAllCollider()

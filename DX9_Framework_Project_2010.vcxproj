@@ -413,6 +413,7 @@
     <ClCompile Include="Scene_Stage1.cpp" />
     <ClCompile Include="Scene_Loading.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
+    <ClCompile Include="ScrollHelper.cpp" />
     <ClCompile Include="SDKsound.cpp" />
     <ClCompile Include="SDKwavefile.cpp" />
     <ClCompile Include="Singleton.cpp" />
@@ -446,6 +447,7 @@
     <ClInclude Include="Scene_Stage1.h" />
     <ClInclude Include="Scene_Loading.h" />
     <ClInclude Include="Scene_Title.h" />
+    <ClInclude Include="ScrollHelper.h" />
     <ClInclude Include="SDKsound.h" />
     <ClInclude Include="SDKwavefile.h" />
     <ClInclude Include="Singleton.h" />

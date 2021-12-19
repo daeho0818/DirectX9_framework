@@ -65,7 +65,8 @@ void CameraManager::MovingCamera(Vector2 target_position, float move_speed)
 	moving_information.target_position = target_position - CENTER;
 	moving_information.move_speed = move_speed;
 
-	shaking_information.return_position = cam_position; // 카메라 이동 시 Shake로 인한 초기화에 문제가 생길 수 있기 때문
+	// 카메라 이동 시 Shake로 인한 초기화에 문제가 생길 수 있기 때문
+	shaking_information.return_position = cam_position;
 
 	camera_mode[0] = true;
 }

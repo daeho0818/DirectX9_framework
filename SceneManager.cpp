@@ -16,6 +16,9 @@ void SceneManager::Init()
 
 void SceneManager::Update()
 {
+	if (m_scrollHelper)
+		m_scrollHelper->Render();
+
 	if (current_scene) current_scene->Update();
 
 	if (target_scene && !CAMERA->IsAction(3))
@@ -40,6 +43,9 @@ void SceneManager::Update()
 
 void SceneManager::Render()
 {
+	if (m_scrollHelper)
+		m_scrollHelper->Render();
+
 	if (current_scene) current_scene->Render();
 }
 
@@ -72,6 +78,7 @@ void SceneManager::AddScene(string key, Scene* scene)
 
 void SceneManager::ChangeScene(string key)
 {
+	// 이미 씬을 바꾸는 중인지 검사
 	if (target_scene)
 		for (var iter : m_scenes)
 			if (iter.second == target_scene) return;
@@ -92,6 +99,11 @@ void SceneManager::ChangeScene(string key)
 Scene* SceneManager::GetActiveScene()
 {
 	return current_scene;
+}
+
+void SceneManager::SetScrollHelper(ScrollHelper* scroll_helper)
+{
+	m_scrollHelper = scroll_helper;
 }
 
 void SceneManager::SceneLoading()

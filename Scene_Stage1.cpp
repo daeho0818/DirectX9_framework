@@ -18,7 +18,7 @@ void Scene_Stage1::Init()
 
 	pattern2 = false;
 
-	pattern_helper->SetPattern(3, 3, 7, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(0, 3, 7, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern1(current_coolTime, is_end);
 		});
@@ -30,7 +30,8 @@ void Scene_Stage1::Init()
 		{
 			WavePattern3(current_coolTime, is_end);
 		});
-	pattern_helper->SetPattern(0, 3, 7, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(3
+, 3, 7, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern4(current_coolTime, is_end);
 		});

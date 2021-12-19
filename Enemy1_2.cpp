@@ -14,9 +14,9 @@ void Enemy1_2::Init()
 {
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
-	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(0, 0, 0, 1));
+	renderer->Setting(IMAGE->FindImage("Enemy_2"), D3DXCOLOR(1, 1, 1, 1));
 
-	m_transform->m_localScale = Vector2(0.3f, 0.3f);
+	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
 	sin_value = 0;
 
@@ -27,7 +27,7 @@ void Enemy1_2::Init()
 
 	move_able = false;
 
-	bullet_image = IMAGE->FindImage("bullet_player");
+	bullet_image = IMAGE->FindImage("Bullet_Enemy_2");
 
 	bullet_pool = new BulletPool<Bullet>("Enemy1_2 Bullet", EE_Bullet, 0.25f, bullet_image);
 

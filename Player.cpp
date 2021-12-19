@@ -20,18 +20,18 @@ void Player::Init()
 	};
 
 	m_position = &(m_transform->m_position);
+	m_transform->m_localScale = Vector2(0.5f, 0.5f);
+
 	move_speed = 1000;
 	fire_range = 0.5f;
 	m_object->OnCollisionEnter = [&](Object* other)->void {};
 
-	m_transform->m_localScale = Vector2(1, 0.5f);
-
-	bullet_image = IMAGE->FindImage("bullet_player");
+	bullet_image = IMAGE->FindImage("Bullet_Player");
 
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(1, 1, 1, 1));
+	renderer->Setting(IMAGE->FindImage("Player"), D3DXCOLOR(1, 1, 1, 1));
 
 	bullet_pool = new BulletPool<Bullet>("Player Bullet", ObjType::EP_Bullet, fire_range,
 		bullet_image, D3DXCOLOR(1, 1, 1, 1));

@@ -14,11 +14,11 @@ void Enemy1_3::Init()
 {
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
-	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(0, 1, 0, 1));
+	renderer->Setting(IMAGE->FindImage("Enemy_3"), D3DXCOLOR(1, 1, 1, 1));
+	
+	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
-	m_transform->m_localScale = Vector2(0.2f, 0.2f);
-
-	bullet_image = IMAGE->FindImage("bullet_player");
+	bullet_image = IMAGE->FindImage("Bullet_Enemy_3");
 
 	bullet_pool = new BulletPool<Bullet>("Enemy1_3 Bullet", EE_Bullet, 0, bullet_image);
 

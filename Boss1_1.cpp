@@ -16,9 +16,9 @@ void Boss1_1::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("Main_BG_Moon"), D3DXCOLOR(1, 1, 1, 1));
+	renderer->Setting(IMAGE->FindImage("Title_Moon"), D3DXCOLOR(1, 1, 1, 1));
 
-	bullet_image = IMAGE->FindImage("bullet_player");
+	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
 	is_spawned = false;
 

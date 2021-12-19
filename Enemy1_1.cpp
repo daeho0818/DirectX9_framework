@@ -15,10 +15,10 @@ void Enemy1_1::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("White"), D3DXCOLOR(0.5f, 0.5f, 0.5f, 1));
+	renderer->Setting(IMAGE->FindImage("Enemy_1"), D3DXCOLOR(0.5f, 0.5f, 0.5f, 1));
 	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
-	bullet_image = IMAGE->FindImage("bullet_player");
+	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
 	bullet_pool = new BulletPool<Bullet>("Enemy1_1 Bullet", EE_Bullet,
 		0.25f, bullet_image);
@@ -47,6 +47,8 @@ void Enemy1_1::Update()
 		if (move_able)
 			m_transform->Translate(m_transform->down * DELTA * 500);
 	}
+	if (GetKey(VK_F2))
+		m_transform->m_rotationZ++;
 }
 
 void Enemy1_1::Render()

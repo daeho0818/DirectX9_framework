@@ -11,10 +11,10 @@ Scene_Title::~Scene_Title()
 
 void Scene_Title::Init()
 {
-	i_background = IMAGE->FindImage("Main_BG");
-	i_moon = IMAGE->FindImage("Main_BG_Moon");
-	i_cloud = IMAGE->FindImage("Main_BG_Cloud");
-	i_mountain = IMAGE->FindImage("Main_BG_Mountains");
+	i_background = IMAGE->FindImage("Title_BG");
+	i_moon = IMAGE->FindImage("Title_Moon");
+	i_cloud = IMAGE->FindImage("Title_Cloud");
+	i_mountain = IMAGE->FindImage("Title_Mountain");
 
 	moon_position = Vector2(300, 200);
 
@@ -53,13 +53,14 @@ void Scene_Title::Update()
 void Scene_Title::Render()
 {
 	RENDER->CenterRender(i_background, CENTER);
+
+	RENDER->CenterRender(i_mountain, mountain_position[0]);
+	RENDER->CenterRender(i_mountain, mountain_position[1]);
+
 	RENDER->CenterRender(i_moon, moon_position);
 
 	RENDER->CenterRender(i_cloud, cloud_position[0]);
 	RENDER->CenterRender(i_cloud, cloud_position[1]);
-
-	RENDER->CenterRender(i_mountain, mountain_position[0]);
-	RENDER->CenterRender(i_mountain, mountain_position[1]);
 }
 
 void Scene_Title::UIRender()

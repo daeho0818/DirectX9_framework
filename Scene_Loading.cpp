@@ -11,18 +11,32 @@ Scene_Loading::~Scene_Loading()
 
 void Scene_Loading::Init()
 {
-	IMAGE->QuickLoad("Main_BG", "Scene/Title/Main_BG");
-	IMAGE->QuickLoad("Main_BG_Moon", "Scene/Title/Main_BG_Moon");
-	IMAGE->QuickLoad("Main_BG_Cloud", "Scene/Title/Main_BG_Cloud");
-	IMAGE->QuickLoad("Main_BG_Mountains", "Scene/Title/Main_BG_Mountains");
+	// 타이틀 화면 리소스
+	IMAGE->QuickLoad("Title_BG", "Scene/Title/Title_BG");
+	IMAGE->QuickLoad("Title_Moon", "Scene/Title/Title_Moon");
+	IMAGE->QuickLoad("Title_Cloud", "Scene/Title/Title_Cloud");
+	IMAGE->QuickLoad("Title_Mountain", "Scene/Title/Title_Mountain");
 
-	AddImage("bullet_player", "Object/Bullet/bullet_player");
-	AddImage("White", "White");
+	// 플레이어 / 적 캐릭터
+	AddImage("Player", "Object/Player/Player");
+	AddImage("Enemy_1", "Object/Enemy/Enemies/Enemy_1");
+	AddImage("Enemy_2", "Object/Enemy/Enemies/Enemy_2");
+	AddImage("Enemy_3", "Object/Enemy/Enemies/Enemy_3");
+	AddImage("Boss_1", "Object/Enemy/Boss/Boss_1");
 
-	i_background = IMAGE->FindImage("Main_BG");
-	i_moon = IMAGE->FindImage("Main_BG_Moon");
-	i_cloud = IMAGE->FindImage("Main_BG_Cloud");
-	i_mountain = IMAGE->FindImage("Main_BG_Mountains");
+	// 총알
+	AddImage("Bullet_Player", "Object/Bullet/Bullet_Player");
+	AddImage("Bullet_Enemy_1", "Object/Bullet/Bullet_Enemy_1");
+	AddImage("Bullet_Enemy_2", "Object/Bullet/Bullet_Enemy_2");
+	AddImage("Bullet_Enemy_3", "Object/Bullet/Bullet_Enemy_3");
+
+	// 배경
+	AddImage("Background_1", "Scene/Ingame/Stage_1/Background_1");
+
+	i_background = IMAGE->FindImage("Title_BG");
+	i_moon = IMAGE->FindImage("Title_Moon");
+	i_cloud = IMAGE->FindImage("Title_Cloud");
+	i_mountain = IMAGE->FindImage("Title_Mountain");
 
 	moon_position = Vector2(300, 200);
 
@@ -61,20 +75,21 @@ void Scene_Loading::Update()
 		IMAGE->QuickLoad(image_info.key, image_info.path, image_info.count);
 	}
 	else
-		//SCENE->ChangeScene("Scene_Title");
 		SCENE->ChangeScene("Scene_Title");
 }
 
 void Scene_Loading::Render()
 {
+
 	RENDER->CenterRender(i_background, CENTER);
+
+	RENDER->CenterRender(i_mountain, mountain_position[0]);
+	RENDER->CenterRender(i_mountain, mountain_position[1]);
+
 	RENDER->CenterRender(i_moon, moon_position);
 
 	RENDER->CenterRender(i_cloud, cloud_position[0]);
 	RENDER->CenterRender(i_cloud, cloud_position[1]);
-
-	RENDER->CenterRender(i_mountain, mountain_position[0]);
-	RENDER->CenterRender(i_mountain, mountain_position[1]);
 }
 
 void Scene_Loading::UIRender()

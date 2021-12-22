@@ -397,6 +397,7 @@
     <ClCompile Include="Enemy1_1.cpp" />
     <ClCompile Include="Enemy1_2.cpp" />
     <ClCompile Include="Enemy1_3.cpp" />
+    <ClCompile Include="Enemy1_4.cpp" />
     <ClCompile Include="FireHelper.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="ImageManager.cpp" />
@@ -433,6 +434,7 @@
     <ClInclude Include="Enemy1_1.h" />
     <ClInclude Include="Enemy1_2.h" />
     <ClInclude Include="Enemy1_3.h" />
+    <ClInclude Include="Enemy1_4.h" />
     <ClInclude Include="FireHelper.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />

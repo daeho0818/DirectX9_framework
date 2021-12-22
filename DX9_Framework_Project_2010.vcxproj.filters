@@ -144,6 +144,9 @@
     <Filter Include="2. Manager\%282%29 Object\Fire Helper">
       <UniqueIdentifier>{381f0647-8f7c-4c7b-ab23-0ce42dfab3cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 4">
+      <UniqueIdentifier>{3f8541ec-6658-491e-a3be-66f50b920b93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -310,6 +313,9 @@
     <ClCompile Include="FireHelper.cpp">
       <Filter>2. Manager\%282%29 Object\Fire Helper</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy1_4.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -416,6 +422,9 @@
     </ClInclude>
     <ClInclude Include="FireHelper.h">
       <Filter>2. Manager\%282%29 Object\Fire Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy1_4.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 4</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

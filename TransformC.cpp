@@ -5,6 +5,11 @@ TransformC::TransformC(Object* object) : Component(object)
 {
 	m_localScale = Vector2(1, 1);
 	m_rotationZ = 0;
+
+	right = Vector2(1, 0);
+	left = Vector2(-1, 0);
+	up = Vector2(0, -1);
+	down = Vector2(0, 1);
 }
 
 TransformC::~TransformC()

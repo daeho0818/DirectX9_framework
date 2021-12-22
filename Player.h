@@ -19,7 +19,6 @@ public:
 
 private:
 	void ChkMoveRange();
-	void Fire();
 
 	Image* bullet_image = nullptr;
 
@@ -28,8 +27,6 @@ private:
 
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
-
-	BulletPool* bullet_pool = nullptr;
 
 	float move_speed;
 	float fire_range;

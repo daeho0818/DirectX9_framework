@@ -1,6 +1,6 @@
 #pragma once
 class Bullet;
-class BulletPool
+class BulletPool : public Singleton<BulletPool>
 {
 public:
 	BulletPool();
@@ -13,3 +13,4 @@ private:
 	vector<Bullet*> m_bullets;
 
 };
+#define B_POOL BulletPool::Instance()

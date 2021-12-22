@@ -18,7 +18,6 @@ private:
 	void Pattern1(float current_count, bool is_end);
 	void Pattern2(float current_count, bool is_end);
 
-	void CircleBullet(float speed, float interval = 1);
 	void SpawnAnimation();
 
 	BoxColliderC* collider = nullptr;
@@ -27,7 +26,6 @@ private:
 	Image* bullet_image = nullptr;
 
 	PatternHelper* pattern_helper = new PatternHelper();
-	BulletPool* bullet_pool;
 
 	bool is_spawned;
 

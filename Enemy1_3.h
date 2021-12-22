@@ -13,16 +13,12 @@ public:
 	virtual void Release() override;
 
 private:
-	void CircleBullet(float speed, float interval);
-
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
 	Image* bullet_image = nullptr;
 
 	Timer* wait_timer = nullptr;
-
-	BulletPool* bullet_pool = nullptr;
 
 	bool move_able;
 };

@@ -22,21 +22,23 @@ void Enemy1_3::Init()
 
 	move_able = true;
 
-	bullet_pool = m_object->GetBulletPool();
+	m_object->fire_helper = new FireHelper();
 }
 
 void Enemy1_3::Update()
 {
 	if (move_able)
-		m_transform->Translate(m_transform->down * DELTA * 100);
+		m_transform->Translate(m_transform->down * DELTA * 300);
 
 	if (m_transform->m_position.y >= WINSIZEY / 2)
 	{
-		if (wait_timer != nullptr)
+		if (wait_timer == nullptr)
 		{
-			CircleBullet(20, 10);
+			m_object->fire_helper->CircleFire(m_transform->m_position, 20, 
+				"Enemy1_3 Bullet", EE_Bullet, 5, bullet_image);
 			move_able = false;
 			wait_timer = new Timer(2, 0, [&]()->void {move_able = true; });
+			wait_timer->TimerStart();
 		}
 	}
 }
@@ -51,22 +53,4 @@ void Enemy1_3::UIRender()
 
 void Enemy1_3::Release()
 {
-}
-
-void Enemy1_3::CircleBullet(float speed, float interval)
-{
-	Vector2 direction;
-	Object* object;
-	Bullet* bullet;
-
-	int fireCount = 0;
-	for (int i = 0; i < 360; i += 1 * interval)
-	{
-		bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_3 Bullet", EE_Bullet);
-		if (!bullet)
-			return;
-
-		bullet->SetBullet(Vector2(cos(D3DXToRadian(i)), sin(D3DXToRadian(i))), speed, bullet_image, bullet_pool);
-		fireCount++;
-	}
 }

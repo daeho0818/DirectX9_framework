@@ -24,8 +24,6 @@ private:
 
 	Image* bullet_image = nullptr;
 
-	BulletPool* bullet_pool = nullptr;
-
 	int m_index;
 	int oper_values[4];
 

@@ -33,33 +33,39 @@ void Player::Init()
 
 	renderer->Setting(IMAGE->FindImage("Player"), D3DXCOLOR(1, 1, 1, 1));
 
-	bullet_pool = m_object->GetBulletPool();
+	m_object->fire_helper = new FireHelper();
 }
 
 void Player::Update()
 {
 	ChkMoveRange();
 
+	m_transform->m_rotationZ = 90 +
+		D3DXToDegree(atan2(mouse.y - m_position->y, mouse.x - m_position->x));
+
 	if (GetKey('A'))
 	{
-		m_transform->m_position += m_transform->left * DELTA * move_speed;
+		m_transform->m_position += Vector2(-1, 0) * DELTA * move_speed;
 	}
 	if (GetKey('D'))
 	{
-		m_transform->m_position += m_transform->right * DELTA * move_speed;
+		m_transform->m_position += Vector2(1, 0) * DELTA * move_speed;
 	}
 	if (GetKey('W'))
 	{
-		m_transform->m_position += m_transform->up * DELTA * move_speed;
+		m_transform->m_position += Vector2(0, -1) * DELTA * move_speed;
 	}
 	if (GetKey('S'))
 	{
-		m_transform->m_position += m_transform->down * DELTA * move_speed;
+		m_transform->m_position += Vector2(0, 1) * DELTA * move_speed;
 	}
 
-	if (GetKey(VK_SPACE)) Fire();
-
-	if (GetKey('R')) m_transform->m_rotationZ++;
+	if (GetKey(VK_SPACE))
+	{
+		m_object->fire_helper->Fire(*m_position, 0.25f, 
+			*D3DXVec2Normalize(&(mouse - *m_position), &(mouse - *m_position)), 
+			"Player Bullet", EP_Bullet, 10, bullet_image);
+	}
 }
 
 void Player::Render()
@@ -85,14 +91,4 @@ void Player::ChkMoveRange()
 		m_transform->m_position.y = move_range.top;
 	else if (m_position->y > move_range.bottom)
 		m_transform->m_position.y = move_range.bottom;
-}
-
-void Player::Fire()
-{
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Player Bullet", EE_Bullet);
-	if (bullet)
-	{
-		Vector2 dir = INPUT->GetMousePosition() - (*m_position);
-		bullet->SetBullet(*D3DXVec2Normalize(&dir, &dir), 1, bullet_image, bullet_pool);
-	}
 }

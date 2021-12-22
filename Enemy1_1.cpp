@@ -22,12 +22,18 @@ void Enemy1_1::Init()
 
 	move_able = true;
 
-	bullet_pool = m_object->GetBulletPool();
+	m_object->fire_helper = new FireHelper();
+
+	m_object->OnCollisionEnter = [&](Object* other) -> void
+	{
+		
+	};
 }
 
 void Enemy1_1::Update()
 {
-	Fire();
+	m_object->fire_helper->Fire(m_transform->m_position, 0.5f,
+		m_transform->down, "Enemy1_1 Bullet", EE_Bullet, 7, bullet_image);
 
 	if (m_transform->m_position.y < 380)
 		D3DXVec2Lerp(&m_transform->m_position,
@@ -59,14 +65,4 @@ void Enemy1_1::UIRender()
 
 void Enemy1_1::Release()
 {
-}
-
-void Enemy1_1::Fire()
-{
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_1 Bullet", EE_Bullet);
-	if (!bullet)
-	{
-		return;
-	}
-	bullet->SetBullet(m_transform->down, 15, bullet_image, bullet_pool);
 }

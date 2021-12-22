@@ -14,16 +14,12 @@ public:
 	virtual void Release() override;
 
 private:
-	void Fire();
-
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
 	Image* bullet_image = nullptr;
 
 	Timer* wait_timer = nullptr;
-
-	BulletPool* bullet_pool = nullptr;
 
 	bool move_able;
 };

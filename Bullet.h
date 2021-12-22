@@ -7,7 +7,7 @@ public:
 	~Bullet();
 
 	void SetBullet(Vector2 direction, float move_speed, Image* image,
-		BulletPool* bullet_pool, D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
+		D3DXCOLOR color = D3DXCOLOR(1, 1, 1, 1));
 
 	// Component을(를) 통해 상속됨
 	virtual void Init() override;
@@ -17,8 +17,6 @@ public:
 	virtual void Release() override;
 
 	void ReturnBullet();
-
-	BulletPool* bullet_pool;
 
 private:
 	BoxColliderC* collider = nullptr;

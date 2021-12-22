@@ -34,12 +34,12 @@ private:
 };
 #define INPUT InputManager::Instance()
 
-#define GetKeyDown(key) INPUT->KeyDown(key)
-#define GetKeyUp(key) INPUT->KeyUp(key)
-#define GetKey(key) INPUT->KeyPress(key)
+#define GetKeyDown(key) InputManager::Instance()->KeyDown(key)
+#define GetKeyUp(key) InputManager::Instance()->KeyUp(key)
+#define GetKey(key) InputManager::Instance()->KeyPress(key)
 
-#define MouseDown(button) INPUT->IsMouseDown(button)
-#define MouseUp(button) INPUT->IsMouseUp(button)
-#define MousePressed(button) INPUT->IsMousePressed(button)
+#define MouseDown(button) InputManager::Instance()->IsMouseDown(button)
+#define MouseUp(button) InputManager::Instance()->IsMouseUp(button)
+#define MousePressed(button) InputManager::Instance()->IsMousePressed(button)
 
-#define mouse INPUT->mouse_position
+#define mouse InputManager::Instance()->GetMousePosition()

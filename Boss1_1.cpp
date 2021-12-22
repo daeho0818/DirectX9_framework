@@ -26,6 +26,8 @@ void Boss1_1::Init()
 	{
 		if (!is_spawned) return;
 	};
+
+	m_object->fire_helper = new FireHelper();
 }
 
 void Boss1_1::Update()
@@ -61,7 +63,6 @@ void Boss1_1::UIRender()
 
 void Boss1_1::Release()
 {
-	SAFE_DELETE(bullet_pool);
 }
 
 Vector2 direction;
@@ -82,12 +83,10 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 	direction.y = m_transform->down.y;
 	direction.x += sin(D3DXToRadian(sin_value)) / devide_value;
 
-	Bullet* bullet;
+	D3DXVec2Normalize(&direction, &direction);
 
-	bullet = bullet_pool->GetBullet(m_transform->m_position, "Boss1_1 Bullet", EE_Bullet);
-	if (!bullet) return;
-
-	bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 3, bullet_image, bullet_pool);
+	m_object->fire_helper->Fire(m_transform->m_position, 0.1f, 
+		direction, "Boss1_1 Bullet", EE_Bullet, 3, bullet_image);
 }
 
 Vector2 target_position;
@@ -116,9 +115,15 @@ void Boss1_1::Pattern2(float current_count, bool is_end)
 		{
 			lerp_percent = 0;
 
-			CircleBullet(1, 5);
-			CircleBullet(2, 4);
-			CircleBullet(3, 3);
+			m_object->fire_helper->CircleFire(m_transform->m_position, 5,
+				"Boss1_1", EE_Bullet, 1, bullet_image);
+
+			m_object->fire_helper->CircleFire(m_transform->m_position, 4,
+				"Boss1_1", EE_Bullet, 2, bullet_image);
+
+			m_object->fire_helper->CircleFire(m_transform->m_position, 3,
+				"Boss1_1", EE_Bullet, 3, bullet_image);
+
 
 			CAMERA->ShakingCamera(5, 2, true);
 
@@ -128,24 +133,6 @@ void Boss1_1::Pattern2(float current_count, bool is_end)
 
 	D3DXVec2Lerp(&m_transform->m_position, &m_transform->m_position,
 		&target_position, lerp_percent);
-}
-
-void Boss1_1::CircleBullet(float speed, float interval)
-{
-	Vector2 direction;
-	Object* object;
-	Bullet* bullet;
-
-	int fireCount = 0;
-	for (int i = 0; i < 360; i += 1 * interval)
-	{
-		bullet = bullet_pool->GetBullet(m_transform->m_position, "Boss1_1 Bullet", EE_Bullet);
-		if (!bullet) 
-			return;
-
-		bullet->SetBullet(Vector2(cos(D3DXToRadian(i)), sin(D3DXToRadian(i))), speed, bullet_image, bullet_pool);
-		fireCount++;
-	}
 }
 
 void Boss1_1::SpawnAnimation()

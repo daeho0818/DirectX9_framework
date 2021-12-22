@@ -35,7 +35,7 @@ void Enemy1_2::Init()
 		});
 	wait_timer->TimerStart();
 
-	bullet_pool = m_object->GetBulletPool();
+	m_object->fire_helper = new FireHelper();
 }
 
 void Enemy1_2::Update()
@@ -54,7 +54,8 @@ void Enemy1_2::Update()
 		m_transform->Translate(m_transform->down * DELTA * 500);
 	}
 
-	Fire();
+	m_object->fire_helper->Fire(m_transform->m_position, 0.5f,
+		m_transform->down, "Enemy1_2 Bullet", EE_Bullet, 7, bullet_image);
 }
 
 void Enemy1_2::Render()
@@ -72,12 +73,4 @@ void Enemy1_2::Release()
 void Enemy1_2::SetEnemy(int index)
 {
 	m_index = index;
-}
-
-void Enemy1_2::Fire()
-{
-	Bullet* bullet = bullet_pool->GetBullet(m_transform->m_position, "Enemy1_2 Bullet", EE_Bullet);
-	if (!bullet) return;
-
-	bullet->SetBullet(m_transform->down, 15, bullet_image, bullet_pool);
 }

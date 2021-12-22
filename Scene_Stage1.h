@@ -3,6 +3,7 @@
 #include "Enemy1_1.h"
 #include "Enemy1_2.h"
 #include "Enemy1_3.h"
+#include "Enemy1_4.h"
 #include "Boss1_1.h"
 class Scene_Stage1 : public Scene
 {
@@ -22,8 +23,7 @@ private:
 	void WavePattern2(float current_coolTime, bool is_end);
 	void WavePattern3(float current_coolTime, bool is_end);
 	void WavePattern4(float current_coolTime, bool is_end);
-
-	BulletPool* bullet_pool = nullptr;
+	void WavePattern5(float current_coolTime, bool is_end);
 
 	PatternHelper* pattern_helper = nullptr;
 	Object* m_playerObject = nullptr;
@@ -39,5 +39,7 @@ private:
 	Vector2 enemy2_position[2];
 
 	Timer* t_enemy3_spawn = nullptr;
+	Vector2 enemy3_spawn_positions[3];
+	int enemy3_spawn_count = 0;
 
 };

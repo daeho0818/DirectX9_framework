@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "TransformC.h"
+#include "FireHelper.h"
 class Object
 {
 	friend class TransformC;
@@ -44,19 +45,16 @@ public:
 	void SetActive(bool active) { activeSelf = active; }
 	bool ActiveSelf() { return activeSelf; };
 
-	void SetBulletPool(BulletPool* pool) { bullet_pool = pool; }
-	BulletPool* GetBulletPool() { return bullet_pool; }
-
 	string m_name;
 	ObjType m_type;
 	TransformC* m_transform = nullptr;
 	function<void(Object* other)> OnCollisionEnter = nullptr;
+	FireHelper* fire_helper = nullptr;
 
 	bool is_destroy;
 
 private:
 	map<string, Component*> components;
-	BulletPool* bullet_pool = nullptr;
 
 	bool activeSelf;
 

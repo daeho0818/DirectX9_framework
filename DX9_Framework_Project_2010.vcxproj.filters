@@ -141,6 +141,9 @@
     <Filter Include="2. Manager\%282%29 Object\Object Pool\Bullet Pool">
       <UniqueIdentifier>{bf57d0f1-4175-4b41-b83c-7390cbaa3df1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2. Manager\%282%29 Object\Fire Helper">
+      <UniqueIdentifier>{381f0647-8f7c-4c7b-ab23-0ce42dfab3cd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -304,6 +307,9 @@
     <ClCompile Include="ScrollHelper.cpp">
       <Filter>2. Manager\%282%29 Object\Scroll Helper</Filter>
     </ClCompile>
+    <ClCompile Include="FireHelper.cpp">
+      <Filter>2. Manager\%282%29 Object\Fire Helper</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -407,6 +413,9 @@
     </ClInclude>
     <ClInclude Include="ScrollHelper.h">
       <Filter>2. Manager\%282%29 Object\Scroll Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="FireHelper.h">
+      <Filter>2. Manager\%282%29 Object\Fire Helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

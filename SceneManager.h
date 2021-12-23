@@ -22,8 +22,6 @@ public:
 	void ChangeScene(string key);
 	Scene* GetActiveScene();
 
-	void SetScrollHelper(ScrollHelper* scroll_helper);
-
 private:
 	map<string, Scene*> m_scenes;
 
@@ -31,8 +29,6 @@ private:
 	Scene* target_scene = nullptr;
 
 	vector<Timer*> m_timers;
-
-	ScrollHelper* m_scrollHelper = nullptr;
 
 	void SceneLoading();
 };

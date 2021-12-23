@@ -38,6 +38,8 @@ void Player::Init()
 
 void Player::Update()
 {
+	m_object->fire_helper->Update();
+
 	ChkMoveRange();
 
 	m_transform->m_rotationZ = 90 +

@@ -26,6 +26,8 @@ private:
 	void WavePattern5(float current_coolTime, bool is_end);
 
 	PatternHelper* pattern_helper = nullptr;
+	ScrollHelper* scroll_helper = nullptr;
+
 	Object* m_playerObject = nullptr;
 	Player* m_player = nullptr;
 
@@ -41,5 +43,7 @@ private:
 	Timer* t_enemy3_spawn = nullptr;
 	Vector2 enemy3_spawn_positions[3];
 	int enemy3_spawn_count = 0;
+
+	bool pattern5;
 
 };

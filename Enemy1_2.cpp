@@ -14,7 +14,7 @@ void Enemy1_2::Init()
 {
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
-	renderer->Setting(IMAGE->FindImage("Enemy_2"), D3DXCOLOR(1, 1, 1, 1));
+	renderer->Setting(IMAGE->FindImage("Enemy1_2"), D3DXCOLOR(1, 1, 1, 1));
 
 	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
@@ -40,6 +40,8 @@ void Enemy1_2::Init()
 
 void Enemy1_2::Update()
 {
+	m_object->fire_helper->Update();
+
 	if (sin_value < 90)
 	{
 		sin_value += DELTA * 50;

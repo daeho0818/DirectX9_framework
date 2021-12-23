@@ -8,8 +8,6 @@ ScrollHelper::ScrollHelper(Image* bg_image)
 	bg2_position = CENTER;
 	bg3_position = CENTER + Vector2(0, m_bgImage->info.Height);
 
-	SCENE->SetScrollHelper(this);
-
 	scroll_speed = 100;
 }
 

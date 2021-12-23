@@ -15,7 +15,7 @@ void Enemy1_1::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("Enemy_1"), D3DXCOLOR(0.5f, 0.5f, 0.5f, 1));
+	renderer->Setting(IMAGE->FindImage("Enemy1_1"), D3DXCOLOR(1, 1, 1, 1));
 	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
@@ -32,6 +32,8 @@ void Enemy1_1::Init()
 
 void Enemy1_1::Update()
 {
+	m_object->fire_helper->Update();
+
 	m_object->fire_helper->Fire(m_transform->m_position, 0.5f,
 		m_transform->down, "Enemy1_1 Bullet", EE_Bullet, 7, bullet_image);
 

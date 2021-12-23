@@ -15,8 +15,6 @@ public:
 	void SetEnemy(int index);
 
 private:
-	void Fire();
-
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 

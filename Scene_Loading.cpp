@@ -19,10 +19,10 @@ void Scene_Loading::Init()
 
 	// 플레이어 / 적 캐릭터
 	AddImage("Player", "Object/Player/Player");
-	AddImage("Enemy_1", "Object/Enemy/Enemies/Enemy_1");
-	AddImage("Enemy_2", "Object/Enemy/Enemies/Enemy_2");
-	AddImage("Enemy_3", "Object/Enemy/Enemies/Enemy_3");
-	AddImage("Boss_1", "Object/Enemy/Boss/Boss_1");
+	AddImage("Enemy1_1", "Object/Enemy/Enemies/Stage1/Enemy_1");
+	AddImage("Enemy1_2", "Object/Enemy/Enemies/Stage1/Enemy_2");
+	AddImage("Enemy1_3", "Object/Enemy/Enemies/Stage1/Enemy_3");
+	AddImage("Boss1_1", "Object/Enemy/Boss/Stage1/Boss_1");
 
 	// 총알
 	AddImage("Bullet_Player", "Object/Bullet/Bullet_Player");

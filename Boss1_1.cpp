@@ -16,7 +16,7 @@ void Boss1_1::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("Title_Moon"), D3DXCOLOR(1, 1, 1, 1));
+	renderer->Setting(IMAGE->FindImage("Boss1_1"), D3DXCOLOR(1, 1, 1, 1));
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
@@ -37,6 +37,8 @@ void Boss1_1::Update()
 		SpawnAnimation();
 		return;
 	}
+
+	m_object->fire_helper->Update();
 
 	if (GetKey('F'))
 		Pattern2(0, false);
@@ -85,7 +87,7 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 
 	D3DXVec2Normalize(&direction, &direction);
 
-	m_object->fire_helper->Fire(m_transform->m_position, 0.1f, 
+	m_object->fire_helper->Fire(m_transform->m_position, 0.1f,
 		direction, "Boss1_1 Bullet", EE_Bullet, 3, bullet_image);
 }
 

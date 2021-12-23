@@ -16,9 +16,6 @@ void SceneManager::Init()
 
 void SceneManager::Update()
 {
-	if (m_scrollHelper)
-		m_scrollHelper->Update();
-
 	if (current_scene) current_scene->Update();
 
 	// 화면 Fading이 끝났다면
@@ -44,9 +41,6 @@ void SceneManager::Update()
 
 void SceneManager::Render()
 {
-	if (m_scrollHelper)
-		m_scrollHelper->Render();
-
 	if (current_scene) current_scene->Render();
 }
 
@@ -63,8 +57,6 @@ void SceneManager::Release()
 		SAFE_DELETE(iter);
 	for (var iter : m_scenes)
 		SAFE_DELETE(iter.second);
-
-	SAFE_DELETE(m_scrollHelper);
 
 	m_timers.clear();
 	m_scenes.clear();
@@ -94,11 +86,6 @@ void SceneManager::ChangeScene(string key)
 Scene* SceneManager::GetActiveScene()
 {
 	return current_scene;
-}
-
-void SceneManager::SetScrollHelper(ScrollHelper* scroll_helper)
-{
-	m_scrollHelper = scroll_helper;
 }
 
 void SceneManager::SceneLoading()

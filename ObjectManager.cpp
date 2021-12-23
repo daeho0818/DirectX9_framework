@@ -23,8 +23,6 @@ void ObjectManager::Update()
 			{
 				(*iter)->CheckOut();
 
-				if ((*iter)->fire_helper) (*iter)->fire_helper->Update();
-
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
 					if ((c_iter)->second->enabled)

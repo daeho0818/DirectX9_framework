@@ -11,7 +11,6 @@ Scene_Stage1::~Scene_Stage1()
 
 void Scene_Stage1::Init()
 {
-	pattern_helper = new	PatternHelper();
 
 	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
 	m_player = m_playerObject->AddComponent<Player>();
@@ -26,6 +25,8 @@ void Scene_Stage1::Init()
 	enemy3_spawn_positions[2] = Vector2(800, -50);
 
 	pattern5 = false;
+
+	pattern_helper = new	PatternHelper();
 
 	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
 		{

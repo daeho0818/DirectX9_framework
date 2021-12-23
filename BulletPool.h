@@ -8,6 +8,7 @@ public:
 
 	Bullet* GetBullet(Vector2 position, string bullet_name, ObjType bullet_type);
 	void ReturnBullet(Bullet* bullet);
+	void Release();
 
 private:
 	vector<Bullet*> m_bullets;

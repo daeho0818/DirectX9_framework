@@ -53,7 +53,8 @@ Image* RendererC::GetImage()
 
 void RendererC::SetColor(D3DXCOLOR color)
 {
-	m_color;
+           	var o = m_object;
+ 	m_color = color;
 }
 
 D3DXCOLOR RendererC::GetColor()

@@ -24,11 +24,9 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image,
 	{
 		if (m_object->m_type == EP_Bullet && other->m_type == EEnemy)
 		{
-			if (m_object->ActiveSelf())
-				m_object->is_destroy = true;
+			ReturnBullet();
 		}
 	};
-
 	m_transform->m_rotationZ = 90 + D3DXToDegree(atan2(direction.y, direction.x));
 }
 

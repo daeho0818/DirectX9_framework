@@ -35,3 +35,8 @@ void BulletPool::ReturnBullet(Bullet* bullet)
 	bullet->m_object->SetActive(false);
 	m_bullets.push_back(bullet);
 }
+
+void BulletPool::Release()
+{
+	m_bullets.clear();
+}

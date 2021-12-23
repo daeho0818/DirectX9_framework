@@ -64,6 +64,7 @@ void MainGame::Release()
 	CameraManager::Destroy();
 	ImageManager::Destroy();
 	RenderManager::Destroy();
+	BulletPool::Destroy();
 	SceneManager::Destroy();
 	SoundManager::Destroy();
 	ObjectManager::Destroy();

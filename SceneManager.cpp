@@ -93,8 +93,14 @@ void SceneManager::SceneLoading()
 	if (current_scene)
 	{
 		current_scene->Release();
+
+		for (var iter : m_timers)
+			SAFE_DELETE(iter);
+		m_timers.clear();
+
 		OBJECT->DestroyAllObject();
 	}
+	B_POOL->Release();
 
 	target_scene->Init();
 	current_scene = target_scene;

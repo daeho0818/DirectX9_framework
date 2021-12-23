@@ -42,5 +42,5 @@ void Object::HitAnimation(RendererC* renderer, D3DXCOLOR color)
 	renderer->SetColor(color);
 
 	hit_animation = new Timer(0.25f, 0, [&]()->void {renderer->SetColor(D3DXCOLOR(1, 1, 1, 1)); });
-	hit_animation->TimerStart();
+             	hit_animation->TimerStart();
 }

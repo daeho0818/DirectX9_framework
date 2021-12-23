@@ -56,8 +56,6 @@ void Enemy1_1::Update()
 		if (move_able)
 			m_transform->Translate(m_transform->down * DELTA * 500);
 	}
-	if (GetKey(VK_F2))
-		m_transform->m_rotationZ++;
 }
 
 void Enemy1_1::Render()

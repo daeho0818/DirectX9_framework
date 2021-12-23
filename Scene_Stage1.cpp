@@ -27,23 +27,23 @@ void Scene_Stage1::Init()
 
 	pattern5 = false;
 
-	//pattern_helper->SetPattern(0, 3, 7, [&](float current_coolTime, bool is_end)->void
-	//	{
-	//		WavePattern1(current_coolTime, is_end);
-	//	});
-	//pattern_helper->SetPattern(1, 3, 7, [&](float current_coolTime, bool is_end)->void
-	//	{
-	//		WavePattern2(current_coolTime, is_end);
-	//	});
-	//pattern_helper->SetPattern(2, 3, 7, [&](float current_coolTime, bool is_end)->void
-	//	{
-	//		WavePattern3(current_coolTime, is_end);
-	//	});
-	//pattern_helper->SetPattern(3, 8, 7, [&](float current_coolTime, bool is_end)->void
-	//	{
-	//		WavePattern4(current_coolTime, is_end);
-	//	});
-	pattern_helper->SetPattern(0, 1, 77, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern1(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(1, 7, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern2(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(2, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern3(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(3, 8, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern4(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(4, 35, 5, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern5(current_coolTime, is_end);
 		});
@@ -51,7 +51,12 @@ void Scene_Stage1::Init()
 	// m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
 	// m_boss = m_bossObject->AddComponent<Boss1_1>();
 
+	boss_appear_count = 120;
+
 	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
+
+	boss_appear_timer = new Timer(1, boss_appear_count, [&]()->void {boss_appear_count--; }, false);
+	boss_appear_timer->TimerStart();
 }
 
 void Scene_Stage1::Update()
@@ -60,6 +65,8 @@ void Scene_Stage1::Update()
 
 	pattern_helper->Update();
 	scroll_helper->Update();
+
+	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
 
 void Scene_Stage1::Render()
@@ -69,6 +76,8 @@ void Scene_Stage1::Render()
 
 void Scene_Stage1::UIRender()
 {
+	RENDER->TextRender("보스 등장까지", Vector2(WINSIZEX / 2, 50));
+	RENDER->TextRender(boss_appear_str, Vector2(WINSIZEX / 2, 110), 75);
 }
 
 void Scene_Stage1::Release()
@@ -107,10 +116,9 @@ void Scene_Stage1::WavePattern2(float current_coolTime, bool is_end)
 {
 	if (is_end)
 	{
-		pattern2 = true;
+		pattern2 = false;
 	}
-
-	else if (pattern2)
+	else if (!pattern2)
 	{
 		Object* object[4];
 		Enemy1_2* enemies[4];
@@ -122,7 +130,7 @@ void Scene_Stage1::WavePattern2(float current_coolTime, bool is_end)
 			enemies[i]->SetEnemy(i);
 		}
 
-		pattern2 = false;
+		pattern2 = true;
 	}
 }
 
@@ -144,12 +152,12 @@ void Scene_Stage1::WavePattern4(float current_coolTime, bool is_end)
 		Object* object = OBJECT->CreateObject("Enemy1_3", EEnemy, Vector2(200, -50));
 		object->AddComponent<Enemy1_3>();
 
-		t_enemy3_spawn = new Timer(2, 0, [&]()->void
+		t_enemy3_spawn = new Timer(2, 2, [&]()->void
 			{
 				Object* object = OBJECT->CreateObject("Enemy1_3", EEnemy,
 					enemy3_spawn_positions[enemy3_spawn_count++]);
 				object->AddComponent<Enemy1_3>();
-			}, 2);
+			});
 
 		t_enemy3_spawn->TimerStart();
 	}
@@ -160,10 +168,8 @@ void Scene_Stage1::WavePattern5(float current_coolTime, bool is_end)
 	if (is_end)
 	{
 		pattern5 = false;
-		return;
 	}
-
-	if (!pattern5)
+	else if (!pattern5)
 	{
 		for (int i = 0; i < 2; i++)
 		{

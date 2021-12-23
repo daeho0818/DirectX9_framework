@@ -25,15 +25,18 @@ private:
 	void WavePattern4(float current_coolTime, bool is_end);
 	void WavePattern5(float current_coolTime, bool is_end);
 
+	// helpers
 	PatternHelper* pattern_helper = nullptr;
 	ScrollHelper* scroll_helper = nullptr;
 
+	// objects
 	Object* m_playerObject = nullptr;
 	Player* m_player = nullptr;
 
 	Object* m_bossObject = nullptr;
 	Boss1_1* m_boss = null;
 
+	// releted field of stage patterns
 	Timer* t_enemy1_spawn = nullptr;
 	int enemy1_position_x;
 
@@ -45,5 +48,10 @@ private:
 	int enemy3_spawn_count = 0;
 
 	bool pattern5;
+
+	// related boss help
+	char boss_appear_str[256] = "";
+	int boss_appear_count;
+	Timer* boss_appear_timer = nullptr;
 
 };

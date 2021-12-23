@@ -23,9 +23,12 @@ private:
 	Image* bullet_image = nullptr;
 
 	int m_index;
-	int oper_values[4];
+	int oper_value;
 
 	float sin_value;
+	float move_speed;
+	float bullet_speed;
+	float bullet_interval;
 
 	bool move_able;
 

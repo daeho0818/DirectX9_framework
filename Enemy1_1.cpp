@@ -26,7 +26,10 @@ void Enemy1_1::Init()
 
 	m_object->OnCollisionEnter = [&](Object* other) -> void
 	{
-		
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(renderer, D3DXCOLOR(1, 0, 0, 1));
+		}
 	};
 }
 

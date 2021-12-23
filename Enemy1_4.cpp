@@ -19,29 +19,37 @@ void Enemy1_4::Init()
 
 	reflect_count = 0;
 
-	m_transform->m_localScale = Vector2(0.7f, 0.7f);
+	m_transform->m_localScale = Vector2(0, 0);
 
 	m_object->fire_helper = new FireHelper();
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
+
+	m_object->spawn_animation = true;
 }
 
 void Enemy1_4::Update()
 {
-	m_object->fire_helper->Update();
+	if(m_object->spawn_animation)
+	m_object->SpawnAnimation(Vector2(0.7f, 0.7f));
 
-	m_transform->Translate(move_direction * DELTA * 200);
+	else
+	{
+		m_object->fire_helper->Update();
 
-	if (reflect_count < 3)
-		if ((m_transform->m_position.x > WINSIZEX - 50 && move_direction == m_transform->right) ||
-			(m_transform->m_position.x < 0 + 50 && move_direction == m_transform->left))
-		{
-			move_direction *= -1;
-			reflect_count++;
-		}
+		m_transform->Translate(move_direction * DELTA * 200);
 
-	Vector2 direction = m_player->m_transform->m_position - m_transform->m_position;
-	m_object->fire_helper->Fire(m_transform->m_position, 0.5f, *D3DXVec2Normalize(&direction, &direction), "Enemy1_4 Bullet", EE_Bullet, 7, bullet_image);
+		if (reflect_count < 3)
+			if ((m_transform->m_position.x > WINSIZEX - 50 && move_direction == m_transform->right) ||
+				(m_transform->m_position.x < 0 + 50 && move_direction == m_transform->left))
+			{
+				move_direction *= -1;
+				reflect_count++;
+			}
+
+		Vector2 direction = m_player->m_transform->m_position - m_transform->m_position;
+		m_object->fire_helper->Fire(m_transform->m_position, 0.5f, *D3DXVec2Normalize(&direction, &direction), "Enemy1_4 Bullet", EE_Bullet, 7, bullet_image);
+	}
 }
 
 void Enemy1_4::Render()

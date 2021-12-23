@@ -44,6 +44,8 @@ public:
 
 	void SetActive(bool active) { activeSelf = active; }
 	bool ActiveSelf() { return activeSelf; };
+	void SpawnAnimation(Vector2 scale);
+	void HitAnimation(RendererC* renderer, D3DXCOLOR color);
 
 	string m_name;
 	ObjType m_type;
@@ -51,10 +53,15 @@ public:
 	function<void(Object* other)> OnCollisionEnter = nullptr;
 	FireHelper* fire_helper = nullptr;
 
+	int m_hp;
+
 	bool is_destroy;
+	bool spawn_animation;
 
 private:
 	map<string, Component*> components;
+
+	Timer* hit_animation = nullptr;
 
 	bool activeSelf;
 

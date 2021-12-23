@@ -20,11 +20,6 @@ void Enemy1_2::Init()
 
 	sin_value = 0;
 
-	oper_values[0] = 4;
-	oper_values[1] = -4;
-	oper_values[2] = 8;
-	oper_values[3] = -8;
-
 	move_able = false;
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_2");
@@ -47,17 +42,17 @@ void Enemy1_2::Update()
 		sin_value += DELTA * 50;
 
 		m_transform->Translate(Vector2(
-			oper_values[m_index] * cos(D3DXToRadian(sin_value)),
-			2 * sin(D3DXToRadian(sin_value))));
+			oper_value * cos(D3DXToRadian(sin_value)),
+			2 * sin(D3DXToRadian(sin_value))) * DELTA * 100);
 	}
 
 	if (move_able)
 	{
-		m_transform->Translate(m_transform->down * DELTA * 500);
+		m_transform->Translate(m_transform->down * DELTA * move_speed);
 	}
 
-	m_object->fire_helper->Fire(m_transform->m_position, 0.5f,
-		m_transform->down, "Enemy1_2 Bullet", EE_Bullet, 7, bullet_image);
+	m_object->fire_helper->Fire(m_transform->m_position, bullet_interval,
+		m_transform->down, "Enemy1_2 Bullet", EE_Bullet, bullet_speed, bullet_image);
 }
 
 void Enemy1_2::Render()
@@ -75,4 +70,19 @@ void Enemy1_2::Release()
 void Enemy1_2::SetEnemy(int index)
 {
 	m_index = index;
+
+	if (index == 0 || index == 1)
+	{
+		oper_value = 4 * (index == 1 ? -1 : 1);
+		move_speed = 500;
+		bullet_speed = 7;
+		bullet_interval = 0.5f;
+	}
+	else if (index == 2 || index == 3)
+	{
+		oper_value = 8 * (index == 3 ? -1 : 1);
+		move_speed = 600;
+		bullet_speed = 15;
+		bullet_interval = 0.25f;
+	}
 }

@@ -65,9 +65,11 @@ void RenderManager::CropRender(Image* image, Vector2 pos, RECT& rc, float size, 
 
 void RenderManager::TextRender(string str, Vector2 pos, float size, D3DXCOLOR color)
 {
+	Vector2 cam_position = CAMERA->GetPosition();
+
 	D3DXMATRIXA16 mat;
-	D3DXCreateFontA(DEVICE, size, 0, 10, 1, 0, DEFAULT_CHARSET, 0, 0, 0, "나눔스퀘어 AC", &m_font);
-	D3DXMatrixTranslation(&mat, pos.x - size * (str.size() * 0.25), pos.y - size / 2, 0);
+	D3DXCreateFontA(DEVICE, size, 0, 10, 1, 0, DEFAULT_CHARSET, 0, 0, 0, "NanumSquareRoundOTFB", &m_font);
+	D3DXMatrixTranslation(&mat, pos.x - size * (str.size() * 0.25) + cam_position.x, pos.y - size / 2 + cam_position.y, 0);
 	m_sprite->SetTransform(&mat);
 	m_font->DrawTextA(m_sprite, str.c_str(), str.size(), null, DT_NOCLIP, color);
 	m_font->Release();

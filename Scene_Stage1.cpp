@@ -27,30 +27,10 @@ void Scene_Stage1::Init()
 	pattern5 = false;
 
 	pattern_helper = new	PatternHelper();
+	// SetAllWavePatterns();
 
-	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern1(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(1, 7, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern2(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(2, 10, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern3(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(3, 8, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern4(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(4, 35, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern5(current_coolTime, is_end);
-		});
-
-	// m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
-	// m_boss = m_bossObject->AddComponent<Boss1_1>();
+	m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
+	m_boss = m_bossObject->AddComponent<Boss1_1>();
 
 	boss_appear_count = 120;
 
@@ -181,4 +161,28 @@ void Scene_Stage1::WavePattern5(float current_coolTime, bool is_end)
 
 		pattern5 = true;
 	}
+}
+
+void Scene_Stage1::SetAllWavePatterns()
+{
+	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern1(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(1, 7, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern2(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(2, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern3(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(3, 8, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern4(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(4, 35, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern5(current_coolTime, is_end);
+		});
 }

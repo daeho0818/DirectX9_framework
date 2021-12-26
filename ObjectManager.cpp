@@ -22,6 +22,7 @@ void ObjectManager::Update()
 			if ((*iter)->activeSelf)
 			{
 				(*iter)->CheckOut();
+				if ((*iter)->m_hp <= 0) (*iter)->is_destroy = true;
 
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
@@ -34,7 +35,7 @@ void ObjectManager::Update()
 		}
 		else
 		{
-			if ((*iter)->m_type != ObjType::EE_Bullet && (*iter)->m_type != ObjType::EP_Bullet)
+			if ((*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
 			{
 				SAFE_DELETE(*iter);
 				iter = m_objects.erase(iter);
@@ -103,19 +104,19 @@ Object* ObjectManager::CreateObject(string name, ObjType type, Vector2 position)
 
 	switch (object->m_type)
 	{
-	case ObjType::EPlayer:
+	case EPlayer:
 		m_player = object;
 		break;
-	case ObjType::EEnemy:
+	case EEnemy:
 		m_enemies.push_back(object);
 		break;
-	case ObjType::EE_Bullet:
+	case EE_Bullet:
 		m_eBullets.push_back(object);
 		break;
-	case ObjType::EP_Bullet:
+	case EP_Bullet:
 		m_pBullets.push_back(object);
 		break;
-	case ObjType::EItem:
+	case EItem:
 		m_items.push_back(object);
 		break;
 	}
@@ -163,7 +164,8 @@ void ObjectManager::DestroyAllObject()
 	}
 	m_objects.clear();
 
-	m_player = null;
+	SAFE_DELETE(m_player);
+
 	m_eBullets.clear();
 	m_pBullets.clear();
 	m_enemies.clear();

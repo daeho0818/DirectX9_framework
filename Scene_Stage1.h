@@ -25,6 +25,8 @@ private:
 	void WavePattern4(float current_coolTime, bool is_end);
 	void WavePattern5(float current_coolTime, bool is_end);
 
+	void SetAllWavePatterns();
+
 	// helpers
 	PatternHelper* pattern_helper = nullptr;
 	ScrollHelper* scroll_helper = nullptr;

@@ -19,6 +19,11 @@ Bullet* BulletPool::GetBullet(Vector2 position, string bullet_name, ObjType bull
 		m_bullets.pop_back();
 
 		bullet->m_transform->m_position = position;
+		bullet->m_object->m_name = bullet_name;
+		bullet->m_transform->m_object->m_type = bullet_type;
+
+		OBJECT->BulletInsertList(bullet->m_object, bullet_type);
+
 		bullet->m_object->SetActive(true);
 	}
 	else

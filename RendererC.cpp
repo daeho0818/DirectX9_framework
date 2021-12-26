@@ -21,7 +21,7 @@ void RendererC::Render()
 {
 	if (m_image)
 	{
-		RENDER->CenterRender(m_image, m_transform->m_position, 
+		RENDER->CenterRender(m_image, m_transform->m_position,
 			m_transform->m_localScale, D3DXToRadian(m_transform->m_rotationZ),
 			false, m_color);
 	}
@@ -53,8 +53,7 @@ Image* RendererC::GetImage()
 
 void RendererC::SetColor(D3DXCOLOR color)
 {
-           	var o = m_object;
- 	m_color = color;
+	m_color = color;
 }
 
 D3DXCOLOR RendererC::GetColor()

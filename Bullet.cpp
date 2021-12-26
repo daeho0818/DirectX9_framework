@@ -22,7 +22,7 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image,
 
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
-		if (m_object->m_type == EP_Bullet && other->m_type == EEnemy)
+		if (other->m_type == EEnemy)
 		{
 			ReturnBullet();
 		}

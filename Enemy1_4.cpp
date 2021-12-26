@@ -26,6 +26,14 @@ void Enemy1_4::Init()
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
 	m_object->spawn_animation = true;
+
+	m_object->OnCollisionEnter = [&](Object* other) -> void
+	{
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+		}
+	};
 }
 
 void Enemy1_4::Update()

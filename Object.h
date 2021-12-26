@@ -45,7 +45,7 @@ public:
 	void SetActive(bool active) { activeSelf = active; }
 	bool ActiveSelf() { return activeSelf; };
 	void SpawnAnimation(Vector2 scale);
-	void HitAnimation(RendererC* renderer, D3DXCOLOR color);
+	void HitAnimation(D3DXCOLOR color);
 
 	string m_name;
 	ObjType m_type;

@@ -37,10 +37,15 @@ void Object::SpawnAnimation(Vector2 scale)
 	}
 }
 
-void Object::HitAnimation(RendererC* renderer, D3DXCOLOR color)
+void Object::HitAnimation(D3DXCOLOR color)
 {
+	var renderer = GetComponent<RendererC>();
 	renderer->SetColor(color);
 
-	hit_animation = new Timer(0.25f, 0, [&]()->void {renderer->SetColor(D3DXCOLOR(1, 1, 1, 1)); });
-             	hit_animation->TimerStart();
+	hit_animation = new Timer(0.1f, 0, [=]()->void
+		{
+			renderer->SetColor(D3DXCOLOR(1, 1, 1, 1));
+			hit_animation = null;
+		});
+	hit_animation->TimerStart();
 }

@@ -22,6 +22,7 @@ public:
 	list<Object*> FindObject(ObjType type);
 	void DestroyAllObject();
 	void CheckAllCollider();
+	void BulletInsertList(Object* bulletObj, ObjType bullet_type);
 
 private:
 	list<Object*> m_objects;

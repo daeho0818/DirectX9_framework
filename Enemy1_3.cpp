@@ -22,6 +22,14 @@ void Enemy1_3::Init()
 
 	move_able = true;
 
+	m_object->OnCollisionEnter = [&](Object* other) -> void
+	{
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+		}
+	};
+
 	m_object->fire_helper = new FireHelper();
 }
 

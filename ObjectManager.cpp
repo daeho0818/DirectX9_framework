@@ -177,6 +177,7 @@ void ObjectManager::CheckAllCollider()
 	BoxColliderC* player_collider = m_player->GetComponent<BoxColliderC>();
 	BoxColliderC* other_collider;
 
+	// Enemy
 	for (var e_iter = m_enemies.begin(); e_iter != m_enemies.end();)
 	{
 		if (!(*e_iter)->is_destroy)
@@ -197,6 +198,7 @@ void ObjectManager::CheckAllCollider()
 				}
 			}
 
+			// Player Bullet
 			for (var pb_iter = m_pBullets.begin(); pb_iter != m_pBullets.end();)
 			{
 				if (!(*pb_iter)->is_destroy)
@@ -230,6 +232,7 @@ void ObjectManager::CheckAllCollider()
 		}
 	}
 
+	// Enemy Bullet
 	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end();)
 	{
 		if (!(*eb_iter)->is_destroy)
@@ -256,6 +259,7 @@ void ObjectManager::CheckAllCollider()
 		}
 	}
 
+	// Item
 	for (var i_iter = m_items.begin(); i_iter != m_items.end();)
 	{
 		if (!(*i_iter)->is_destroy)
@@ -280,5 +284,18 @@ void ObjectManager::CheckAllCollider()
 		{
 			i_iter = m_items.erase(i_iter);
 		}
+	}
+}
+
+void ObjectManager::BulletInsertList(Object* bulletObj, ObjType bullet_type)
+{
+	switch (bullet_type)
+	{
+	case EE_Bullet:
+		m_eBullets.push_back(bulletObj);
+		break;
+	case EP_Bullet:
+		m_pBullets.push_back(bulletObj);
+		break;
 	}
 }

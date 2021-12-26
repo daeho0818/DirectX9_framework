@@ -22,9 +22,13 @@ void Boss1_1::Init()
 
 	is_spawned = false;
 
-	m_object->OnCollisionEnter = [&](Object* object)->void
+	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
 		if (!is_spawned) return;
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+		}
 	};
 
 	m_object->fire_helper = new FireHelper();

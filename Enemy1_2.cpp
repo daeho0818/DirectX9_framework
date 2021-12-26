@@ -24,6 +24,14 @@ void Enemy1_2::Init()
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_2");
 
+	m_object->OnCollisionEnter = [&](Object* other) -> void
+	{
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+		}
+	};
+
 	wait_timer = new Timer(5, 0, [&]()->void
 		{
 			move_able = true;

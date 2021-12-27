@@ -22,7 +22,9 @@ void ObjectManager::Update()
 			if ((*iter)->activeSelf)
 			{
 				(*iter)->CheckOut();
-				if ((*iter)->m_hp <= 0) (*iter)->is_destroy = true;
+
+				if ((*iter)->m_hp <= 0 && (*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
+					(*iter)->is_destroy = true;
 
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
@@ -164,7 +166,7 @@ void ObjectManager::DestroyAllObject()
 	}
 	m_objects.clear();
 
-	SAFE_DELETE(m_player);
+	m_player = null;
 
 	m_eBullets.clear();
 	m_pBullets.clear();

@@ -24,7 +24,15 @@ void Player::Init()
 
 	move_speed = 1000;
 	fire_range = 0.5f;
-	m_object->OnCollisionEnter = [&](Object* other)->void {};
+	m_object->m_hp = 20;
+	m_object->OnCollisionEnter = [&](Object* other)->void
+	{
+		if (other->m_type == EE_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+			m_object->m_hp--;
+		}
+	};
 
 	bullet_image = IMAGE->FindImage("Bullet_Player");
 
@@ -64,8 +72,8 @@ void Player::Update()
 
 	if (GetKey(VK_SPACE))
 	{
-		m_object->fire_helper->Fire(*m_position, 0.25f, 
-			*D3DXVec2Normalize(&(mouse - *m_position), &(mouse - *m_position)), 
+		m_object->fire_helper->Fire(*m_position, 0.25f,
+			*D3DXVec2Normalize(&(mouse - *m_position), &(mouse - *m_position)),
 			"Player Bullet", EP_Bullet, 10, bullet_image);
 	}
 }

@@ -12,6 +12,7 @@ Object::Object(string name, ObjType type, Vector2 position)
 	activeSelf = true;
 	is_destroy = false;
 	spawn_animation = false;
+
 	OnCollisionEnter = null;
 }
 

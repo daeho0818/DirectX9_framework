@@ -28,8 +28,10 @@ void Boss1_1::Init()
 		if (other->m_type == EP_Bullet)
 		{
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+			m_object->m_hp--;
 		}
 	};
+	m_object->m_hp = 50;
 
 	m_object->fire_helper = new FireHelper();
 }

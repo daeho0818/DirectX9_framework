@@ -29,8 +29,10 @@ void Enemy1_1::Init()
 		if (other->m_type == EP_Bullet)
 		{
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+			m_object->m_hp--;
 		}
 	};
+	m_object->m_hp = 5;
 }
 
 void Enemy1_1::Update()

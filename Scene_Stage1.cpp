@@ -27,10 +27,10 @@ void Scene_Stage1::Init()
 	pattern5 = false;
 
 	pattern_helper = new	PatternHelper();
-	// SetAllWavePatterns();
+	SetAllWavePatterns();
 
-	m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
-	m_boss = m_bossObject->AddComponent<Boss1_1>();
+	// m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
+	// m_boss = m_bossObject->AddComponent<Boss1_1>();
 
 	boss_appear_count = 120;
 

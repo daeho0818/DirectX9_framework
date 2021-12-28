@@ -16,7 +16,8 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image,
 	m_direction = direction;
 	m_moveSpeed = move_speed;
 
-	renderer->Setting(image, color);
+	renderer->SetRenderer(image, color);
+	collider->SetCollider(renderer);
 
 	is_set = true;
 

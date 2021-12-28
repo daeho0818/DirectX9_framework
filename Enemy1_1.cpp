@@ -15,7 +15,12 @@ void Enemy1_1::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("Enemy1_1"), D3DXCOLOR(1, 1, 1, 1));
+	var image = IMAGE->FindImage("Enemy1_1");
+	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
+
+	var img_info = image->info;
+	collider->SetCollider(img_info.Width / 3 * 2, img_info.Height / 3 * 2);
+
 	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");

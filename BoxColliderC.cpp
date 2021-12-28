@@ -11,7 +11,7 @@ BoxColliderC::~BoxColliderC()
 
 void BoxColliderC::Init()
 {
-	show_collider = false;
+	show_collider = is_set = false;
 }
 
 void BoxColliderC::Update()
@@ -35,45 +35,58 @@ void BoxColliderC::ShowCollider(bool active)
 	show_collider = active;
 }
 
+void BoxColliderC::SetCollider(RendererC* renderer)
+{
+	D3DXIMAGE_INFO img_info = renderer->GetImage()->info;
+
+	m_width = img_info.Width;
+	m_height = img_info.Height;
+
+	is_set = true;
+}
+
+void BoxColliderC::SetCollider(float width, float height)
+{
+	m_width = width;
+	m_height = height;
+
+	is_set = true;
+}
+
 bool BoxColliderC::OBBCheck(TransformC* other_transform)
 {
 	Vector2 directions[] = { m_transform->right, m_transform->up, other_transform->right, other_transform->up };
-	RendererC* other_renderer = other_transform->GetComponent<RendererC>();
-	if (!other_renderer->enabled) return false;
+	BoxColliderC* other_collider= other_transform->GetComponent<BoxColliderC>();
+	if (!other_collider->enabled) return false;
 
 	for (int i = 0; i < 4; i++)
-		if (!Dotting(directions[i], other_transform, other_renderer)) return false;
+		if (!Dotting(directions[i], other_transform, other_collider)) return false;
 
 	return true;
 }
 
-bool BoxColliderC::Dotting(Vector2 direction, TransformC* other_transform, RendererC* other_renderer)
+bool BoxColliderC::Dotting(Vector2 direction, TransformC* other_transform, BoxColliderC* other_collider)
 {
-	D3DXIMAGE_INFO img1_info = 
-		m_object->GetComponent<RendererC>()->GetImage()->info;
-
 	Vector2 obj1_right_distance =
-		(img1_info.Width / 2 * m_transform->m_localScale.x) * m_transform->right;
+		(m_width / 2 * m_transform->m_localScale.x) * m_transform->right;
 
 	Vector2 obj1_up_distance =
-		(img1_info.Height / 2 * m_transform->m_localScale.y) * m_transform->up;
+		(m_height / 2 * m_transform->m_localScale.y) * m_transform->up;
 
 	float value1 =
-		fabs(D3DXVec2Dot(&direction, &obj1_right_distance)) + 
+		fabs(D3DXVec2Dot(&direction, &obj1_right_distance)) +
 		fabs(D3DXVec2Dot(&direction, &obj1_up_distance));
-	    
-	D3DXIMAGE_INFO img2_info = other_renderer->GetImage()->info;
 
 	Vector2 obj2_right_distance =
-		(img2_info.Width / 2 * other_renderer->m_transform->m_localScale.x) *
+		(other_collider->m_width / 2 * other_collider->m_transform->m_localScale.x) *
 		other_transform->right;
 
 	Vector2 obj2_up_distance =
-		(img2_info.Height / 2 * other_renderer->m_transform->m_localScale.y) *
+		(other_collider->m_height / 2 * other_collider->m_transform->m_localScale.y) *
 		other_transform->up;
 
 	float value2 =
-		fabs(D3DXVec2Dot(&direction, &obj2_right_distance)) + 
+		fabs(D3DXVec2Dot(&direction, &obj2_right_distance)) +
 		fabs(D3DXVec2Dot(&direction, &obj2_up_distance));
 
 	float distance =

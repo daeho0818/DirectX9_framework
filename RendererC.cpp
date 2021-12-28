@@ -35,7 +35,7 @@ void RendererC::Release()
 {
 }
 
-void RendererC::Setting(Image* image, D3DXCOLOR color)
+void RendererC::SetRenderer(Image* image, D3DXCOLOR color)
 {
 	m_image = image;
 	m_color = color;

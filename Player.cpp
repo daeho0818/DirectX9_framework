@@ -39,7 +39,11 @@ void Player::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	renderer->Setting(IMAGE->FindImage("Player"), D3DXCOLOR(1, 1, 1, 1));
+	var image = IMAGE->FindImage("Player");
+	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
+
+	var img_info = image->info;
+	collider->SetCollider(img_info.Width / 3 * 2, img_info.Height / 3 * 2);
 
 	m_object->fire_helper = new FireHelper();
 }

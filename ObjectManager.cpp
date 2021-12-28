@@ -179,17 +179,19 @@ void ObjectManager::CheckAllCollider()
 	if (!m_player) return;
 
 	BoxColliderC* player_collider = m_player->GetComponent<BoxColliderC>();
-	BoxColliderC* other_collider;
+	BoxColliderC* enemy_collider;
+	BoxColliderC* bullet_collider;
+	BoxColliderC* item_collider;
 
 	// Enemy
 	for (var e_iter = m_enemies.begin(); e_iter != m_enemies.end();)
 	{
 		if (!(*e_iter)->is_destroy)
 		{
-			other_collider = (*e_iter)->GetComponent<BoxColliderC>();
+			enemy_collider = (*e_iter)->GetComponent<BoxColliderC>();
 			if (player_collider->m_object->activeSelf && (*e_iter)->activeSelf)
 			{
-				if (player_collider->enabled && other_collider->enabled)
+				if (player_collider->enabled && enemy_collider->enabled && player_collider->is_set && enemy_collider->is_set)
 				{
 					if (player_collider->OBBCheck((*e_iter)->m_transform))
 					{
@@ -209,9 +211,10 @@ void ObjectManager::CheckAllCollider()
 				{
 					if (player_collider->m_object->activeSelf && (*pb_iter)->activeSelf)
 					{
-						if (other_collider->enabled && (*pb_iter)->GetComponent<BoxColliderC>()->enabled)
+						bullet_collider = (*pb_iter)->GetComponent<BoxColliderC>();
+						if (enemy_collider->enabled && bullet_collider->enabled && enemy_collider->is_set && bullet_collider->is_set)
 						{
-							if (other_collider->OBBCheck((*pb_iter)->m_transform))
+							if (enemy_collider->OBBCheck((*pb_iter)->m_transform))
 							{
 								if ((*e_iter)->OnCollisionEnter)
 									(*e_iter)->OnCollisionEnter((*pb_iter));
@@ -243,7 +246,8 @@ void ObjectManager::CheckAllCollider()
 		{
 			if (player_collider->m_object->activeSelf && (*eb_iter)->activeSelf)
 			{
-				if (player_collider->enabled && (*eb_iter)->GetComponent<BoxColliderC>()->enabled)
+				bullet_collider = (*eb_iter)->GetComponent<BoxColliderC>();
+				if (player_collider->enabled && bullet_collider->enabled && player_collider->is_set && bullet_collider->is_set)
 				{
 					if (player_collider->OBBCheck((*eb_iter)->m_transform))
 					{
@@ -270,7 +274,8 @@ void ObjectManager::CheckAllCollider()
 		{
 			if (player_collider->m_object->activeSelf && (*i_iter)->activeSelf)
 			{
-				if (player_collider->enabled && (*i_iter)->GetComponent<BoxColliderC>()->enabled)
+				item_collider = (*i_iter)->GetComponent<BoxColliderC>();
+				if (player_collider->enabled && item_collider->enabled && player_collider->is_set && item_collider->is_set)
 				{
 					if (player_collider->OBBCheck((*i_iter)->m_transform))
 					{

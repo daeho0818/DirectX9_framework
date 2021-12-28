@@ -14,8 +14,12 @@ void Enemy1_4::Init()
 {
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
+
 	var image = IMAGE->FindImage("Enemy1_1");
-	renderer->Setting(image, D3DXCOLOR(1, 1, 1, 1));
+	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
+
+	var img_info = image->info;
+	collider->SetCollider(img_info.Width / 3 * 2, img_info.Height / 3 * 2);
 
 	reflect_count = 0;
 

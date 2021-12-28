@@ -13,7 +13,7 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
-	void Setting(Image* image, D3DXCOLOR color);
+	void SetRenderer(Image* image, D3DXCOLOR color);
 
 	void SetImage(Image* image);
 	Image* GetImage();

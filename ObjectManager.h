@@ -7,6 +7,7 @@ class ObjectManager : public Singleton<ObjectManager>
 {
 	friend class Object;
 	friend class Player;
+	friend class BoxColliderC;
 public:
 	ObjectManager();
 	~ObjectManager();

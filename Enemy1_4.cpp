@@ -44,8 +44,8 @@ void Enemy1_4::Init()
 
 void Enemy1_4::Update()
 {
-	if(m_object->spawn_animation)
-	m_object->SpawnAnimation(Vector2(0.7f, 0.7f));
+	if (m_object->spawn_animation)
+		m_object->SpawnAnimation(Vector2(0.7f, 0.7f));
 
 	else
 	{
@@ -61,7 +61,13 @@ void Enemy1_4::Update()
 				reflect_count++;
 			}
 
-		Vector2 direction = m_player->m_transform->m_position - m_transform->m_position;
+		Vector2 direction;
+		if (!m_player->m_object->is_destroy)
+			direction = m_player->m_transform->m_position - m_transform->m_position;
+		else
+			direction = m_transform->down;
+
+
 		m_object->fire_helper->Fire(m_transform->m_position, 0.5f, *D3DXVec2Normalize(&direction, &direction), "Enemy1_4 Bullet", EE_Bullet, 7, bullet_image);
 	}
 }

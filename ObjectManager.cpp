@@ -176,7 +176,7 @@ void ObjectManager::DestroyAllObject()
 
 void ObjectManager::CheckAllCollider()
 {
-	if (!m_player) return;
+	if (!m_player || m_player->is_destroy) return;
 
 	BoxColliderC* player_collider = m_player->GetComponent<BoxColliderC>();
 	BoxColliderC* enemy_collider;

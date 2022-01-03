@@ -36,7 +36,16 @@ void Scene_Stage1::Init()
 
 	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
 
-	boss_appear_timer = new Timer(1, boss_appear_count, [&]()->void {boss_appear_count--; }, false);
+	boss_appear_timer = new Timer(1, boss_appear_count, [&]()->void
+		{
+			boss_appear_count--;
+
+			if (boss_appear_count == 0)
+			{
+				m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
+				m_boss = m_bossObject->AddComponent<Boss1_1>();
+			}
+		}, false);
 	boss_appear_timer->TimerStart();
 }
 
@@ -181,7 +190,7 @@ void Scene_Stage1::SetAllWavePatterns()
 		{
 			WavePattern4(current_coolTime, is_end);
 		});
-	pattern_helper->SetPattern(4, 35, 5, [&](float current_coolTime, bool is_end)->void
+	pattern_helper->SetPattern(4, 5, 5, [&](float current_coolTime, bool is_end)->void
 		{
 			WavePattern5(current_coolTime, is_end);
 		});

@@ -27,6 +27,9 @@ private:
 
 	void SetAllWavePatterns();
 
+	// index 0 : player, 1 : boss
+	void DestroyAnimation(int index);
+
 	// helpers
 	PatternHelper* pattern_helper = nullptr;
 	ScrollHelper* scroll_helper = nullptr;
@@ -55,5 +58,11 @@ private:
 	char boss_appear_str[256] = "";
 	int boss_appear_count;
 	Timer* boss_appear_timer = nullptr;
+
+	Timer* player_destroy_animation = nullptr;
+	int player_destroy_loop_count;
+
+	Timer* boss_destroy_animation = nullptr;
+	int boss_destroy_loop_count;
 
 };

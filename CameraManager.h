@@ -21,6 +21,7 @@ public:
 	void StopAction(int index);
 
 	Vector2 GetPosition();
+	float GetZoomValue();
 
 private:
 	struct VertexType

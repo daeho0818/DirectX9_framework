@@ -30,8 +30,6 @@ void ParticleManager::Update()
 
 	for (var iter = m_effects.begin(); iter != m_effects.end();)
 	{
-		(*iter)->m_destroy = (*iter)->m_size <= 0 || (*iter)->m_color.a <= 0;
-
 		if ((*iter)->m_destroy)
 		{
 			SAFE_DELETE((*iter));
@@ -113,8 +111,8 @@ Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float 
 	size_value = rand() % 10 / 100.0f;
 	alpha_value = 0.05f;
 
-	m_effect = effects[change_mode];
-	m_timer = new Timer(0.25f, 0, [&]()->void {m_effecting = true; });
+	m_effect = effects[(int)change_mode];
+	m_timer = new Timer(0.25f, 0, [&]()->void { m_effecting = true; });
 	m_timer->TimerStart();
 }
 

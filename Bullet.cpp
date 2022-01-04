@@ -23,7 +23,7 @@ void Bullet::SetBullet(Vector2 direction, float move_speed, Image* image,
 
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
-		if ((m_object->m_type == EP_Bullet && other->m_type == EEnemy) ||
+		if ((m_object->m_type == EP_Bullet && (other->m_type == EEnemy || other->m_type == EBoss)) ||
 			(m_object->m_type == EE_Bullet && other->m_type == EPlayer))
 		{
 			ReturnBullet();
@@ -64,7 +64,7 @@ void Bullet::Release()
 void Bullet::ReturnBullet()
 {
 	is_set = false;
-	m_object->is_destroy = false;
+	m_object->is_destroy_check = false;
 
 	B_POOL->ReturnBullet(this);
 }

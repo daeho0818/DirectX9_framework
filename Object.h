@@ -36,7 +36,7 @@ public:
 
 	void CheckOut()
 	{
-		is_destroy = m_transform->m_position.x > WINSIZEX + 300 ||
+		is_destroy_check = m_transform->m_position.x > WINSIZEX + 300 ||
 			m_transform->m_position.x < -300 ||
 			m_transform->m_position.y > WINSIZEY + 300 ||
 			m_transform->m_position.y < -300;
@@ -50,12 +50,16 @@ public:
 	string m_name;
 	ObjType m_type;
 	TransformC* m_transform = nullptr;
+
 	function<void(Object* other)> OnCollisionEnter = nullptr;
+	function<void()> OnDestroy = nullptr;
+
 	FireHelper* fire_helper = nullptr;
 
 	int m_hp;
 
-	bool is_destroy;
+	bool is_destroy_check;
+	bool wait_for_destroy;
 	bool spawn_animation;
 
 private:

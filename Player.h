@@ -18,8 +18,6 @@ public:
 	virtual void Release() override;
 
 private:
-	void ChkMoveRange();
-
 	Image* bullet_image = nullptr;
 
 	RECT move_range;
@@ -27,6 +25,8 @@ private:
 
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
+
+	Timer* destroy_timer = nullptr;
 
 	float move_speed;
 	float fire_range;

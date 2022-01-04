@@ -29,10 +29,7 @@ void Scene_Stage1::Init()
 	pattern_helper = new	PatternHelper();
 	SetAllWavePatterns();
 
-	// m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
-	// m_boss = m_bossObject->AddComponent<Boss1_1>();
-
-	boss_appear_count = 120;
+	boss_appear_count = 1;
 
 	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
 
@@ -42,11 +39,74 @@ void Scene_Stage1::Init()
 
 			if (boss_appear_count == 0)
 			{
-				m_bossObject = OBJECT->CreateObject("Boss", ObjType::EEnemy, Vector2(WINSIZEX / 2, -300));
+				m_bossObject = OBJECT->CreateObject("Boss", ObjType::EBoss, Vector2(WINSIZEX / 2, -300));
 				m_boss = m_bossObject->AddComponent<Boss1_1>();
 			}
 		}, false);
+
+	player_destroy_loop_count = 0;
+	boss_destroy_loop_count = 0;
+
 	boss_appear_timer->TimerStart();
+}
+
+void Scene_Stage1::SetAllWavePatterns()
+{
+	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern1(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(1, 7, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern2(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(2, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern3(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(3, 8, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern4(current_coolTime, is_end);
+		});
+	pattern_helper->SetPattern(4, 10, 5, [&](float current_coolTime, bool is_end)->void
+		{
+			WavePattern5(current_coolTime, is_end);
+		});
+}
+
+void Scene_Stage1::DestroyAnimation(int index)
+{
+
+	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&]()->void
+		{
+			player_destroy_loop_count++;
+
+			switch (player_destroy_loop_count)
+			{
+			case 1:
+				CAMERA->ZoomingCamera(2, 5);
+				CAMERA->MovingCamera((index == 0 ? m_player->m_object : m_boss->m_object)->m_transform->m_position, 5);
+				break;
+			case 2:
+				break;
+			case 3:
+				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
+				break;
+			case 4:
+				CAMERA->StopAction(0);
+				CAMERA->StopAction(1);
+
+				CAMERA->ZoomingCamera(1, 2);
+				CAMERA->MovingCamera(CENTER, 5);
+				break;
+			case 5:
+				break;
+			case 6:
+				SCENE->ChangeScene("Scene_Title");
+				break;
+			}
+		});
+	(index == 0 ? player_destroy_animation : boss_destroy_animation)->TimerStart();
 }
 
 void Scene_Stage1::Update()
@@ -55,6 +115,15 @@ void Scene_Stage1::Update()
 
 	pattern_helper->Update();
 	scroll_helper->Update();
+
+	if (m_player->m_object->is_destroy_check)
+		if (!player_destroy_animation)
+			DestroyAnimation(0);
+
+	if (m_boss)
+		if (m_boss->m_object->is_destroy_check)
+			if (!boss_destroy_animation)
+				DestroyAnimation(1);
 
 	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
@@ -161,37 +230,14 @@ void Scene_Stage1::WavePattern5(float current_coolTime, bool is_end)
 	}
 	else if (!pattern5)
 	{
-		for (int i = 0; i < 2; i++)
+		Vector2 positions[4] = { Vector2(WINSIZEX / 2, 50), Vector2(WINSIZEX / 2, 50), Vector2(0, 50), Vector2(WINSIZEX, 50) };
+		for (int i = 0; i < 4; i++)
 		{
-			Object* object = OBJECT->CreateObject("Enemy1_4", EEnemy, Vector2(WINSIZEX / 2, 50));
+			Object* object = OBJECT->CreateObject("Enemy1_4", EEnemy, positions[i]);
 			Enemy1_4* enemy = object->AddComponent<Enemy1_4>();
 			enemy->SetEnemy(m_player, i);
 		}
 
 		pattern5 = true;
 	}
-}
-
-void Scene_Stage1::SetAllWavePatterns()
-{
-	pattern_helper->SetPattern(0, 10, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern1(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(1, 7, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern2(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(2, 10, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern3(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(3, 8, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern4(current_coolTime, is_end);
-		});
-	pattern_helper->SetPattern(4, 5, 5, [&](float current_coolTime, bool is_end)->void
-		{
-			WavePattern5(current_coolTime, is_end);
-		});
 }

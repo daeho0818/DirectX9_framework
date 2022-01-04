@@ -28,6 +28,7 @@ enum ObjectType
 {
 	EPlayer,
 	EEnemy,
+	EBoss,
 	EP_Bullet,
 	EE_Bullet,
 	EItem,

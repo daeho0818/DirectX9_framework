@@ -10,7 +10,8 @@ Object::Object(string name, ObjType type, Vector2 position)
 	m_hp = 0;
 
 	activeSelf = true;
-	is_destroy = false;
+	is_destroy_check = false;
+	wait_for_destroy = false;
 	spawn_animation = false;
 
 	OnCollisionEnter = null;

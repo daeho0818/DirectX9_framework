@@ -25,6 +25,7 @@ void Player::Init()
 	move_speed = 1000;
 	fire_range = 0.5f;
 	m_object->m_hp = 20;
+
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
 		if (other->m_type == EE_Bullet)
@@ -33,6 +34,7 @@ void Player::Init()
 			m_object->m_hp--;
 		}
 	};
+	m_object->wait_for_destroy = true;
 
 	bullet_image = IMAGE->FindImage("Bullet_Player");
 
@@ -52,24 +54,23 @@ void Player::Update()
 {
 	m_object->fire_helper->Update();
 
-	ChkMoveRange();
 
 	m_transform->m_rotationZ = 90 +
 		D3DXToDegree(atan2(mouse.y - m_position->y, mouse.x - m_position->x));
 
-	if (GetKey('A'))
+	if (GetKey('A') && m_transform->m_position.x - (1 * DELTA * move_speed) > move_range.left)
 	{
 		m_transform->m_position += Vector2(-1, 0) * DELTA * move_speed;
 	}
-	if (GetKey('D'))
+	if (GetKey('D') && m_transform->m_position.x + (1 * DELTA * move_speed) < move_range.right)
 	{
 		m_transform->m_position += Vector2(1, 0) * DELTA * move_speed;
 	}
-	if (GetKey('W'))
+	if (GetKey('W') && m_transform->m_position.y - (1 * DELTA * move_speed) > move_range.top)
 	{
 		m_transform->m_position += Vector2(0, -1) * DELTA * move_speed;
 	}
-	if (GetKey('S'))
+	if (GetKey('S') && m_transform->m_position.y + (1 * DELTA * move_speed) < move_range.bottom)
 	{
 		m_transform->m_position += Vector2(0, 1) * DELTA * move_speed;
 	}
@@ -92,17 +93,4 @@ void Player::UIRender()
 
 void Player::Release()
 {
-}
-
-void Player::ChkMoveRange()
-{
-	if (m_position->x < move_range.left)
-		m_transform->m_position.x = move_range.left;
-	else if (m_position->x > move_range.right)
-		m_transform->m_position.x = move_range.right;
-
-	if (m_position->y < move_range.top)
-		m_transform->m_position.y = move_range.top;
-	else if (m_position->y > move_range.bottom)
-		m_transform->m_position.y = move_range.bottom;
 }

@@ -66,7 +66,7 @@ void CameraManager::MovingCamera(Vector2 target_position, float move_speed)
 	moving_information.move_speed = move_speed;
 
 	// 카메라 이동 시 Shake로 인한 초기화에 문제가 생길 수 있기 때문
-	shaking_information.return_position = cam_position;
+	shaking_information.return_position = target_position - CENTER;
 
 	camera_mode[0] = true;
 }
@@ -149,13 +149,21 @@ Vector2 CameraManager::GetPosition()
 	return cam_position;
 }
 
+float CameraManager::GetZoomValue()
+{
+	return cam_zoom_value;
+}
+
 void CameraManager::Moving()
 {
 	if (moving_information.target_position - cam_position <= Vector2(0.01f, 0.01f))
 	{
 		cam_position = moving_information.target_position;
 		camera_mode[0] = false;
+
+		return;
 	}
+
 	D3DXVec2Lerp(&cam_position, &cam_position, &(moving_information.target_position), DELTA * moving_information.move_speed);
 }
 
@@ -165,6 +173,8 @@ void CameraManager::Zooming()
 	{
 		cam_zoom_value = zooming_information.zoom_value;
 		camera_mode[1] = false;
+
+		return;
 	}
 
 	cam_zoom_value += zooming_information.oper_value;
@@ -179,6 +189,7 @@ void CameraManager::Shaking()
 		cam_position = shaking_information.return_position;
 		shaking_information.current_count = 0;
 		camera_mode[2] = false;
+
 		return;
 	}
 	if (shaking_information.is_smooth_end)
@@ -207,6 +218,8 @@ void CameraManager::Fading()
 		{
 			ui_screen_fade_alpha = fading_information.target_alpha;
 			camera_mode[3] = false;
+
+			return;
 		}
 	}
 	else
@@ -215,6 +228,8 @@ void CameraManager::Fading()
 		{
 			screen_fade_alpha = fading_information.target_alpha;
 			camera_mode[3] = false;
+
+			return;
 		}
 	}
 

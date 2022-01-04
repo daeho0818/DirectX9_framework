@@ -47,7 +47,7 @@ public:
 
 		[&]()->void {
 			if (m_size > 0) m_size -= size_value;
-			else m_size = 0; },
+			else { m_size = 0; m_destroy = true; } },
 
 		[&]()->void { if (m_size < 50) m_size += size_value; },
 
@@ -55,18 +55,18 @@ public:
 
 		[&]()->void {
 			if (m_color.a > 0) m_color.a -= alpha_value;
-			else m_color.a = 0; },
+			else { m_color.a = 0; m_destroy = true; }},
 
 		[&]()->void {
 			if (m_size > 0) m_size -= size_value;
-			else m_size = 0;
+			else { m_size = 0; }
 			if (m_color.a > 0) m_color.a -= alpha_value;
-			else m_color.a = 0; },
+			else { m_color.a = 0; if (m_size == 0) m_destroy = true; } },
 
 		[&]()->void {
 			if (m_size < 50) m_size += size_value;
 			if (m_color.a > 0) m_color.a -= alpha_value;
-			else m_color.a = 0; }
+			else { m_color.a = 0; m_destroy = true; } }
 	};
 
 private:

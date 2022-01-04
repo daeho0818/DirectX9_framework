@@ -17,14 +17,14 @@ void ObjectManager::Update()
 {
 	for (var iter = m_objects.begin(); iter != m_objects.end();)
 	{
-		if (!(*iter)->is_destroy)
+		if (!(*iter)->is_destroy_check)
 		{
 			if ((*iter)->activeSelf)
 			{
 				(*iter)->CheckOut();
 
 				if ((*iter)->m_hp <= 0 && (*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
-					(*iter)->is_destroy = true;
+					(*iter)->is_destroy_check = true;
 
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)
 				{
@@ -39,8 +39,18 @@ void ObjectManager::Update()
 		{
 			if ((*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
 			{
-				SAFE_DELETE(*iter);
-				iter = m_objects.erase(iter);
+				if (!(*iter)->wait_for_destroy)
+				{
+					if ((*iter)->OnDestroy)
+						(*iter)->OnDestroy();
+
+					SAFE_DELETE(*iter);
+					iter = m_objects.erase(iter);
+				}
+				else
+				{
+					++iter;
+				}
 			}
 			else
 			{
@@ -112,6 +122,9 @@ Object* ObjectManager::CreateObject(string name, ObjType type, Vector2 position)
 	case EEnemy:
 		m_enemies.push_back(object);
 		break;
+	case EBoss:
+		m_enemies.push_back(object);
+		break;
 	case EE_Bullet:
 		m_eBullets.push_back(object);
 		break;
@@ -176,7 +189,8 @@ void ObjectManager::DestroyAllObject()
 
 void ObjectManager::CheckAllCollider()
 {
-	if (!m_player || m_player->is_destroy) return;
+	if (!m_player || m_player->is_destroy_check)
+		return;
 
 	BoxColliderC* player_collider = m_player->GetComponent<BoxColliderC>();
 	BoxColliderC* enemy_collider;
@@ -186,7 +200,7 @@ void ObjectManager::CheckAllCollider()
 	// Enemy
 	for (var e_iter = m_enemies.begin(); e_iter != m_enemies.end();)
 	{
-		if (!(*e_iter)->is_destroy)
+		if (!(*e_iter)->is_destroy_check)
 		{
 			enemy_collider = (*e_iter)->GetComponent<BoxColliderC>();
 			if (player_collider->m_object->activeSelf && (*e_iter)->activeSelf)
@@ -207,7 +221,7 @@ void ObjectManager::CheckAllCollider()
 			// Player Bullet
 			for (var pb_iter = m_pBullets.begin(); pb_iter != m_pBullets.end();)
 			{
-				if (!(*pb_iter)->is_destroy)
+				if (!(*pb_iter)->is_destroy_check)
 				{
 					if (player_collider->m_object->activeSelf && (*pb_iter)->activeSelf)
 					{
@@ -242,7 +256,7 @@ void ObjectManager::CheckAllCollider()
 	// Enemy Bullet
 	for (var eb_iter = m_eBullets.begin(); eb_iter != m_eBullets.end();)
 	{
-		if (!(*eb_iter)->is_destroy)
+		if (!(*eb_iter)->is_destroy_check)
 		{
 			if (player_collider->m_object->activeSelf && (*eb_iter)->activeSelf)
 			{
@@ -270,7 +284,7 @@ void ObjectManager::CheckAllCollider()
 	// Item
 	for (var i_iter = m_items.begin(); i_iter != m_items.end();)
 	{
-		if (!(*i_iter)->is_destroy)
+		if (!(*i_iter)->is_destroy_check)
 		{
 			if (player_collider->m_object->activeSelf && (*i_iter)->activeSelf)
 			{

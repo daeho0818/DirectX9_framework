@@ -62,7 +62,7 @@ void Enemy1_4::Update()
 			}
 
 		Vector2 direction;
-		if (!m_player->m_object->is_destroy)
+		if (m_player->m_object)
 			direction = m_player->m_transform->m_position - m_transform->m_position;
 		else
 			direction = m_transform->down;
@@ -86,6 +86,6 @@ void Enemy1_4::Release()
 
 void Enemy1_4::SetEnemy(Player* player, int enemy_index)
 {
-	move_direction = enemy_index == 0 ? m_transform->right : m_transform->left;
+	move_direction = enemy_index % 2 == 0 ? m_transform->left : m_transform->right;
 	m_player = player;
 }

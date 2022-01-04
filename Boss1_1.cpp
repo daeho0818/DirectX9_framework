@@ -67,9 +67,9 @@ void Boss1_1::SpawnAnimation()
 
 	if (D3DXVec2Length(&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		pattern_helper->SetPattern(2, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+		pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
 		pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
-		pattern_helper->SetPattern(0, 17, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
+		pattern_helper->SetPattern(2, 17, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
 
 		is_spawned = true;
 	}

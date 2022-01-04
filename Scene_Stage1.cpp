@@ -75,14 +75,34 @@ void Scene_Stage1::SetAllWavePatterns()
 		});
 }
 
+void Scene_Stage1::Update()
+{
+	srand(time(NULL));
+
+	pattern_helper->Update();
+	scroll_helper->Update();
+
+	if (m_player->m_object->is_destroy_check)
+	{
+		if (!player_destroy_animation)
+			DestroyAnimation(0);
+	}
+
+	else if (m_boss)
+		if (m_boss->m_object->is_destroy_check)
+			if (!boss_destroy_animation)
+				DestroyAnimation(1);
+
+	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
+}
+
 void Scene_Stage1::DestroyAnimation(int index)
 {
-
-	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&]()->void
+	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&, index]()->void
 		{
-			player_destroy_loop_count++;
+			(index == 0 ? player_destroy_loop_count : boss_destroy_loop_count)++;
 
-			switch (player_destroy_loop_count)
+			switch ((index == 0 ? player_destroy_loop_count : boss_destroy_loop_count))
 			{
 			case 1:
 				CAMERA->ZoomingCamera(2, 5);
@@ -108,25 +128,6 @@ void Scene_Stage1::DestroyAnimation(int index)
 			}
 		});
 	(index == 0 ? player_destroy_animation : boss_destroy_animation)->TimerStart();
-}
-
-void Scene_Stage1::Update()
-{
-	srand(time(NULL));
-
-	pattern_helper->Update();
-	scroll_helper->Update();
-
-	if (m_player->m_object->is_destroy_check)
-		if (!player_destroy_animation)
-			DestroyAnimation(0);
-
-	if (m_boss)
-		if (m_boss->m_object->is_destroy_check)
-			if (!boss_destroy_animation)
-				DestroyAnimation(1);
-
-	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
 
 void Scene_Stage1::Render()

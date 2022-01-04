@@ -34,6 +34,15 @@ void CameraManager::Update()
 	if (camera_mode[3])
 		Fading();
 
+	if (GetKey(VK_LEFT))
+		cam_position += Vector2(1, 0);
+	if(GetKey(VK_RIGHT))
+		cam_position -= Vector2(1, 0);
+	if(GetKey(VK_UP))
+		cam_position -= Vector2(0, 1);
+	if(GetKey(VK_DOWN))
+		cam_position += Vector2(0, 1);
+
 	D3DXMATRIXA16 m_pos, m_scale, m_rot;
 
 	D3DXMatrixScaling(&m_scale, cam_zoom_value, cam_zoom_value, 1);

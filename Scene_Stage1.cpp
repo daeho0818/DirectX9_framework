@@ -41,6 +41,7 @@ void Scene_Stage1::Init()
 			{
 				m_bossObject = OBJECT->CreateObject("Boss", ObjType::EBoss, Vector2(WINSIZEX / 2, -300));
 				m_boss = m_bossObject->AddComponent<Boss1_1>();
+				m_boss->m_player = m_player;
 			}
 		}, false);
 

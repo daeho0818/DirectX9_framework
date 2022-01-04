@@ -35,10 +35,11 @@ void Boss1_1::Init()
 			m_object->m_hp--;
 		}
 	};
-	m_object->m_hp = 50;
+	m_object->m_hp = 250;
 	m_object->wait_for_destroy = true;
 
 	m_object->fire_helper = new FireHelper();
+	pattern_helper = new PatternHelper();
 }
 
 void Boss1_1::Update()
@@ -53,19 +54,10 @@ void Boss1_1::Update()
 
 	m_object->fire_helper->Update();
 
-	if (GetKey('F'))
-		Pattern2(0, false);
-
-	if (GetKey(VK_LEFT))
-		m_transform->Translate(m_transform->left * DELTA * 500);
-	if (GetKey(VK_RIGHT))
-		m_transform->Translate(m_transform->right * DELTA * 500);
-	if (GetKey(VK_UP))
-		m_transform->Translate(m_transform->up * DELTA * 500);
-	if (GetKey(VK_DOWN))
-		m_transform->Translate(m_transform->down * DELTA * 500);
-
 	pattern_helper->Update();
+
+	if (GetKeyDown(VK_RETURN))
+		Pattern3(0, false);
 }
 
 void Boss1_1::SpawnAnimation()
@@ -73,10 +65,11 @@ void Boss1_1::SpawnAnimation()
 	D3DXVec2Lerp(&m_transform->m_position, &m_transform->m_position,
 		&Vector2(WINSIZEX / 2, 300), 0.01f);
 
-	if (D3DXVec2Length(	&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
+	if (D3DXVec2Length(&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		pattern_helper->SetPattern(1, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-		pattern_helper->SetPattern(0, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
+		pattern_helper->SetPattern(2, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+		pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
+		pattern_helper->SetPattern(0, 17, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
 
 		is_spawned = true;
 	}
@@ -145,13 +138,13 @@ void Boss1_1::Pattern2(float current_count, bool is_end)
 			lerp_percent = 0;
 
 			m_object->fire_helper->CircleFire(m_transform->m_position, 9,
-				"Boss1_1", EE_Bullet, 1, bullet_image);
+				"Boss1_1 Bullet", EE_Bullet, 1, bullet_image);
 
 			m_object->fire_helper->CircleFire(m_transform->m_position, 8,
-				"Boss1_1", EE_Bullet, 2, bullet_image);
+				"Boss1_1 Bullet", EE_Bullet, 2, bullet_image);
 
 			m_object->fire_helper->CircleFire(m_transform->m_position, 7,
-				"Boss1_1", EE_Bullet, 3, bullet_image);
+				"Boss1_1 Bullet", EE_Bullet, 3, bullet_image);
 
 
 			CAMERA->ShakingCamera(5, 2, true);
@@ -162,4 +155,43 @@ void Boss1_1::Pattern2(float current_count, bool is_end)
 
 	D3DXVec2Lerp(&m_transform->m_position, &m_transform->m_position,
 		&target_position, lerp_percent);
+}
+
+void Boss1_1::Pattern3(float current_count, bool is_end)
+{
+	if (!t_pattern_3)
+	{
+		Vector2 position;
+		Vector2 direction;
+		Bullet* bullet;
+
+		t_pattern_3 = new Timer(3, 5, [&]()->void
+			{
+				for (int _ = -1; _ < 2; _ += 2)
+				{
+					for (int i = 0; i < 360; i += 5)
+					{
+						position = m_transform->m_position + Vector2(cos(D3DXToRadian(i)) * 300, sin(D3DXToRadian(i)) * 300);
+						position += Vector2(100, 0) * _;
+
+						m_object->fire_helper->Fire(position, 0, Vector2(0, 0), "Boss1_1 P3 Bullet", EE_Bullet, 0, bullet_image);
+					}
+				}
+
+				t_pattern_3_1 = new Timer(1, 0, [&]()->void
+					{
+						list<Object*> bullets = OBJECT->FindObject("Boss1_1 P3 Bullet");
+
+						for (var iter : bullets)
+						{
+							bullet = iter->GetComponent<Bullet>();
+
+							direction = m_player->m_transform->m_position - iter->m_transform->m_position;
+							bullet->SetBullet(*D3DXVec2Normalize(&direction, &direction), 10, bullet_image);
+						}
+					});
+				t_pattern_3_1->TimerStart();
+			});
+		t_pattern_3->TimerStart();
+	}
 }

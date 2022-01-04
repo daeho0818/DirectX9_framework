@@ -1,6 +1,8 @@
 #pragma once
+#include "Player.h"
 #include "BulletPool.h"
 #include "PatternHelper.h"
+
 class Boss1_1 : public Component
 {
 public:
@@ -14,9 +16,12 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+	Player* m_player = nullptr;
+
 private:
 	void Pattern1(float current_count, bool is_end);
 	void Pattern2(float current_count, bool is_end);
+	void Pattern3(float current_count, bool is_end);
 
 	void SpawnAnimation();
 
@@ -25,7 +30,10 @@ private:
 
 	Image* bullet_image = nullptr;
 
-	PatternHelper* pattern_helper = new PatternHelper();
+	PatternHelper* pattern_helper = nullptr;
+
+	Timer* t_pattern_3 = nullptr;
+	Timer* t_pattern_3_1 = nullptr;
 
 	bool is_spawned;
 

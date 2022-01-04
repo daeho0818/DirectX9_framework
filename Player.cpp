@@ -28,7 +28,7 @@ void Player::Init()
 
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
-		if (other->m_type == EE_Bullet)
+		if (other->m_type == EE_Bullet || other->m_type == EEnemy)
 		{
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
 			m_object->m_hp--;
@@ -55,8 +55,7 @@ void Player::Update()
 	m_object->fire_helper->Update();
 
 
-	m_transform->m_rotationZ = 90 +
-		D3DXToDegree(atan2(mouse.y - m_position->y, mouse.x - m_position->x));
+	m_transform->m_rotationZ = 90 + D3DXToDegree(atan2(mouse.y - m_position->y, mouse.x - m_position->x));
 
 	if (GetKey('A') && m_transform->m_position.x - (1 * DELTA * move_speed) > move_range.left)
 	{

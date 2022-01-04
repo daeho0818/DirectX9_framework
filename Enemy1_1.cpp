@@ -36,6 +36,10 @@ void Enemy1_1::Init()
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
 			m_object->m_hp--;
 		}
+		else if (other->m_type == EPlayer)
+		{
+			m_object->is_destroy_check = true;
+		}
 	};
 	m_object->m_hp = 5;
 }

@@ -11,8 +11,11 @@ Scene_Stage1::~Scene_Stage1()
 
 void Scene_Stage1::Init()
 {
+	m_boss = null;
+	m_bossObject = null;
+	t_enemy1_spawn = t_enemy3_spawn = player_destroy_animation = boss_destroy_animation = null;
 
-	m_playerObject = OBJECT->CreateObject("Player", ObjType::EPlayer, CENTER);
+	m_playerObject = OBJECT->CreateObject("Player", EPlayer, CENTER);
 	m_player = m_playerObject->AddComponent<Player>();
 
 	pattern2 = false;
@@ -39,7 +42,7 @@ void Scene_Stage1::Init()
 
 			if (boss_appear_count == 0)
 			{
-				m_bossObject = OBJECT->CreateObject("Boss", ObjType::EBoss, Vector2(WINSIZEX / 2, -300));
+				m_bossObject = OBJECT->CreateObject("Boss", EBoss, Vector2(WINSIZEX / 2, -300));
 				m_boss = m_bossObject->AddComponent<Boss1_1>();
 				m_boss->m_player = m_player;
 			}

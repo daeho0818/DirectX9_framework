@@ -99,6 +99,9 @@ void SceneManager::SceneLoading()
 		m_timers.clear();
 
 		OBJECT->DestroyAllObject();
+
+		for (int i = 0; i < 4; i++)
+			CAMERA->StopAction(i);
 	}
 	B_POOL->Release();
 

@@ -388,6 +388,7 @@
   <ItemGroup>
     <ClCompile Include="AnimationC.cpp" />
     <ClCompile Include="Boss1_1.cpp" />
+    <ClCompile Include="Boss2_1.cpp" />
     <ClCompile Include="BoxColliderC.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletPool.cpp" />
@@ -414,6 +415,7 @@
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene_Stage1.cpp" />
     <ClCompile Include="Scene_Loading.cpp" />
+    <ClCompile Include="Scene_Stage2.cpp" />
     <ClCompile Include="Scene_Title.cpp" />
     <ClCompile Include="ScrollHelper.cpp" />
     <ClCompile Include="SDKsound.cpp" />
@@ -425,6 +427,7 @@
     <ClCompile Include="TransformC.cpp" />
     <ClInclude Include="AnimationC.h" />
     <ClInclude Include="Boss1_1.h" />
+    <ClInclude Include="Boss2_1.h" />
     <ClInclude Include="BoxColliderC.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletPool.h" />
@@ -450,6 +453,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene_Stage1.h" />
     <ClInclude Include="Scene_Loading.h" />
+    <ClInclude Include="Scene_Stage2.h" />
     <ClInclude Include="Scene_Title.h" />
     <ClInclude Include="ScrollHelper.h" />
     <ClInclude Include="SDKsound.h" />

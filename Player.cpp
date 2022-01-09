@@ -11,14 +11,6 @@ Player::~Player()
 
 void Player::Init()
 {
-	move_range =
-	{
-		0,
-		0,
-		WINSIZEX,
-		WINSIZEY
-	};
-
 	m_position = &(m_transform->m_position);
 	m_transform->m_localScale = Vector2(0.5f, 0.5f);
 
@@ -53,7 +45,6 @@ void Player::Init()
 void Player::Update()
 {
 	m_object->fire_helper->Update();
-
 
 	m_transform->m_rotationZ = 90 + D3DXToDegree(atan2(mouse.y - m_position->y, mouse.x - m_position->x));
 

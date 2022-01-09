@@ -14,6 +14,7 @@ void MainGame::Init()
 	SCENE->AddScene("Scene_Loading", new Scene_Loading());
 	SCENE->AddScene("Scene_Title", new Scene_Title());
 	SCENE->AddScene("Scene_Stage1", new Scene_Stage1());
+	SCENE->AddScene("Scene_Stage2", new Scene_Stage2());
 
 	SCENE->Init();
 	OBJECT->Init();

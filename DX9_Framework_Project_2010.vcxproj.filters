@@ -147,6 +147,15 @@
     <Filter Include="3. Component\Game Object\Enemy\Stage 1\Enemy 4">
       <UniqueIdentifier>{3f8541ec-6658-491e-a3be-66f50b920b93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="5. Scene\Stage\Scene_Stage2">
+      <UniqueIdentifier>{adb4b87f-4d0b-41e2-b881-aff175b2e02f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 2">
+      <UniqueIdentifier>{034af1a3-5a83-4d55-a59d-6a07232d35ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 2\Boss">
+      <UniqueIdentifier>{e1140846-26ca-41ed-9847-559d8a51c680}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -316,6 +325,12 @@
     <ClCompile Include="Enemy1_4.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 4</Filter>
     </ClCompile>
+    <ClCompile Include="Scene_Stage2.cpp">
+      <Filter>5. Scene\Stage\Scene_Stage2</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss2_1.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -425,6 +440,12 @@
     </ClInclude>
     <ClInclude Include="Enemy1_4.h">
       <Filter>3. Component\Game Object\Enemy\Stage 1\Enemy 4</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene_Stage2.h">
+      <Filter>5. Scene\Stage\Scene_Stage2</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss2_1.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -24,6 +24,12 @@ void Scene_Loading::Init()
 	AddImage("Enemy1_3", "Object/Enemy/Enemies/Stage1/Enemy_3");
 	AddImage("Boss1_1", "Object/Enemy/Boss/Stage1/Boss_1");
 
+	AddImage("Boss2_1", "Object/Enemy/Boss/Stage2/Boss_1");
+	AddImage("Boss2_1_LTop", "Object/Enemy/Boss/Stage2/Cannon_LTop");
+	AddImage("Boss2_1_RTop", "Object/Enemy/Boss/Stage2/Cannon_RTop");
+	AddImage("Boss2_1_LBottom", "Object/Enemy/Boss/Stage2/Cannon_LBottom");
+	AddImage("Boss2_1_RBottom", "Object/Enemy/Boss/Stage2/Cannon_RBottom");
+
 	// ÃÑ¾Ë
 	AddImage("Bullet_Player", "Object/Bullet/Bullet_Player");
 	AddImage("Bullet_Enemy_1", "Object/Bullet/Bullet_Enemy_1");

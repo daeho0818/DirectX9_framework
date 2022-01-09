@@ -20,7 +20,7 @@ void Boss1_1::Init()
 	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
 
 	var img_info = image->info;
-	collider->SetCollider(img_info.Width / 3 * 2, img_info.Height / 3 * 2);
+	collider->SetCollider(img_info.Width / 2, img_info.Height / 2);
 
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
@@ -67,9 +67,9 @@ void Boss1_1::SpawnAnimation()
 
 	if (D3DXVec2Length(&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-		pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
-		pattern_helper->SetPattern(2, 17, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
+		// pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+		// pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
+		pattern_helper->SetPattern(0, 10, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
 
 		is_spawned = true;
 	}
@@ -107,7 +107,7 @@ void Boss1_1::Pattern1(float current_count, bool is_end)
 
 	D3DXVec2Normalize(&direction, &direction);
 
-	m_object->fire_helper->Fire(m_transform->m_position, 0.1f,
+	m_object->fire_helper->Fire(m_transform->m_position, 0.05f,
 		direction, "Boss1_1 Bullet", EE_Bullet, 3, bullet_image);
 }
 

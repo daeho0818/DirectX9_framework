@@ -47,7 +47,7 @@ void Scene_Title::Update()
 	}
 
 	if (GetKeyDown(VK_RETURN))
-		SCENE->ChangeScene("Scene_Stage1");
+		SCENE->ChangeScene("Scene_Stage2");
 }
 
 void Scene_Title::Render()

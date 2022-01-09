@@ -125,15 +125,12 @@ void CameraManager::StopAction(int index)
 	switch (index)
 	{
 	case 0:
-		cam_position = moving_information.target_position;
 		camera_mode[0] = false;
 		break;
 	case 1:
-		cam_zoom_value = zooming_information.zoom_value;
 		camera_mode[1] = false;
 		break;
 	case 2:
-		cam_position = shaking_information.return_position;
 		shaking_information.current_count = 0;
 		camera_mode[2] = false;
 		break;

@@ -331,6 +331,9 @@
     <ClCompile Include="Boss2_1.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -445,6 +448,9 @@
       <Filter>5. Scene\Stage\Scene_Stage2</Filter>
     </ClInclude>
     <ClInclude Include="Boss2_1.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
       <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
     </ClInclude>
   </ItemGroup>

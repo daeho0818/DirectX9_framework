@@ -492,6 +492,7 @@
     <ClCompile Include="DX9_Framework_Project.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="메모장.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Object.h" />

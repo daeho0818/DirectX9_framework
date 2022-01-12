@@ -17,6 +17,7 @@ public:
 
 private:
 	RendererC* renderer = nullptr;
+	BoxColliderC* collider = nullptr;
 
 };
 

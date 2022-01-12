@@ -22,6 +22,9 @@ void Boss1_1::Init()
 	var img_info = image->info;
 	collider->SetCollider(img_info.Width / 2, img_info.Height / 2);
 
+	var player_object = OBJECT->FindObject(EPlayer).front();
+	m_player = player_object->GetComponent<Player>();
+
 	bullet_image = IMAGE->FindImage("Bullet_Enemy_1");
 
 	is_spawned = false;
@@ -67,9 +70,7 @@ void Boss1_1::SpawnAnimation()
 
 	if (D3DXVec2Length(&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		// pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
-		// pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
-		pattern_helper->SetPattern(0, 10, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
+		SetAllPatterns();
 
 		is_spawned = true;
 	}
@@ -194,4 +195,11 @@ void Boss1_1::Pattern3(float current_count, bool is_end)
 			});
 		t_pattern_3->TimerStart();
 	}
+}
+
+void Boss1_1::SetAllPatterns()
+{
+	pattern_helper->SetPattern(0, 7, 5, [&](float current_count, bool is_end)->void { Pattern1(current_count, is_end); });
+	pattern_helper->SetPattern(1, 6, 5, [&](float current_count, bool is_end)->void { Pattern2(current_count, is_end); });
+	pattern_helper->SetPattern(2, 10, 5, [&](float current_count, bool is_end)->void { Pattern3(current_count, is_end); });
 }

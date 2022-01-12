@@ -13,10 +13,12 @@ Cannon::~Cannon()
 void Cannon::Init()
 {
 	m_object->m_hp = 50;
+	m_transform->m_localScale = Vector2(0, 0);
 }
 
 void Cannon::Update()
 {
+	m_object->fire_helper->Update();
 }
 
 void Cannon::Render()
@@ -35,6 +37,11 @@ void Cannon::SetCannon(Image* image)
 {
 	renderer = m_object->AddComponent<RendererC>();
 	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
+
+	collider = m_object->AddComponent<BoxColliderC>();
+	collider->SetCollider(image->info.Width / 2, image->info.Height / 2);
+
+	m_object->fire_helper = new	FireHelper();
 }
 
 void Cannon::Rotation(Vector2 target_position)

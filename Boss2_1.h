@@ -1,4 +1,6 @@
 #pragma once
+#include "Player.h"
+#include "PatternHelper.h"
 #include "Cannon.h"
 class Boss2_1 : public Component
 {
@@ -13,10 +15,23 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+
 private:
+	void Pattern1(float current_count, bool is_end);
+
+	void SetAllPatterns();
+
+	Player* m_player = nullptr;
+
+	PatternHelper* pattern_helper = nullptr;
+
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
-	Cannon* cannons[4];
+	Cannon* cannons[4] = {nullptr, };
+
+	Image* bullet_image = nullptr;
+
+	int anim_complete_count = 0;
 };
 

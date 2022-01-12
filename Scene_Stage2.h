@@ -14,6 +14,10 @@ public:
 	virtual void Release() override;
 
 private:
+	// objects
+	Object* m_playerObject = nullptr;
+	Player* m_player = nullptr;
+
 	Object* m_bossObject = nullptr;
 	Boss2_1* m_boss = null;
 };

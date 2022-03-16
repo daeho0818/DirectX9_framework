@@ -17,6 +17,8 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
+	void Invincibility();
+
 private:
 	Image* bullet_image = nullptr;
 
@@ -34,6 +36,8 @@ private:
 
 	float move_speed;
 	float fire_range;
+
+	bool invincibility = false;
 };
 
 #include "Bullet.h"

@@ -25,6 +25,11 @@ void RendererC::Render()
 			m_transform->m_localScale, D3DXToRadian(m_transform->m_rotationZ),
 			false, m_color);
 	}
+
+	if (m_object->m_name == "Boss2_1")
+	{
+		printf("¿¿æ÷");
+	}
 }
 
 void RendererC::UIRender()

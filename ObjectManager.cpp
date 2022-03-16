@@ -175,6 +175,7 @@ void ObjectManager::DestroyAllObject()
 			SAFE_DELETE(c_iter.second);
 		}
 		iter->components.clear();
+		if (iter) iter->OnDestroy();
 		SAFE_DELETE(iter);
 	}
 	m_objects.clear();

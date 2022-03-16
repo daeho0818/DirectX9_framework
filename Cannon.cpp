@@ -41,6 +41,19 @@ void Cannon::SetCannon(Image* image)
 	collider = m_object->AddComponent<BoxColliderC>();
 	collider->SetCollider(image->info.Width / 2, image->info.Height / 2);
 
+	m_object->OnCollisionEnter = [&](Object* other) -> void
+	{
+		if (other->m_type == EP_Bullet)
+		{
+			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+			m_object->m_hp--;
+		}
+	};
+	m_object->OnDestroy = [&]()->void
+	{
+		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
+	};
+
 	m_object->fire_helper = new	FireHelper();
 }
 

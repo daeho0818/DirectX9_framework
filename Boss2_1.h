@@ -21,6 +21,8 @@ private:
 
 	void SetAllPatterns();
 
+	void SpawnAnimation();
+
 	Player* m_player = nullptr;
 
 	PatternHelper* pattern_helper = nullptr;
@@ -28,10 +30,12 @@ private:
 	BoxColliderC* collider = nullptr;
 	RendererC* renderer = nullptr;
 
-	Cannon* cannons[4] = {nullptr, };
+	vector<Cannon*> cannons;
 
 	Image* bullet_image = nullptr;
 
 	int anim_complete_count = 0;
+
+	bool is_spawned;
 };
 

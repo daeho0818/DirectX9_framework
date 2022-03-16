@@ -84,22 +84,24 @@ void Scene_Stage1::Update()
 	pattern_helper->Update();
 	scroll_helper->Update();
 
-	if (m_player->m_object->is_destroy_check)
+	if (m_player->m_object->is_destroy_check && !m_boss->m_object->is_destroy_check)
 	{
 		if (!player_destroy_animation)
-			DestroyAnimation(0);
+			DestroyAnimation(0, m_player->m_transform->m_position);
 	}
 
 	else if (m_boss)
-		if (m_boss->m_object->is_destroy_check)
+		if (m_boss->m_object->is_destroy_check && !m_player->m_object->is_destroy_check)
 			if (!boss_destroy_animation)
-				DestroyAnimation(1);
+				DestroyAnimation(1, m_boss->m_transform->m_position);
 
 	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
 
-void Scene_Stage1::DestroyAnimation(int index)
+void Scene_Stage1::DestroyAnimation(int index, Vector2 position)
 {
+	var explosion_amimation = IMAGE->MakeAnimation("Explosion");
+
 	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&, index]()->void
 		{
 			(index == 0 ? player_destroy_loop_count : boss_destroy_loop_count)++;
@@ -111,8 +113,16 @@ void Scene_Stage1::DestroyAnimation(int index)
 				CAMERA->MovingCamera((index == 0 ? m_player->m_object : m_boss->m_object)->m_transform->m_position, 5);
 				break;
 			case 2:
+				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(100, 100), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(150, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-200,150), 0.01f);
 				break;
 			case 3:
+				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(50, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(75, 25), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-100, 75), 0.01f);
 				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
 				break;
 			case 4:

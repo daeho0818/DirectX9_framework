@@ -41,6 +41,7 @@ void Enemy1_2::Init()
 			m_object->is_destroy_check = true;
 		}
 	};
+
 	m_object->m_hp = 3;
 
 	wait_timer = new Timer(5, 0, [&]()->void

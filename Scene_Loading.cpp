@@ -39,6 +39,9 @@ void Scene_Loading::Init()
 	// 배경
 	AddImage("Background_1", "Scene/Ingame/Stage_1/Background_1");
 
+	// 폭발 애니메이션
+	AddImage("Explosion", "Effect/Explosion/Explosion", 13);
+
 	i_background = IMAGE->FindImage("Title_BG");
 	i_moon = IMAGE->FindImage("Title_Moon");
 	i_cloud = IMAGE->FindImage("Title_Cloud");

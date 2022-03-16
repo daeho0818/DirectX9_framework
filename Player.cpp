@@ -18,12 +18,17 @@ void Player::Init()
 	fire_range = 0.5f;
 	m_object->m_hp = 20;
 
+	invincibility = false;
+
 	m_object->OnCollisionEnter = [&](Object* other)->void
 	{
 		if (other->m_type == EE_Bullet || other->m_type == EEnemy)
 		{
-			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
-			m_object->m_hp--;
+			if (!invincibility)
+			{
+				m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
+				m_object->m_hp--;
+			}
 		}
 	};
 	m_object->wait_for_destroy = true;
@@ -83,4 +88,9 @@ void Player::UIRender()
 
 void Player::Release()
 {
+}
+
+void Player::Invincibility()
+{
+	invincibility = true;
 }

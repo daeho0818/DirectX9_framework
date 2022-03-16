@@ -41,6 +41,11 @@ void Enemy1_1::Init()
 			m_object->is_destroy_check = true;
 		}
 	};
+	m_object->OnDestroy = [&]()->void
+	{
+		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
+	};
+
 	m_object->m_hp = 5;
 }
 

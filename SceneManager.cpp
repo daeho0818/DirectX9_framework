@@ -26,15 +26,18 @@ void SceneManager::Update()
 
 	for (var iter = m_timers.begin(); iter != m_timers.end();)
 	{
-		if ((*iter)->is_end)
+		if ((*iter))
 		{
-			SAFE_DELETE(*iter);
-			iter = m_timers.erase(iter);
-		}
-		else
-		{
-			(*iter)->Update();
-			++iter;
+			if ((*iter)->is_end)
+			{
+				SAFE_DELETE(*iter);
+				iter = m_timers.erase(iter);
+			}
+			else
+			{
+				(*iter)->Update();
+				++iter;
+			}
 		}
 	}
 }

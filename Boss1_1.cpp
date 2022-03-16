@@ -38,6 +38,7 @@ void Boss1_1::Init()
 			m_object->m_hp--;
 		}
 	};
+
 	m_object->m_hp = 250;
 	m_object->wait_for_destroy = true;
 

@@ -72,6 +72,7 @@ void Boss2_1::Update()
 
 	if (pattern_helper)
 		pattern_helper->Update();
+
 }
 
 void Boss2_1::SpawnAnimation()
@@ -81,8 +82,6 @@ void Boss2_1::SpawnAnimation()
 
 	if (D3DXVec2Length(&(Vector2(WINSIZEX / 2, 300) - m_transform->m_position)) <= 1)
 	{
-		is_spawned = true;
-
 		Object* cannon_object[4];
 		Vector2 localPositions[4] = { Vector2(-150, -90), Vector2(150, -90), Vector2(-150, 150), Vector2(150,  150) };
 		string names[4] = { "Boss2_1_LTop", "Boss2_1_RTop", "Boss2_1_LBottom", "Boss2_1_RBottom" };
@@ -91,11 +90,18 @@ void Boss2_1::SpawnAnimation()
 		for (int i = 0; i < 4; i++)
 		{
 			cannon_object[i] = OBJECT->CreateObject(names[i], EBoss, m_transform->m_position + localPositions[i]);
-			cannons[i] = cannon_object[i]->AddComponent<Cannon>();
-			cannons[i]->SetCannon(IMAGE->FindImage(names[i]));
+			cannons.push_back(cannon_object[i]->AddComponent<Cannon>());
+			cannons[i]->SetCannon(this, IMAGE->FindImage(names[i]), i);
 			cannons[i]->m_transform->m_rotationZ = rotation_z[i];
 		}
+
+		is_spawned = true;
 	}
+}
+
+void Boss2_1::ReleaseCannon(int index)
+{
+	cannons[index] = null;
 }
 
 void Boss2_1::Render()
@@ -108,6 +114,9 @@ void Boss2_1::UIRender()
 
 void Boss2_1::Release()
 {
+	for (var cannon : cannons)
+		SAFE_DELETE(cannon);
+	cannons.clear();
 }
 
 void Boss2_1::Pattern1(float current_count, bool is_end)
@@ -117,26 +126,21 @@ void Boss2_1::Pattern1(float current_count, bool is_end)
 		float rotation_z[4] = { 135, -135, 45, -45 };
 
 		for (int i = 0; i < 4; i++)
-			if (cannons[i])
+			if (cannons[i] != null)
 				cannons[i]->m_transform->m_rotationZ = rotation_z[i];
 	}
 	else
 	{
 		Vector2 direction;
-		for (var iter = cannons.begin(); iter != cannons.end	(); ++iter)
+		for (int i = 0; i < 4; i++)
 		{
-			if ((*iter))
+			if (cannons[i] != null)
 			{
-				direction = m_player->m_transform->m_position - (*iter)->m_transform->m_position;
+				direction = m_player->m_transform->m_position - cannons[i]->m_transform->m_position;
 				D3DXVec2Normalize(&direction, &direction);
 
-				(*iter)->Rotation(m_player->m_transform->m_position);
-				(*iter)->m_object->fire_helper->Fire((*iter)->m_transform->m_position, 0.25f, direction, (*iter)->m_object->m_name + " Bullet", EE_Bullet, 7, bullet_image);
-			}
-			else
-			{
-				iter = cannons.erase(iter);
-				SAFE_DELETE((*iter));
+				cannons[i]->Rotation(m_player->m_transform->m_position);
+				cannons[i]->m_object->fire_helper->Fire(cannons[i]->m_transform->m_position, 0.25f, direction, cannons[i]->m_object->m_name + " Bullet", EE_Bullet, 7, bullet_image);
 			}
 		}
 	}

@@ -23,7 +23,6 @@ private:
 	void Pattern3(float current_count, bool is_end);
 
 	void SetAllPatterns();
-
 	void SpawnAnimation();
 
 	Player* m_player = nullptr;

@@ -4,6 +4,7 @@
 #include "Cannon.h"
 class Boss2_1 : public Component
 {
+	friend class Cannon;
 public:
 	Boss2_1(Object* object);
 	~Boss2_1();
@@ -20,9 +21,9 @@ private:
 	void Pattern1(float current_count, bool is_end);
 
 	void SetAllPatterns();
-
 	void SpawnAnimation();
-
+	void ReleaseCannon(int index);
+		
 	Player* m_player = nullptr;
 
 	PatternHelper* pattern_helper = nullptr;

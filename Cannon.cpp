@@ -33,13 +33,17 @@ void Cannon::Release()
 {
 }
 
-void Cannon::SetCannon(Image* image)
+void Cannon::SetCannon(Boss2_1* boss, Image* image, int index)
 {
 	renderer = m_object->AddComponent<RendererC>();
 	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
 
 	collider = m_object->AddComponent<BoxColliderC>();
 	collider->SetCollider(image->info.Width / 2, image->info.Height / 2);
+
+	this->boss = boss;
+
+	cannon_index = index;
 
 	m_object->OnCollisionEnter = [&](Object* other) -> void
 	{
@@ -48,10 +52,11 @@ void Cannon::SetCannon(Image* image)
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
 			m_object->m_hp--;
 		}
-	};
-	m_object->OnDestroy = [&]()->void
-	{
-		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
+		m_object->OnDestroy = [&]()->void
+		{
+			PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
+			this->boss->ReleaseCannon(cannon_index);
+		};
 	};
 
 	m_object->fire_helper = new	FireHelper();

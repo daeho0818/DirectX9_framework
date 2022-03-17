@@ -37,11 +37,21 @@ void Boss2_1::Init()
 			m_object->m_hp--;
 		}
 	};
+	m_object->OnDestroy = [&]()->void
+	{
+		var explosion = IMAGE->MakeAnimation("Explosion");
+		for (int i = 0; i < 4; i++)
+		{
+			PARTICLE->AddParticleAnim(explosion, cannons[i]->m_transform->m_position, 0.01f);
+			cannons[i] = null;
+		}
+	};
 
-	m_object->m_hp = 250;
+	m_object->wait_for_destroy = true;
+
+	m_object->m_hp = 10;
 
 	m_object->fire_helper = new	FireHelper();
-	pattern_helper = new PatternHelper();
 }
 
 void Boss2_1::Update()
@@ -114,6 +124,8 @@ void Boss2_1::UIRender()
 
 void Boss2_1::Release()
 {
+	SAFE_DELETE(pattern_helper);
+
 	for (var cannon : cannons)
 		SAFE_DELETE(cannon);
 	cannons.clear();

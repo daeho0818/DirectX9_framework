@@ -8,7 +8,6 @@ Boss1_1::Boss1_1(Object* object)
 
 Boss1_1::~Boss1_1()
 {
-	SAFE_DELETE(pattern_helper);
 }
 
 void Boss1_1::Init()
@@ -87,6 +86,12 @@ void Boss1_1::UIRender()
 
 void Boss1_1::Release()
 {
+	SAFE_DELETE(pattern_helper);
+
+	if (t_pattern_3)
+		t_pattern_3->ShutTimer();
+	if (t_pattern_3_1)
+		t_pattern_3_1->ShutTimer();
 }
 
 Vector2 direction;

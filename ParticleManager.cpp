@@ -98,6 +98,8 @@ Particle::Particle(vector<Image*> animation, Vector2 position, float frame_time,
 
 Particle::~Particle()
 {
+	if (m_timer)
+		m_timer->ShutTimer();
 }
 
 Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float size)
@@ -118,4 +120,6 @@ Effect::Effect(Vector2 position, D3DXCOLOR color, ChangeMode change_mode, float 
 
 Effect::~Effect()
 {
+	if (m_timer)
+		m_timer->ShutTimer();
 }

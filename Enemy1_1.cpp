@@ -84,4 +84,6 @@ void Enemy1_1::UIRender()
 
 void Enemy1_1::Release()
 {
+	if (wait_timer)
+		wait_timer->ShutTimer();
 }

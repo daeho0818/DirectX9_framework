@@ -160,6 +160,18 @@ void Scene_Stage1::Release()
 
 	if (t_enemy1_spawn)
 		t_enemy1_spawn->ShutTimer();
+
+	if (t_enemy3_spawn)
+		t_enemy3_spawn->ShutTimer();
+
+	if (boss_appear_timer)
+		boss_appear_timer->ShutTimer();
+
+	if (player_destroy_animation)
+		player_destroy_animation->ShutTimer();
+
+	if (boss_destroy_animation)
+		boss_destroy_animation->ShutTimer();
 }
 
 void Scene_Stage1::WavePattern1(float current_coolTime, bool is_end)

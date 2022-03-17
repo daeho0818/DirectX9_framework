@@ -28,5 +28,5 @@ private:
 	float m_width;
 	float m_height;
 
-	bool Dotting(Vector2 direction, TransformC* other_transform, BoxColliderC* other_collider);
+	bool Dotting(Vector2 direction, BoxColliderC* other_collider);
 };

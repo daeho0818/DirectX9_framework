@@ -39,6 +39,7 @@ void SceneManager::Update()
 				++iter;
 			}
 		}
+		else iter = m_timers.erase(iter);
 	}
 }
 

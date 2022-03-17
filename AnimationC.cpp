@@ -27,6 +27,7 @@ void AnimationC::UIRender()
 
 void AnimationC::Release()
 {
+	SAFE_DELETE(m_timer);
 }
 
 void AnimationC::SetAnimation(string anim_key, float frame_time, bool loop)

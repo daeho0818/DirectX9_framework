@@ -85,6 +85,8 @@ void Enemy1_2::UIRender()
 
 void Enemy1_2::Release()
 {
+	if (wait_timer)
+		wait_timer->ShutTimer();
 }
 
 void Enemy1_2::SetEnemy(int index)

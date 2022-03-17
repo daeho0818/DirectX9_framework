@@ -19,6 +19,9 @@ Object::Object(string name, ObjType type, Vector2 position)
 
 Object::~Object()
 {
+	if (hit_animation)
+		hit_animation->ShutTimer();
+
 	for (var iter : components)
 	{
 		iter.second->Release();

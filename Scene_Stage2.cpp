@@ -124,6 +124,7 @@ void Scene_Stage2::DestroyAnimation(int index, Vector2 position)
 				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(75, 25), 0.01f);
 				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-100, 75), 0.01f);
 				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
+				(index == 0 ? m_player->m_object : m_boss->m_object)->wait_for_destroy = false;
 				break;
 			case 4:
 				CAMERA->StopAction(0);
@@ -160,6 +161,18 @@ void Scene_Stage2::Release()
 
 	if (t_enemy1_spawn)
 		t_enemy1_spawn->ShutTimer();
+
+	if (t_enemy3_spawn)
+		t_enemy3_spawn->ShutTimer();
+
+	if (boss_appear_timer)
+		boss_appear_timer->ShutTimer();
+
+	if (player_destroy_animation)
+		player_destroy_animation->ShutTimer();
+
+	if (boss_destroy_animation)
+		boss_destroy_animation->ShutTimer();
 }
 
 void Scene_Stage2::WavePattern1(float current_coolTime, bool is_end)

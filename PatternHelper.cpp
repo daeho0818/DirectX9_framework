@@ -9,6 +9,9 @@ PatternHelper::PatternHelper()
 
 PatternHelper::~PatternHelper()
 {
+	if (t_pattern)
+		t_pattern->ShutTimer();
+
 	for (var iter : m_patterns)
 		SAFE_DELETE(iter);
 

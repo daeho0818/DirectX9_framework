@@ -32,7 +32,7 @@ void Scene_Stage1::Init()
 	pattern_helper = new	PatternHelper();
 	SetAllWavePatterns();
 
-	boss_appear_count = 1;
+	boss_appear_count = 60;
 
 	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
 
@@ -51,6 +51,15 @@ void Scene_Stage1::Init()
 	boss_destroy_loop_count = 0;
 
 	boss_appear_timer->TimerStart();
+
+	stage_text = "";
+
+	stage_text_animation = new Timer(0.1f, complete_stage_text.size(), [&]()->void
+		{
+			if (text_index < complete_stage_text.size())
+				stage_text += complete_stage_text[text_index++];
+		}, false);
+	stage_text_animation->TimerStart();
 }
 
 void Scene_Stage1::SetAllWavePatterns()
@@ -84,26 +93,27 @@ void Scene_Stage1::Update()
 	pattern_helper->Update();
 	scroll_helper->Update();
 
-	if (m_player->m_object->is_destroy_check && !m_boss->m_object->is_destroy_check)
+	if (m_player->m_object->is_destroy_check)
 	{
 		if (!player_destroy_animation)
-			DestroyAnimation(0, m_player->m_transform->m_position);
+			DestroyAnimation(0);
 	}
 
 	else if (m_boss)
-		if (m_boss->m_object->is_destroy_check && !m_player->m_object->is_destroy_check)
+		if (m_boss->m_object->is_destroy_check)
 			if (!boss_destroy_animation)
-				DestroyAnimation(1, m_boss->m_transform->m_position);
+				DestroyAnimation(1);
 
 	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
 
-void Scene_Stage1::DestroyAnimation(int index, Vector2 position)
+void Scene_Stage1::DestroyAnimation(int index)
 {
-	var explosion_amimation = IMAGE->MakeAnimation("Explosion");
-
 	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&, index]()->void
 		{
+			vector<Image*> explosion_amimation;
+			Vector2 target_position;
+
 			(index == 0 ? player_destroy_loop_count : boss_destroy_loop_count)++;
 
 			switch ((index == 0 ? player_destroy_loop_count : boss_destroy_loop_count))
@@ -113,16 +123,22 @@ void Scene_Stage1::DestroyAnimation(int index, Vector2 position)
 				CAMERA->MovingCamera((index == 0 ? m_player->m_object : m_boss->m_object)->m_transform->m_position, 5);
 				break;
 			case 2:
-				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(100, 100), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(150, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-200,150), 0.01f);
+				target_position = (index == 0 ? m_player->m_transform->m_position : m_boss->m_transform->m_position);
+				explosion_amimation = IMAGE->MakeAnimation("Explosion");
+
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(100, 100), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(150, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-200, 150), 0.01f);
 				break;
 			case 3:
-				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(50, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(75, 25), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-100, 75), 0.01f);
+				target_position = (index == 0 ? m_player->m_transform->m_position : m_boss->m_transform->m_position);
+				explosion_amimation = IMAGE->MakeAnimation("Explosion");
+
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(50, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(75, 25), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-100, 75), 0.01f);
 				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
 				break;
 			case 4:
@@ -135,7 +151,10 @@ void Scene_Stage1::DestroyAnimation(int index, Vector2 position)
 			case 5:
 				break;
 			case 6:
-				SCENE->ChangeScene("Scene_Title");
+				if (index == 0)
+					SCENE->ChangeScene("Scene_Title");
+				else
+					SCENE->ChangeScene("Scene_Stage2");
 				break;
 			}
 		});
@@ -149,6 +168,7 @@ void Scene_Stage1::Render()
 
 void Scene_Stage1::UIRender()
 {
+	RENDER->TextRender(stage_text, Vector2(150, 75));
 	RENDER->TextRender("보스 등장까지", Vector2(WINSIZEX / 2, 50));
 	RENDER->TextRender(boss_appear_str, Vector2(WINSIZEX / 2, 110), 75);
 }
@@ -172,6 +192,9 @@ void Scene_Stage1::Release()
 
 	if (boss_destroy_animation)
 		boss_destroy_animation->ShutTimer();
+
+	if (stage_text_animation)
+		stage_text_animation->ShutTimer();
 }
 
 void Scene_Stage1::WavePattern1(float current_coolTime, bool is_end)

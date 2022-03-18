@@ -169,13 +169,13 @@ void ObjectManager::DestroyAllObject()
 {
 	for (var iter : m_objects)
 	{
+		if (iter) if (iter->OnDestroy) iter->OnDestroy();
 		for (var c_iter : iter->components)
 		{
 			c_iter.second->Release();
 			SAFE_DELETE(c_iter.second);
 		}
 		iter->components.clear();
-		if (iter) iter->OnDestroy();
 		SAFE_DELETE(iter);
 	}
 	m_objects.clear();

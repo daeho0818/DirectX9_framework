@@ -1,5 +1,5 @@
 #pragma once
-#include "Enemy1_1.h"
+#include "Enemy2_1.h"
 #include "Enemy1_2.h"
 #include "Enemy1_3.h"
 #include "Enemy1_4.h"
@@ -27,7 +27,7 @@ private:
 	void SetAllWavePatterns();
 
 	// index 0 : player, 1 : boss
-	void DestroyAnimation(int index, Vector2 position);
+	void DestroyAnimation(int index);
 
 	// helpers
 	PatternHelper* pattern_helper = nullptr;
@@ -63,6 +63,11 @@ private:
 
 	Timer* boss_destroy_animation = nullptr;
 	int boss_destroy_loop_count;
+
+	string stage_text;
+	string complete_stage_text = "스테이지 2";
+	int text_index = 0;
+	Timer* stage_text_animation = nullptr;
 
 };
 

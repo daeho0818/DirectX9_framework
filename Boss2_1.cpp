@@ -35,15 +35,19 @@ void Boss2_1::Init()
 		{
 			m_object->HitAnimation(D3DXCOLOR(1, 0, 0, 1));
 			m_object->m_hp--;
-		}
-	};
-	m_object->OnDestroy = [&]()->void
-	{
-		var explosion = IMAGE->MakeAnimation("Explosion");
-		for (int i = 0; i < 4; i++)
-		{
-			PARTICLE->AddParticleAnim(explosion, cannons[i]->m_transform->m_position, 0.01f);
-			cannons[i] = null;
+
+			if (m_object->m_hp == 0)
+			{
+				var explosion = IMAGE->MakeAnimation("Explosion");
+				for (int i = 0; i < 4; i++)
+				{
+					PARTICLE->AddParticleAnim(explosion, cannons[i]->m_transform->m_position, 0.01f);
+					cannons[i]->m_object->GetComponent<RendererC>()->enabled = false;
+				}
+				cannons.clear();
+
+				SAFE_DELETE(pattern_helper);
+			}
 		}
 	};
 
@@ -99,19 +103,16 @@ void Boss2_1::SpawnAnimation()
 
 		for (int i = 0; i < 4; i++)
 		{
+			float rotation_z[4] = { 135, -135, 45, -45 };
+
 			cannon_object[i] = OBJECT->CreateObject(names[i], EBoss, m_transform->m_position + localPositions[i]);
 			cannons.push_back(cannon_object[i]->AddComponent<Cannon>());
-			cannons[i]->SetCannon(this, IMAGE->FindImage(names[i]), i);
+			cannons[i]->SetCannon(this, IMAGE->FindImage(names[i]), i, rotation_z[i]);
 			cannons[i]->m_transform->m_rotationZ = rotation_z[i];
 		}
 
 		is_spawned = true;
 	}
-}
-
-void Boss2_1::ReleaseCannon(int index)
-{
-	cannons[index] = null;
 }
 
 void Boss2_1::Render()
@@ -124,36 +125,25 @@ void Boss2_1::UIRender()
 
 void Boss2_1::Release()
 {
-	SAFE_DELETE(pattern_helper);
-
-	for (var cannon : cannons)
-		SAFE_DELETE(cannon);
-	cannons.clear();
 }
 
 void Boss2_1::Pattern1(float current_count, bool is_end)
 {
 	if (is_end)
 	{
-		float rotation_z[4] = { 135, -135, 45, -45 };
-
-		for (int i = 0; i < 4; i++)
-			if (cannons[i] != null)
-				cannons[i]->m_transform->m_rotationZ = rotation_z[i];
+		for (var iter : cannons)
+			iter->Reset();
 	}
 	else
 	{
 		Vector2 direction;
-		for (int i = 0; i < 4; i++)
+		for (var iter : cannons)
 		{
-			if (cannons[i] != null)
-			{
-				direction = m_player->m_transform->m_position - cannons[i]->m_transform->m_position;
-				D3DXVec2Normalize(&direction, &direction);
+			direction = m_player->m_transform->m_position - iter->m_transform->m_position;
+			D3DXVec2Normalize(&direction, &direction);
 
-				cannons[i]->Rotation(m_player->m_transform->m_position);
-				cannons[i]->m_object->fire_helper->Fire(cannons[i]->m_transform->m_position, 0.25f, direction, cannons[i]->m_object->m_name + " Bullet", EE_Bullet, 7, bullet_image);
-			}
+			iter->Rotation(m_player->m_transform->m_position);
+			iter->m_object->fire_helper->Fire(iter->m_transform->m_position, 0.25f, direction, iter->m_object->m_name + " Bullet", EE_Bullet, 7, bullet_image);
 		}
 	}
 }

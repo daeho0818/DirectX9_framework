@@ -56,8 +56,8 @@ void MainGame::Render()
 
 void MainGame::Release()
 {
-	PARTICLE->Release();
 	OBJECT->Release();
+	PARTICLE->Release();
 	SCENE->Release();
 	CAMERA->Release();
 	SOUND->StopAll();

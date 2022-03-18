@@ -34,8 +34,14 @@ void ScrollHelper::Update()
 void ScrollHelper::Render()
 {
 	RENDER->CenterRender(m_bgImage, bg1_position);
+	RENDER->CenterRender(m_bgImage, bg1_position + Vector2(1920, 0), Vector2(-1, 1));
+	RENDER->CenterRender(m_bgImage, bg1_position - Vector2(1920, 0), Vector2(-1, 1));
 
 	RENDER->CenterRender(m_bgImage, bg2_position);
+	RENDER->CenterRender(m_bgImage, bg2_position + Vector2(1920, 0), Vector2(-1, 1));
+	RENDER->CenterRender(m_bgImage, bg2_position - Vector2(1920, 0), Vector2(-1, 1));
 
 	RENDER->CenterRender(m_bgImage, bg3_position);
+	RENDER->CenterRender(m_bgImage, bg3_position + Vector2(1920, 0), Vector2(-1, 1));
+	RENDER->CenterRender(m_bgImage, bg3_position - Vector2(1920, 0), Vector2(-1, 1));
 }

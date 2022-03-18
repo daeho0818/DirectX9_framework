@@ -1,16 +1,16 @@
 #include "DXUT.h"
-#include "Enemy1_1.h"
+#include "Enemy2_1.h"
 
-Enemy1_1::Enemy1_1(Object* object)
+Enemy2_1::Enemy2_1(Object* object)
 	:Component(object)
 {
 }
 
-Enemy1_1::~Enemy1_1()
+Enemy2_1::~Enemy2_1()
 {
 }
 
-void Enemy1_1::Init()
+void Enemy2_1::Init()
 {
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
@@ -47,19 +47,22 @@ void Enemy1_1::Init()
 	};
 
 	m_object->m_hp = 5;
+
+	int temp = rand() % 100;
+	stop_position_y = temp % 2 == 0 ? 400 : 200;
 }
 
-void Enemy1_1::Update()
+void Enemy2_1::Update()
 {
 	m_object->fire_helper->Update();
 
 	m_object->fire_helper->Fire(m_transform->m_position, 0.5f,
-		m_transform->down, "Enemy1_1 Bullet", EE_Bullet, 7, bullet_image);
+		m_transform->down, "Enemy2_1 Bullet", EE_Bullet, 7, bullet_image);
 
-	if (m_transform->m_position.y < 380)
+	if (m_transform->m_position.y < stop_position_y - 20)
 		D3DXVec2Lerp(&m_transform->m_position,
 			&m_transform->m_position,
-			&Vector2(m_transform->m_position.x, 400), DELTA);
+			&Vector2(m_transform->m_position.x, stop_position_y), DELTA);
 	else
 	{
 		if (!wait_timer && move_able)
@@ -74,15 +77,15 @@ void Enemy1_1::Update()
 	}
 }
 
-void Enemy1_1::Render()
+void Enemy2_1::Render()
 {
 }
 
-void Enemy1_1::UIRender()
+void Enemy2_1::UIRender()
 {
 }
 
-void Enemy1_1::Release()
+void Enemy2_1::Release()
 {
 	if (wait_timer)
 		wait_timer->ShutTimer();

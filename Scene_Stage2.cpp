@@ -51,6 +51,15 @@ void Scene_Stage2::Init()
 	boss_destroy_loop_count = 0;
 
 	boss_appear_timer->TimerStart();
+
+	stage_text = "";
+
+	stage_text_animation = new Timer(0.1f, complete_stage_text.size(), [&]()->void
+		{
+			if (text_index < complete_stage_text.size())
+				stage_text += complete_stage_text[text_index++];
+		}, false);
+	stage_text_animation->TimerStart();
 }
 
 void Scene_Stage2::SetAllWavePatterns()
@@ -87,23 +96,24 @@ void Scene_Stage2::Update()
 	if (m_player->m_object->is_destroy_check && !m_boss->m_object->is_destroy_check)
 	{
 		if (!player_destroy_animation)
-			DestroyAnimation(0, m_player->m_transform->m_position);
+			DestroyAnimation(0);
 	}
 
 	else if (m_boss)
 		if (m_boss->m_object->is_destroy_check && !m_player->m_object->is_destroy_check)
 			if (!boss_destroy_animation)
-				DestroyAnimation(1, m_boss->m_transform->m_position);
+				DestroyAnimation(1);
 
 	sprintf(boss_appear_str, "%d : %02d", boss_appear_count / 60, boss_appear_count % 60);
 }
 
-void Scene_Stage2::DestroyAnimation(int index, Vector2 position)
+void Scene_Stage2::DestroyAnimation(int index)
 {
-	var explosion_amimation = IMAGE->MakeAnimation("Explosion");
-
 	(index == 0 ? player_destroy_animation : boss_destroy_animation) = new Timer(1, 6, [&, index]()->void
 		{
+			vector<Image*> explosion_amimation;
+			Vector2 target_position;
+
 			(index == 0 ? player_destroy_loop_count : boss_destroy_loop_count)++;
 
 			switch ((index == 0 ? player_destroy_loop_count : boss_destroy_loop_count))
@@ -113,18 +123,23 @@ void Scene_Stage2::DestroyAnimation(int index, Vector2 position)
 				CAMERA->MovingCamera((index == 0 ? m_player->m_object : m_boss->m_object)->m_transform->m_position, 5);
 				break;
 			case 2:
-				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(100, 100), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(150, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-200, 150), 0.01f);
+				target_position = (index == 0 ? m_player->m_transform->m_position : m_boss->m_transform->m_position);
+				explosion_amimation = IMAGE->MakeAnimation("Explosion");
+
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(100, 100), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(150, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-200, 150), 0.01f);
 				break;
 			case 3:
-				PARTICLE->AddParticleAnim(explosion_amimation, position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(50, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(75, 25), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, position + Vector2(-100, 75), 0.01f);
+				target_position = (index == 0 ? m_player->m_transform->m_position : m_boss->m_transform->m_position);
+				explosion_amimation = IMAGE->MakeAnimation("Explosion");
+
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(50, 50), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(75, 25), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-100, 75), 0.01f);
 				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
-				(index == 0 ? m_player->m_object : m_boss->m_object)->wait_for_destroy = false;
 				break;
 			case 4:
 				CAMERA->StopAction(0);
@@ -150,6 +165,7 @@ void Scene_Stage2::Render()
 
 void Scene_Stage2::UIRender()
 {
+	RENDER->TextRender(stage_text, Vector2(150, 75));
 	RENDER->TextRender("보스 등장까지", Vector2(WINSIZEX / 2, 50));
 	RENDER->TextRender(boss_appear_str, Vector2(WINSIZEX / 2, 110), 75);
 }
@@ -173,6 +189,9 @@ void Scene_Stage2::Release()
 
 	if (boss_destroy_animation)
 		boss_destroy_animation->ShutTimer();
+
+	if (stage_text_animation)
+		stage_text_animation->ShutTimer();
 }
 
 void Scene_Stage2::WavePattern1(float current_coolTime, bool is_end)
@@ -184,13 +203,13 @@ void Scene_Stage2::WavePattern1(float current_coolTime, bool is_end)
 	}
 	else if (t_enemy1_spawn == null)
 	{
-		enemy1_position_x = WINSIZEX / 2 - 300;
+		enemy1_position_x = WINSIZEX / 2 - 600;
 
-		t_enemy1_spawn = new Timer(0.7f, 3, [&]()-> void
+		t_enemy1_spawn = new Timer(0.7f, 5, [&]()-> void
 			{
 				Object* object =
-					OBJECT->CreateObject("Enemy1_1", EEnemy, Vector2(enemy1_position_x, -300));
-				object->AddComponent<Enemy1_1>();
+					OBJECT->CreateObject("Enemy2_1", EEnemy, Vector2(enemy1_position_x, -300));
+				object->AddComponent<Enemy2_1>();
 
 				enemy1_position_x += 300;
 			}, false);

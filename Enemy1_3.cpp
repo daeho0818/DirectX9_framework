@@ -15,7 +15,7 @@ void Enemy1_3::Init()
 	collider = m_object->AddComponent<BoxColliderC>();
 	renderer = m_object->AddComponent<RendererC>();
 
-	var image = IMAGE->FindImage("Enemy1_3");
+	var image = IMAGE->FindImage("Enemy3");
 	renderer->SetRenderer(image, D3DXCOLOR(1, 1, 1, 1));
 
 	var img_info = image->info;
@@ -39,6 +39,12 @@ void Enemy1_3::Init()
 			m_object->is_destroy_check = true;
 		}
 	};
+
+	m_object->OnDestroy = [&]()->void
+	{
+		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
+	};
+
 	m_object->m_hp = 7;
 
 	m_object->fire_helper = new FireHelper();

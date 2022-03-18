@@ -156,6 +156,9 @@
     <Filter Include="3. Component\Game Object\Enemy\Stage 2\Boss">
       <UniqueIdentifier>{e1140846-26ca-41ed-9847-559d8a51c680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Component\Game Object\Enemy\Stage 2\Enemy 1">
+      <UniqueIdentifier>{5d145caf-0136-45a0-bdb9-3f5b247f52b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="DXUT\Optional\directx.ico">
@@ -334,6 +337,9 @@
     <ClCompile Include="Cannon.cpp">
       <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy2_1.cpp">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Enemy 1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -452,6 +458,9 @@
     </ClInclude>
     <ClInclude Include="Cannon.h">
       <Filter>3. Component\Game Object\Enemy\Stage 2\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy2_1.h">
+      <Filter>3. Component\Game Object\Enemy\Stage 2\Enemy 1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

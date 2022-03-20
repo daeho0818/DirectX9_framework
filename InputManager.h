@@ -14,11 +14,12 @@ public:
 
 	bool IsMouseDown(int button);
 	bool IsMouseUp(int button);
-	bool IsMousePressed(int button);
-	bool IsMouseClick(int button);
+	bool IsMouse(int button);
 
-	bool IsMouseOver(int button, Button* buttonObj);
-	bool IsMouseClick(int button, Button* buttonObj);
+	// Button 상호작용
+	bool IsMouseOver(Button* button);
+	bool IsMousePressed(Button* button);
+	bool IsMouseClick(Button* button);
 
 	Vector2 GetMousePosition();
 
@@ -26,10 +27,12 @@ private:
 	bool now_key[256] = { false, };
 	bool old_key[256] = { false, };
 
-	bool left_button_down = false;
-	bool left_button_up = false;
+	bool mouse_button_down[3];
+	bool mouse_button_up[3];
 
 	POINT mouse_position;
+
+	Button* pressed_button;
 
 };
 #define INPUT InputManager::Instance()
@@ -40,6 +43,6 @@ private:
 
 #define MouseDown(button) InputManager::Instance()->IsMouseDown(button)
 #define MouseUp(button) InputManager::Instance()->IsMouseUp(button)
-#define MousePressed(button) InputManager::Instance()->IsMousePressed(button)
+#define Mouse(button) InputManager::Instance()->IsMouse(button)
 
 #define mouse InputManager::Instance()->GetMousePosition()

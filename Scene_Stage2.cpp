@@ -34,7 +34,7 @@ void Scene_Stage2::Init()
 
 	boss_appear_count = 1;
 
-	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_1"));
+	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_2"));
 
 	boss_appear_timer = new Timer(1, boss_appear_count, [&]()->void
 		{

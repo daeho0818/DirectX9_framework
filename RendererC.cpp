@@ -19,31 +19,33 @@ void RendererC::Update()
 
 void RendererC::Render()
 {
-	if (m_image)
+	if (m_image && !is_ui)
 	{
 		RENDER->CenterRender(m_image, m_transform->m_position,
 			m_transform->m_localScale, D3DXToRadian(m_transform->m_rotationZ),
 			false, m_color);
 	}
-
-	if (m_object->m_name == "Boss2_1")
-	{
-		printf("ÀÀ¾Ö");
-	}
 }
 
 void RendererC::UIRender()
 {
+	if (m_image && is_ui)
+	{
+		RENDER->CenterRender(m_image, m_transform->m_position,
+			m_transform->m_localScale, D3DXToRadian(m_transform->m_rotationZ),
+			true, m_color);
+	}
 }
 
 void RendererC::Release()
 {
 }
 
-void RendererC::SetRenderer(Image* image, D3DXCOLOR color)
+void RendererC::SetRenderer(Image* image, D3DXCOLOR color, bool is_ui)
 {
 	m_image = image;
 	m_color = color;
+	this->is_ui = is_ui;
 }
 
 void RendererC::SetImage(Image* image)

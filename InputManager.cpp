@@ -3,6 +3,8 @@
 
 InputManager::InputManager()
 {
+	memset(mouse_button_down, false, 3);
+	memset(mouse_button_up, false, 3);
 }
 
 InputManager::~InputManager()
@@ -13,6 +15,12 @@ void InputManager::Update()
 {
 	for (int i = 0; i < 256; i++) old_key[i] = now_key[i];
 	for (int i = 0; i < 256; i++) now_key[i] = GetAsyncKeyState(i);
+
+	for (int i = 0; i < 3; i++)
+	{
+		mouse_button_up[i] = mouse_button_down[i];
+		mouse_button_down[i] = DXUTIsMouseButtonDown(i);
+	}
 
 	GetCursorPos(&mouse_position);
 	ScreenToClient(DXUTGetHWND(), &mouse_position);
@@ -35,32 +43,47 @@ bool InputManager::KeyPress(int key)
 
 bool InputManager::IsMouseDown(int button)
 {
-	return false;
+	if (button >= 3) return false;
+	return mouse_button_down[button] && !mouse_button_up[button];
 }
 
 bool InputManager::IsMouseUp(int button)
 {
-	return false;
+	if (button >= 3) return false;
+	return mouse_button_up[button] && !mouse_button_down[button];
 }
 
-bool InputManager::IsMousePressed(int button)
+bool InputManager::IsMouse(int button)
 {
-	return false;
+	if (button >= 3) return false;
+	return mouse_button_up[button] && mouse_button_down[button];
 }
 
-bool InputManager::IsMouseClick(int button)
+bool InputManager::IsMouseOver(Button* button)
 {
-	return false;
+	RECT buttonSize = button->m_size;
+
+	return !mouse_button_down[0] && !mouse_button_up[0] &&
+		(mouse_position.x >= buttonSize.left && mouse_position.y >= buttonSize.top &&
+			mouse_position.x <= buttonSize.right && mouse_position.y <= buttonSize.bottom);
 }
 
-bool InputManager::IsMouseOver(int button, Button* buttonObj)
+bool InputManager::IsMousePressed(Button* button)
 {
-	return false;
+	RECT buttonSize = button->m_size;
+
+	bool pressed = IsMouse(0) &&
+		(mouse_position.x >= buttonSize.left && mouse_position.y >= buttonSize.top &&
+			mouse_position.x <= buttonSize.right && mouse_position.y <= buttonSize.bottom);
+
+	if (pressed) pressed_button = button;
+
+	return pressed;
 }
 
-bool InputManager::IsMouseClick(int button, Button* buttonObj)
+bool InputManager::IsMouseClick(Button* button)
 {
-	return false;
+	return IsMouseUp(0) && (pressed_button == button);
 }
 
 Vector2 InputManager::GetMousePosition()

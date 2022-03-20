@@ -13,7 +13,7 @@ public:
 	virtual void UIRender() override;
 	virtual void Release() override;
 
-	void SetRenderer(Image* image, D3DXCOLOR color);
+	void SetRenderer(Image* image, D3DXCOLOR color, bool is_ui = false);
 
 	void SetImage(Image* image);
 	Image* GetImage();
@@ -23,6 +23,8 @@ public:
 private:
 	Image* m_image = nullptr;
 	D3DXCOLOR m_color;
+
+	bool is_ui;
 
 };
 

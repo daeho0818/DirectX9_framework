@@ -16,6 +16,19 @@ void Scene_Title::Init()
 	i_cloud = IMAGE->FindImage("Title_Cloud");
 	i_mountain = IMAGE->FindImage("Title_Mountain");
 
+	i_logo = IMAGE->FindImage("Title_Logo");
+
+	var b_start_obj = OBJECT->CreateObject("Start Button", EButton, Vector2(WINSIZEX / 2, 775));
+	var b_close_obj = OBJECT->CreateObject("Close Button", EButton, Vector2(WINSIZEX / 2, 900));
+
+	start_button = b_start_obj->AddComponent<Button>();
+	start_button->SetButton(IMAGE->FindImage("Title_Start"));
+	start_button->SetOnClickListener([&]()->void { SCENE->ChangeScene("Scene_Stage1"); });
+
+	close_button = b_close_obj->AddComponent<Button>();
+	close_button->SetButton(IMAGE->FindImage("Title_Close"));
+	close_button->SetOnClickListener([&]()->void { PostQuitMessage(0); });
+
 	moon_position = Vector2(300, 200);
 
 	cloud_position[0] = Vector2(WINSIZEX / 2, i_cloud->info.Height / 2);
@@ -54,13 +67,15 @@ void Scene_Title::Render()
 {
 	RENDER->CenterRender(i_background, CENTER);
 
+	RENDER->CenterRender(i_moon, moon_position);
+
 	RENDER->CenterRender(i_mountain, mountain_position[0]);
 	RENDER->CenterRender(i_mountain, mountain_position[1]);
 
-	RENDER->CenterRender(i_moon, moon_position);
-
 	RENDER->CenterRender(i_cloud, cloud_position[0]);
 	RENDER->CenterRender(i_cloud, cloud_position[1]);
+
+	RENDER->CenterRender(i_logo, Vector2(WINSIZEX / 2, 350));
 }
 
 void Scene_Title::UIRender()

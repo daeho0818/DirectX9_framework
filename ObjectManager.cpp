@@ -23,7 +23,7 @@ void ObjectManager::Update()
 			{
 				(*iter)->CheckOut();
 
-				if ((*iter)->m_hp <= 0 && (*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet)
+				if ((*iter)->m_hp <= 0 && (*iter)->m_type != EE_Bullet && (*iter)->m_type != EP_Bullet && (*iter)->m_type != EButton)
 					(*iter)->is_destroy_check = true;
 
 				for (var c_iter = (*iter)->components.begin(); c_iter != (*iter)->components.end();)

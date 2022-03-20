@@ -16,6 +16,9 @@ void Scene_Loading::Init()
 	IMAGE->QuickLoad("Title_Moon", "Scene/Title/Title_Moon");
 	IMAGE->QuickLoad("Title_Cloud", "Scene/Title/Title_Cloud");
 	IMAGE->QuickLoad("Title_Mountain", "Scene/Title/Title_Mountain");
+	IMAGE->QuickLoad("Title_Logo", "Scene/Title/Title_Logo");
+	IMAGE->QuickLoad("Title_Start", "Scene/Title/Title_Start");
+	IMAGE->QuickLoad("Title_Close", "Scene/Title/Title_Close");
 
 	// 플레이어 / 적 캐릭터
 	AddImage("Player", "Object/Player/Player");
@@ -38,6 +41,7 @@ void Scene_Loading::Init()
 
 	// 배경
 	AddImage("Background_1", "Scene/Ingame/Stage_1/Background_1");
+	AddImage("Background_2", "Scene/Ingame/Stage_2/Background_2");
 
 	// 폭발 애니메이션
 	AddImage("Explosion", "Effect/Explosion/Explosion", 13);
@@ -92,10 +96,10 @@ void Scene_Loading::Render()
 
 	RENDER->CenterRender(i_background, CENTER);
 
+	RENDER->CenterRender(i_moon, moon_position);
+
 	RENDER->CenterRender(i_mountain, mountain_position[0]);
 	RENDER->CenterRender(i_mountain, mountain_position[1]);
-
-	RENDER->CenterRender(i_moon, moon_position);
 
 	RENDER->CenterRender(i_cloud, cloud_position[0]);
 	RENDER->CenterRender(i_cloud, cloud_position[1]);

@@ -18,6 +18,11 @@ private:
 	Image* i_cloud = nullptr;
 	Image* i_mountain = nullptr;
 
+	Image* i_logo = nullptr;
+
+	Button* start_button = nullptr;
+	Button* close_button = nullptr;
+
 	Vector2 moon_position;
 	Vector2 cloud_position[2];
 	Vector2 mountain_position[2];

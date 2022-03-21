@@ -32,8 +32,6 @@ private:
 
 	POINT mouse_position;
 
-	Button* pressed_button;
-
 };
 #define INPUT InputManager::Instance()
 

@@ -47,7 +47,7 @@ void Enemy1_2::Init()
 		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
 	};
 
-	m_object->m_hp = 3;
+	m_object->m_hp = m_object->m_maxHp = 3;
 
 	wait_timer = new Timer(5, 0, [&]()->void
 		{

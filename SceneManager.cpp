@@ -24,22 +24,18 @@ void SceneManager::Update()
 		SceneLoading();
 	}
 
-	for (var iter = m_timers.begin(); iter != m_timers.end();)
+	for (var iter = m_timers.begin(); iter != m_timers.end(); )
 	{
-		if ((*iter))
+		if ((*iter)->is_end)
 		{
-			if ((*iter)->is_end)
-			{
-				SAFE_DELETE(*iter);
-				iter = m_timers.erase(iter);
-			}
-			else
-			{
-				(*iter)->Update();
-				++iter;
-			}
+			SAFE_DELETE(*iter);
+			iter = m_timers.erase(iter);
 		}
-		else iter = m_timers.erase(iter);
+		else
+		{
+			(*iter)->Update();
+			++iter;
+		}
 	}
 }
 

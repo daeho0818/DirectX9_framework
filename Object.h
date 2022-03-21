@@ -57,6 +57,7 @@ public:
 	FireHelper* fire_helper = nullptr;
 
 	int m_hp;
+	int m_maxHp;
 
 	bool is_destroy_check;
 	bool wait_for_destroy;

@@ -64,10 +64,15 @@ private:
 	Timer* boss_destroy_animation = nullptr;
 	int boss_destroy_loop_count;
 
+	// 스테이지 텍스트 애니메이션
 	string stage_text;
 	string complete_stage_text = "스테이지 2";
 	int text_index = 0;
 	Timer* stage_text_animation = nullptr;
+
+	// Player Hp
+	Image* player_hp_bg;
+	Image* player_hp_bar;
 
 };
 

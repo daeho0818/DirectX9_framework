@@ -50,7 +50,10 @@ void PatternHelper::Update()
 			is_coolTime = true;
 			t_pattern = new Timer(iter->m_coolTime, 0, [&]()->void {is_coolTime = false; });
 			t_pattern->TimerStart();
-			play_pattern_index = rand() % m_patterns.size();
+
+			play_pattern_index++;
+			if (play_pattern_index >= m_patterns.size())
+				play_pattern_index = 0;
 		}
 	}
 }

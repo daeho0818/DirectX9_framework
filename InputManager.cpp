@@ -76,14 +76,16 @@ bool InputManager::IsMousePressed(Button* button)
 		(mouse_position.x >= buttonSize.left && mouse_position.y >= buttonSize.top &&
 			mouse_position.x <= buttonSize.right && mouse_position.y <= buttonSize.bottom);
 
-	if (pressed) pressed_button = button;
-
 	return pressed;
 }
 
 bool InputManager::IsMouseClick(Button* button)
 {
-	return IsMouseUp(0) && (pressed_button == button);
+	RECT buttonSize = button->m_size;
+
+	return IsMouseUp(0) &&
+		(mouse_position.x >= buttonSize.left && mouse_position.y >= buttonSize.top &&
+			mouse_position.x <= buttonSize.right && mouse_position.y <= buttonSize.bottom);
 }
 
 Vector2 InputManager::GetMousePosition()

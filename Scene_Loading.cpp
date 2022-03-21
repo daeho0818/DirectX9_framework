@@ -39,9 +39,11 @@ void Scene_Loading::Init()
 	AddImage("Bullet_Enemy_2", "Object/Bullet/Bullet_Enemy_2");
 	AddImage("Bullet_Enemy_3", "Object/Bullet/Bullet_Enemy_3");
 
-	// 배경
+	// 인게임
 	AddImage("Background_1", "Scene/Ingame/Stage_1/Background_1");
 	AddImage("Background_2", "Scene/Ingame/Stage_2/Background_2");
+	AddImage("Player_Hp_Bg", "Scene/Ingame/Player_Hp_BG");
+	AddImage("Player_Hp_Bar", "Scene/Ingame/Player_Hp_Bar");
 
 	// 폭발 애니메이션
 	AddImage("Explosion", "Effect/Explosion/Explosion", 13);

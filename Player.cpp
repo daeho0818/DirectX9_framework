@@ -16,7 +16,7 @@ void Player::Init()
 
 	move_speed = 1000;
 	fire_range = 0.5f;
-	m_object->m_hp = 20;
+	m_object->m_hp = m_object->m_maxHp = 20;
 
 	invincibility = false;
 

@@ -14,6 +14,18 @@ void Cannon::Init()
 {
 	m_object->m_hp = 50;
 	m_transform->m_localScale = Vector2(0, 0);
+
+	m_object->OnDestroy = [&]()->void
+	{
+		for (var iter = m_boss->cannons.begin(); iter != m_boss->cannons.end();)
+		{
+			if ((*iter) == this)
+			{
+				iter = m_boss->cannons.erase(iter);
+			}
+			else  ++iter;
+		}
+	};
 }
 
 void Cannon::Update()

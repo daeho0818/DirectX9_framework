@@ -59,6 +59,10 @@ void Scene_Stage1::Init()
 			if (text_index < complete_stage_text.size())
 				stage_text += complete_stage_text[text_index++];
 		}, false);
+
+	player_hp_bg = IMAGE->FindImage("Player_Hp_Bg");
+	player_hp_bar = IMAGE->FindImage("Player_Hp_Bar");
+
 	stage_text_animation->TimerStart();
 }
 
@@ -127,18 +131,12 @@ void Scene_Stage1::DestroyAnimation(int index)
 				explosion_amimation = IMAGE->MakeAnimation("Explosion");
 
 				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(100, 100), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(150, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-200, 150), 0.01f);
 				break;
 			case 3:
 				target_position = (index == 0 ? m_player->m_transform->m_position : m_boss->m_transform->m_position);
 				explosion_amimation = IMAGE->MakeAnimation("Explosion");
 
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(50, 50), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(75, 25), 0.01f);
-				PARTICLE->AddParticleAnim(explosion_amimation, target_position + Vector2(-100, 75), 0.01f);
+				PARTICLE->AddParticleAnim(explosion_amimation, target_position, 0.01f, 1.5f);
 				(index == 0 ? m_player->m_object : m_boss->m_object)->GetComponent<RendererC>()->SetImage(null);
 				break;
 			case 4:
@@ -171,6 +169,16 @@ void Scene_Stage1::UIRender()
 	RENDER->TextRender(stage_text, Vector2(150, 75));
 	RENDER->TextRender("보스 등장까지", Vector2(WINSIZEX / 2, 50));
 	RENDER->TextRender(boss_appear_str, Vector2(WINSIZEX / 2, 110), 75);
+
+	RECT rc = 
+	{
+		0,
+		0,
+		player_hp_bar->info.Width * (m_player->m_object->m_hp / (float)m_player->m_object->m_maxHp),
+		player_hp_bar->info.Height
+	};
+	RENDER->CenterRender(player_hp_bg, Vector2(275, 1030), Vector2(0.5f, 0.5f), 0, true);
+	RENDER->CropRender(player_hp_bar, Vector2(275, 1030), rc, 0.5f, 0, true);
 }
 
 void Scene_Stage1::Release()

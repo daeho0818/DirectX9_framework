@@ -45,7 +45,7 @@ void Enemy1_3::Init()
 		PARTICLE->AddParticleAnim(IMAGE->MakeAnimation("Explosion"), m_transform->m_position, 0.01f);
 	};
 
-	m_object->m_hp = 7;
+	m_object->m_hp = m_object->m_maxHp = 7;
 
 	m_object->fire_helper = new FireHelper();
 }

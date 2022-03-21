@@ -53,7 +53,7 @@ void Boss2_1::Init()
 
 	m_object->wait_for_destroy = true;
 
-	m_object->m_hp = 10;
+	m_object->m_hp = m_object->m_maxHp = 200;
 
 	m_object->fire_helper = new	FireHelper();
 }

@@ -37,5 +37,6 @@ private:
 	int anim_complete_count = 0;
 
 	bool is_spawned;
+
 };
 

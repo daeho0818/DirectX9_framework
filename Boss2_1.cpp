@@ -39,13 +39,12 @@ void Boss2_1::Init()
 			if (m_object->m_hp == 0)
 			{
 				var explosion = IMAGE->MakeAnimation("Explosion");
-				for (int i = 0; i < 4; i++)
+				for (var iter : cannons)
 				{
-					PARTICLE->AddParticleAnim(explosion, cannons[i]->m_transform->m_position, 0.01f);
-					cannons[i]->m_object->GetComponent<RendererC>()->enabled = false;
+					PARTICLE->AddParticleAnim(explosion, iter->m_transform->m_position, 0.01f);
+					iter->m_object->GetComponent<RendererC>()->enabled = false;
 				}
 				cannons.clear();
-
 				SAFE_DELETE(pattern_helper);
 			}
 		}
@@ -53,7 +52,7 @@ void Boss2_1::Init()
 
 	m_object->wait_for_destroy = true;
 
-	m_object->m_hp = m_object->m_maxHp = 200;
+	m_object->m_hp = m_object->m_maxHp = 100;
 
 	m_object->fire_helper = new	FireHelper();
 }

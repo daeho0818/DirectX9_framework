@@ -32,7 +32,7 @@ void Scene_Stage2::Init()
 	pattern_helper = new	PatternHelper();
 	SetAllWavePatterns();
 
-	boss_appear_count = 1;
+	boss_appear_count = 30;
 
 	scroll_helper = new ScrollHelper(IMAGE->FindImage("Background_2"));
 

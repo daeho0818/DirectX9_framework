@@ -169,7 +169,6 @@ void ObjectManager::DestroyAllObject()
 {
 	for (var iter : m_objects)
 	{
-		if (iter) if (iter->OnDestroy) iter->OnDestroy();
 		for (var c_iter : iter->components)
 		{
 			c_iter.second->Release();
